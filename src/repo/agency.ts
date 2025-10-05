@@ -1,5 +1,5 @@
-import {Prisma, PrismaClient, AgencyRole} from '@prisma/client'
-import {agencyCreateSchema} from "@/app/schemas";
+import {Prisma, PrismaClient, AgencyRole, Agency} from '@prisma/client'
+import {agencyCreateSchema} from "@/schemas";
 
 const prisma = new PrismaClient()
 
@@ -15,12 +15,10 @@ async function getAgencyById(id: string){
         }
     })
 }
-async function getAgencyBySlug(slug: string){
-    return prisma.agency.findUnique({
-        where:{
-            slug
-        }
-    })
+async function getAgencyBySlug(slug: string): Promise<Agency>{
+    const agency = await prisma.agency.findUnique({ where: { slug } });
+    if (!agency) throw new Error("Agency not found");
+    return agency
 }
 
 async function getAllAgencies(){

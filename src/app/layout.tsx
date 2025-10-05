@@ -1,29 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Bodoni_Moda, Nunito_Sans } from "next/font/google";
+import React from "react";
 
-import NavBar from "@/app/components/base/NavBar";
-import {NavBarLink} from "@/app/schemas";
-
-const links: NavBarLink[] = [
-    {
-        title: 'About',
-        url: '/about'
-    }
-]
-
-const buttons: NavBarLink[] = [
-    {
-        title: 'Join Us',
-        url: '/sign-up',
-        class: 'join'
-    },
-    {
-        title: 'Log In',
-        url: '/login',
-        class: 'login'
-    }
-]
 const bodoni = Bodoni_Moda({
     subsets: ["latin"],
     variable: "--font-heading",
@@ -48,7 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bodoni.variable} ${nunito.variable} w-screen h-screen`}>
-        <NavBar logo="/AL-Logo_Pic.png" links={links} title="AltoraTrvl" buttons={buttons}/>
         {children}
       </body>
     </html>

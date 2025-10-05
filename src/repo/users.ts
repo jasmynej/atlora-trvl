@@ -1,5 +1,5 @@
 import {Prisma, PrismaClient, GlobalRole} from '@prisma/client'
-import {userCreateSchema} from "@/app/schemas";
+import {userCreateSchema} from "@/schemas";
 
 const prisma = new PrismaClient()
 

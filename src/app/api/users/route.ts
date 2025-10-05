@@ -1,4 +1,4 @@
-import {createUser, getAllUsers, getUsersByRole} from "@/app/repo/users";
+import {createUser, getAllUsers, getUsersByRole} from "@/repo/users";
 import {NextRequest, NextResponse} from "next/server";
 import {GlobalRole} from "@prisma/client";
 

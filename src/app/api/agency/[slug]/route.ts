@@ -1,4 +1,4 @@
-import {getAgencyBySlug} from "@/app/repo/agency";
+import {getAgencyBySlug} from "@/repo/agency";
 import {NextResponse, NextRequest} from "next/server";
 
 export async function GET(req: NextRequest, props: { params: Promise<{ slug: string }> }){

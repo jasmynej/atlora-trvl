@@ -1,5 +1,6 @@
-import {NavBarLink} from "@/app/schemas";
-import "../../styles/buttons.css";
+import {NavBarLink} from "@/schemas";
+import {getAgencyBySlug} from "@/repo/agency";
+import "@/styles/buttons.css";
 interface NavBarProps {
     logo: string
     links: NavBarLink[]

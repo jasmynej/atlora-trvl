@@ -1,4 +1,4 @@
-import {getAllAgencies, createAgency} from "@/app/repo/agency";
+import {getAllAgencies, createAgency} from "@/repo/agency";
 import {NextRequest, NextResponse} from "next/server";
 import {Agency} from "@prisma/client";
 
