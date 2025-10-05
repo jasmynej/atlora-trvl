@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-brand-primary: #0091AB;
+    --color-brand-primary-hover: #008198;
+    --color-brand-accent-1: #F7AAC1;
+    --color-brand-accent-1-hover: #F37B9F;
+    --color-brand-accent-2: #E7B06F;
+    --color-brand-accent-2-hover: #E09D4B;
+    --color-brand-accent-3: #B9B1C9;
+    --color-brand-accent-3-hover: #A095B5;
+    --color-brand-bg: #FAF8F6;
+    --color-brand-text: #343432;
+    --font-heading: var(--font-heading), serif;
+    --font-body: var(--font-body), sans-serif;
+}
+
+body {
+    font-family: var(--font-body), sans-serif;
+    color: var(--color-brand-text);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading), serif;
+}

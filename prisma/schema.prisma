@@ -14,9 +14,58 @@ datasource db {
   directUrl = env("NETLIFY_DATABASE_URL_UNPOOLED")
 }
 
+enum GlobalRole {
+  ALTORA_ADMIN
+  USER
+}
+
+enum AgencyRole {
+  AGENCY_ADMIN
+  TEAM_MEMBER
+}
+
+model User {
+  id         String     @id @default(cuid())
+  email      String     @unique
+  name       String?
+  image      String?
+  globalRole GlobalRole @default(USER)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  agencies AgencyMember[]
+  traveler Traveler[]
+}
+
 model Agency {
-  id        String   @id @default(cuid())
-  slug      String   @unique
+  id        String         @id @default(cuid())
+  slug      String         @unique
   name      String
-  createdAt DateTime @default(now())
+  contact   String
+  theme     Json?
+  logo      String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  members   AgencyMember[]
+
+  @@index([slug])
+}
+
+model AgencyMember {
+  id        String     @id @default(cuid())
+  agencyId  String
+  userId    String
+  role      AgencyRole @default(TEAM_MEMBER)
+  createdAt DateTime   @default(now())
+
+  agency Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Traveler {
+  userId      String  @id @unique
+  phone       String?
+  preferences Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
