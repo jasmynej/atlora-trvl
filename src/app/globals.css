@@ -19,7 +19,7 @@
     /* Background & Text */
     --color-brand-bg: var(--color-brand-bg);
     --color-brand-text: var(--color-brand-text);
-    --font-heading: var(--font-heading), serif;
+    --font-heading: var(--font-heading), Garamond;
     --font-body: var(--font-body), sans-serif;
 }
 
@@ -40,9 +40,9 @@
     --color-brand-text: #343432;
 
 }
-body {
-    font-family: var(--font-body), sans-serif;
-    color: var(--color-brand-text);
+
+[data-agency] {
+    font-family: var(--font-body), serif;
 }
 
 h1, h2, h3 {

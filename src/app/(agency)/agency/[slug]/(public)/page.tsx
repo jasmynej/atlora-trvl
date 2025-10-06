@@ -1,5 +1,5 @@
 'use client'
-import { useAgency } from "./AgencyProvider";
+import { useAgency } from "../AgencyProvider";
 
 
 export default function AgencyHome(){

@@ -25,7 +25,7 @@ export default function AltoraLandingLayout({children,}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
-        <div>
+        <div className="altora-pages">
             <NavBar logo="/AL-Logo_Pic.png" links={links} title="AltoraTrvl" buttons={buttons}/>
             {children}
         </div>

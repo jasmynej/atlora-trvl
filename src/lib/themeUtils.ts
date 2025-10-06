@@ -72,6 +72,8 @@ export function buildGoogleFontsHref(fonts: Array<{ family: string; weights?: nu
         )
         .join("&");
 
+    console.log(specs)
+
     // Add display=swap for better UX; you can add &subset=latin-ext if needed
     return `https://fonts.googleapis.com/css2?${specs}&display=swap`;
 }
