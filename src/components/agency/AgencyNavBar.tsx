@@ -1,4 +1,4 @@
-import {NavBarLink} from "@/schemas";
+import NavBarLink from "@/schemas";
 import {publicUrl} from "@/lib/media";
 import React from "react";
 interface NavBarProps {

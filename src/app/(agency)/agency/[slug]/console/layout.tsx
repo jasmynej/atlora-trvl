@@ -4,8 +4,8 @@ import {getAgencyBySlug} from "@/repo/agency";
 import {Agency} from "@prisma/client";
 import {notFound} from "next/navigation";
 import {ThemeJson, themeToStyleVars} from "@/lib/themeUtils";
-import {NavBarLink} from "@/schemas";
-import SidebarNav from "@/components/agency/AgencySideBar";
+import NavBarLink from "@/schemas";
+import AgencySideBarNav from "@/components/agency/AgencySideBar";
 export default async function AgencyConsoleLayout({children,params,}: {
     children: React.ReactNode,
     params: Promise<{ slug: string }>
@@ -22,7 +22,7 @@ export default async function AgencyConsoleLayout({children,params,}: {
     const dashLinks: NavBarLink[] = [
         {
             title:"Dashboard",
-            url:"/"
+            url:""
         },
 
         {
@@ -43,7 +43,7 @@ export default async function AgencyConsoleLayout({children,params,}: {
                 ["--font-body" as any]: `"${body.family}", sans-serif`,
             }}>
                 <div className="w-1/4 bg-brand-bg shadow">
-                    <SidebarNav basePath={basePath} links={dashLinks}/>
+                    <AgencySideBarNav basePath={basePath} links={dashLinks}/>
                 </div>
 
 

@@ -3,6 +3,7 @@ type NavBarLink = {
     url: string;
     icon?: string
     class?: string
+    subLinks?: NavBarLink[]
 }
 
 

@@ -69,3 +69,70 @@ model Traveler {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+enum RegionType {
+  CONTINENT
+  SUBREGION
+  MARKET_GROUP
+  THEME
+}
+
+model Region {
+  id       String     @id @default(cuid())
+  slug     String     @unique
+  name     String
+  type     RegionType
+  parentId String?
+  parent   Region?    @relation("RegionHierarchy", fields: [parentId], references: [id])
+  children Region[]   @relation("RegionHierarchy")
+  heroImg  String?
+  emoji    String?
+  summary  String?
+
+  countries RegionCountry[]
+}
+
+model Country {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  iso2      String   @unique
+  iso3      String   @unique
+  flag      String?
+  emoji     String?
+  summary   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  regions RegionCountry[]
+
+  destinations Destination[]
+}
+
+model RegionCountry {
+  regionId   String
+  countryId  String
+  isFeatured Boolean @default(false)
+  isPrimary  Boolean @default(false)
+
+  region  Region  @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@id([regionId, countryId])
+  @@index([countryId])
+}
+
+model Destination {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  countryId  String
+  country    Country  @relation(fields: [countryId], references: [id])
+  summary    String?
+  hero       String?
+  bestMonths String[] @default([])
+  tags       String[] @default([])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([countryId])
+}

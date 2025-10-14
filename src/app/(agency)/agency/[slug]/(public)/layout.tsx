@@ -7,7 +7,7 @@ import {Agency} from "@prisma/client";
 import AgencyProvider from "../AgencyProvider";
 import {ThemeJson, themeToStyleVars, buildGoogleFontsHref} from "@/lib/themeUtils";
 import AgencyNavBar from "@/components/agency/AgencyNavBar";
-import {NavBarLink} from "@/schemas";
+import NavBarLink from "@/schemas";
 
 
 export async function generateMetadata(

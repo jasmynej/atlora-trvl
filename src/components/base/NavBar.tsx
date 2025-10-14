@@ -1,4 +1,4 @@
-import {NavBarLink} from "@/schemas";
+import NavBarLink from "@/schemas";
 import {getAgencyBySlug} from "@/repo/agency";
 import "@/styles/buttons.css";
 interface NavBarProps {

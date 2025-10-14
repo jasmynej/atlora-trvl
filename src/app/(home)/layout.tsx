@@ -1,5 +1,5 @@
 import NavBar from "@/components/base/NavBar";
-import {NavBarLink} from "@/schemas";
+import NavBarLink from "@/schemas";
 import React from "react";
 
 const links: NavBarLink[] = [
