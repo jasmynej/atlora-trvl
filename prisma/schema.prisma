@@ -95,6 +95,7 @@ model Region {
 model Country {
   id        String   @id @default(cuid())
   slug      String   @unique
+  name      String
   iso2      String   @unique
   iso3      String   @unique
   flag      String?

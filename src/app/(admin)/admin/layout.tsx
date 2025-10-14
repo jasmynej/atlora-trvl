@@ -13,15 +13,15 @@ const dashLinks: NavBarLink[] = [
         subLinks: [
             {
                 title: "Regions",
-                url: "/regions",
+                url: "/catalog/regions",
             },
             {
                 title: "Countries",
-                url: "/countries",
+                url: "/catalog/countries",
             },
             {
                 title: "Destinations",
-                url: "/destinations",
+                url: "/catalog/destinations",
             }
         ]
     },
