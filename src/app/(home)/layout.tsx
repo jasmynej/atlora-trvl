@@ -1,6 +1,7 @@
 import NavBar from "@/components/base/NavBar";
 import NavBarLink from "@/schemas";
 import React from "react";
+import Link from "next/link";
 
 const links: NavBarLink[] = [
     {
@@ -28,6 +29,9 @@ export default function AltoraLandingLayout({children,}: Readonly<{
         <div className="altora-pages">
             <NavBar logo="/AL-Logo_Pic.png" links={links} title="AltoraTrvl" buttons={buttons}/>
             {children}
+            <footer className="">
+                <Link href="/admin">Admin</Link>
+            </footer>
         </div>
     );
 }

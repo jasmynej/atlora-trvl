@@ -132,6 +132,7 @@ model Destination {
   hero       String?
   bestMonths String[] @default([])
   tags       String[] @default([])
+  photos     Json[]   @default([])
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
