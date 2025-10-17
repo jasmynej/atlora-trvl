@@ -36,7 +36,9 @@ export default function CountryCatalogPage() {
                 <img src={
                     row.flag ? row.flag : `https://flagcdn.com/${row.iso2.toLowerCase()}.svg`}
                      className="w-18"/>
-        }
+        },
+        {key: "emoji", label: "Emoji",
+        render: (_value, row: Country) => <p className="text-3xl">{row.emoji ? row.emoji : `-`}</p>}
     ]
 
     async function submitNewCountry(formValues: any) {
