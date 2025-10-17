@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+    /* Primary */
+    --color-brand-primary: var(--color-brand-primary);
+    --color-brand-primary-hover: var(--color-brand-primary-hover);
+
+    /* Accents */
+    --color-brand-accent-1: var(--color-brand-accent-1);
+    --color-brand-accent-1-hover: var(--color-brand-accent-1-hover);
+
+    --color-brand-accent-2: var(--color-brand-accent-2);
+    --color-brand-accent-2-hover: var(--color-brand-accent-2-hover);
+
+    --color-brand-accent-3: var(--color-brand-accent-3);
+    --color-brand-accent-3-hover: var(--color-brand-accent-3-hover);
+
+    /* Background & Text */
+    --color-brand-bg: var(--color-brand-bg);
+    --color-brand-text: var(--color-brand-text);
+    --font-heading: var(--font-heading), Garamond;
+    --font-body: var(--font-body), sans-serif;
+}
+
+:root {
+    --color-brand-primary: #0091AB;
+    --color-brand-primary-hover: #008198;
+
+    --color-brand-accent-1: #F7AAC1;
+    --color-brand-accent-1-hover: #F37B9F;
+
+    --color-brand-accent-2: #E7B06F;
+    --color-brand-accent-2-hover: #E09D4B;
+
+    --color-brand-accent-3: #B9B1C9;
+    --color-brand-accent-3-hover: #A095B5;
+
+    --color-brand-bg: #FAF8F6;
+    --color-brand-text: #343432;
+
+}
+
+[data-agency] {
+    font-family: var(--font-body), serif;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading), serif;
+}

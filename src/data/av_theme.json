@@ -1,0 +1,26 @@
+{
+  "colors": {
+    "brand-primary": "#b09578ff",
+    "brand-primary-hover": "#9b8562ff",
+    "brand-accent-1": "#f7c6c6ff",
+    "brand-accent-1-hover": "#f4ababff",
+    "brand-accent-2": "#b881b1ff",
+    "brand-accent-2-hover": "#a16c9a",
+    "brand-accent-3": "#dbbda8ff",
+    "brand-accent-3-hover": "#cda88eff",
+    "brand-bg": "#f7f1edff",
+    "brand-text": "#42423fff"
+  },
+  "fonts": {
+    "heading": {
+      "family": "Boska",
+      "fallback": "serif",
+      "source": "local"
+    },
+    "body": {
+      "family": "General Sans",
+      "fallback": "sans-serif",
+      "source": "local"
+    }
+  }
+}

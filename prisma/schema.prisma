@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("NETLIFY_DATABASE_URL")
+  directUrl = env("NETLIFY_DATABASE_URL_UNPOOLED")
+}
+
+enum GlobalRole {
+  ALTORA_ADMIN
+  USER
+}
+
+enum AgencyRole {
+  AGENCY_ADMIN
+  TEAM_MEMBER
+}
+
+model User {
+  id         String     @id @default(cuid())
+  email      String     @unique
+  name       String?
+  image      String?
+  globalRole GlobalRole @default(USER)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  agencies AgencyMember[]
+  traveler Traveler[]
+}
+
+model Agency {
+  id        String         @id @default(cuid())
+  slug      String         @unique
+  name      String
+  contact   String
+  theme     Json?
+  logo      String?
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+  members   AgencyMember[]
+
+  @@index([slug])
+}
+
+model AgencyMember {
+  id        String     @id @default(cuid())
+  agencyId  String
+  userId    String
+  role      AgencyRole @default(TEAM_MEMBER)
+  createdAt DateTime   @default(now())
+
+  agency Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Traveler {
+  userId      String  @id @unique
+  phone       String?
+  preferences Json?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum RegionType {
+  CONTINENT
+  SUBREGION
+  MARKET_GROUP
+  THEME
+}
+
+model Region {
+  id       String     @id @default(cuid())
+  slug     String     @unique
+  name     String
+  type     RegionType
+  parentId String?
+  parent   Region?    @relation("RegionHierarchy", fields: [parentId], references: [id])
+  children Region[]   @relation("RegionHierarchy")
+  heroImg  String?
+  emoji    String?
+  summary  String?
+
+  countries RegionCountry[]
+}
+
+model Country {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  iso2      String   @unique
+  iso3      String   @unique
+  flag      String?
+  emoji     String?
+  summary   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  regions RegionCountry[]
+
+  destinations Destination[]
+}
+
+model RegionCountry {
+  regionId   String
+  countryId  String
+  isFeatured Boolean @default(false)
+  isPrimary  Boolean @default(false)
+
+  region  Region  @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  country Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+
+  @@id([regionId, countryId])
+  @@index([countryId])
+}
+
+model Destination {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  countryId  String
+  country    Country  @relation(fields: [countryId], references: [id])
+  summary    String?
+  hero       String?
+  bestMonths String[] @default([])
+  tags       String[] @default([])
+  photos     Json[]   @default([])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([countryId])
+}

@@ -1,5 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Bodoni_Moda, Nunito_Sans } from "next/font/google";
+import React from "react";
+
+const bodoni = Bodoni_Moda({
+    subsets: ["latin"],
+    variable: "--font-heading",
+});
+
+const nunito = Nunito_Sans({
+    subsets: ["latin"],
+    variable: "--font-body",
+});
 
 
 export const metadata: Metadata = {
@@ -14,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${bodoni.variable} ${nunito.variable} w-screen h-screen`}>
         {children}
       </body>
     </html>
