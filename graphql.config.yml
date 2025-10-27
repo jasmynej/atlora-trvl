@@ -1,0 +1,10 @@
+schema: "src/graphql/**/*.ts"
+documents: 'src/**/*.{ts,tsx,graphql,gql}'
+extensions:
+  endpoints:
+    default:
+      url: "http://localhost:3000/api/graphql"
+      headers:
+        user-agent: "JS GraphQL"
+        content-type: "application/json"
+      introspect: true

@@ -1,0 +1,53 @@
+query getAllRegions {
+    regions {
+        id
+        heroImg
+        name
+        type
+        slug
+    }
+}
+
+query getRegionBySlug($slug: String!) {
+    regionBySlug(slug: $slug ) {
+        id
+        name
+        type
+        summary
+        heroImg
+        emoji
+        parent {
+            id
+            slug
+            name
+        }
+        children {
+            id
+            slug
+            name
+        }
+        countries {
+            countryId
+            country {
+                name
+            }
+        }
+    }
+}
+
+mutation newRegion($data: RegionInput!) {
+    createRegion(
+        data: $data
+    ) {
+        id
+        name
+    }
+}
+
+mutation updateRegion($id: ID!, $data: RegionInput!){
+    updateRegion(id: $id, data: $data) {
+        id,
+        name
+        emoji
+    }
+}
