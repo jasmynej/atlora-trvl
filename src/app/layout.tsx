@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Bodoni_Moda, Nunito_Sans } from "next/font/google";
 import React from "react";
+import {ApolloWrapper} from "@/providers/ApolloProvider";
 
 const bodoni = Bodoni_Moda({
     subsets: ["latin"],
@@ -26,9 +27,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={`${bodoni.variable} ${nunito.variable} w-screen h-screen`}>
-        {children}
-        </body>
+            <body className={`${bodoni.variable} ${nunito.variable} w-screen h-screen`}>
+                <ApolloWrapper>
+                    {children}
+                </ApolloWrapper>
+
+            </body>
         </html>
     );
 }

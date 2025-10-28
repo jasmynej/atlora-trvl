@@ -5,6 +5,12 @@ query getAllRegions {
         name
         type
         slug
+        parent {
+            name
+        }
+        children {
+            name
+        }
     }
 }
 
