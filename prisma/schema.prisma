@@ -115,7 +115,7 @@ enum AgencyRole {
 }
 
 enum GlobalRole {
-  ALTORA_ADMIN
+  ATLORA_ADMIN
   USER
 }
 

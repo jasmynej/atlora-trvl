@@ -1,6 +1,9 @@
 import { gql } from "@apollo/client";
 import {regionTypeDefs} from "./region";
 import {countryTypeDefs} from "./country";
+import {userTypeDefs} from "./user";
+import {agencyTypeDefs} from "./agency";
+import {travelerTypeDefs} from "@/graphql/schema/traveler";
 
 export const typeDefs =[
     gql`
@@ -16,5 +19,8 @@ export const typeDefs =[
     `,
     regionTypeDefs,
     countryTypeDefs,
+    userTypeDefs,
+    agencyTypeDefs,
+    travelerTypeDefs,
     ]
 ;
