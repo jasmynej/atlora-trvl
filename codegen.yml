@@ -1,0 +1,11 @@
+schema: "http://localhost:3000/api/graphql"
+documents: "src/graphql/**/*.{ts,tsx,graphql,gql}"
+generates:
+  ./src/graphql/generated/:
+    preset: client
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-resolvers
+    presetConfig:
+      gqlTagName: gql

@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NETLIFY_DATABASE_URL")
+}
+
+model Agency {
+  id        String         @id @default(cuid())
+  slug      String         @unique
+  name      String
+  createdAt DateTime       @default(now())
+  contact   String
+  logo      String?
+  theme     Json?
+  updatedAt DateTime
+  members   AgencyMember[]
+
+  @@index([slug])
+}
+
+model AgencyMember {
+  id        String     @id @default(cuid())
+  agencyId  String
+  userId    String
+  role      AgencyRole @default(TEAM_MEMBER)
+  createdAt DateTime   @default(now())
+  agency    Agency     @relation(fields: [agencyId], references: [id], onDelete: Cascade)
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Country {
+  id           String          @id @default(cuid())
+  slug         String          @unique
+  iso2         String          @unique
+  iso3         String          @unique
+  flag         String?
+  emoji        String?
+  summary      String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  name         String
+  destinations Destination[]
+  regions      RegionCountry[]
+}
+
+model Destination {
+  id         String   @id @default(cuid())
+  slug       String   @unique
+  name       String
+  countryId  String
+  summary    String?
+  hero       String?
+  bestMonths String[] @default([])
+  tags       String[] @default([])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  photos     Json[]   @default([])
+  country    Country  @relation(fields: [countryId], references: [id])
+
+  @@index([countryId])
+}
+
+model Region {
+  id        String          @id @default(cuid())
+  slug      String          @unique
+  name      String
+  type      RegionType
+  parentId  String?
+  heroImg   String?
+  emoji     String?
+  summary   String?
+  parent    Region?         @relation("RegionToRegion", fields: [parentId], references: [id])
+  children  Region[]        @relation("RegionToRegion")
+  countries RegionCountry[]
+}
+
+model RegionCountry {
+  regionId   String
+  countryId  String
+  isFeatured Boolean @default(false)
+  isPrimary  Boolean @default(false)
+  country    Country @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  region     Region  @relation(fields: [regionId], references: [id], onDelete: Cascade)
+
+  @@id([regionId, countryId])
+  @@index([countryId])
+}
+
+model Traveler {
+  userId      String  @id @unique
+  phone       String?
+  preferences Json?
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id              String         @id @default(cuid())
+  email           String         @unique
+  name            String?
+  image           String?
+  globalRole      GlobalRole     @default(USER)
+  password        String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  agencyProfiles  AgencyMember[]
+  travelerProfile Traveler?
+  sessions        Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+enum AgencyRole {
+  AGENCY_ADMIN
+  TEAM_MEMBER
+}
+
+enum GlobalRole {
+  ATLORA_ADMIN
+  USER
+}
+
+enum RegionType {
+  CONTINENT
+  SUBREGION
+  MARKET_GROUP
+  THEME
+}

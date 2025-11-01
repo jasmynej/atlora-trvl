@@ -1,0 +1,39 @@
+query getAllAgencies {
+    agencies {
+        id
+        name
+        slug
+        logo
+        theme
+    }
+}
+
+query getAgencyBySlug($slug: String!){
+    agency(slug: $slug){
+        id
+        name
+        slug
+        theme
+        logo
+        members {
+            userId
+        }
+    }
+}
+
+mutation addAgency($data: AgencyInput!){
+    agency: addAgency(data: $data){
+        id
+        name
+        slug
+    }
+}
+
+mutation updateAgency($id: ID!, $data: AgencyInput!){
+    agency: updateAgency(id: $id, data: $data){
+        id
+        name
+        slug
+        theme
+    }
+}

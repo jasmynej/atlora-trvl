@@ -1,0 +1,58 @@
+query allCountries {
+    countries {
+        id
+        slug
+        name
+        flag
+        iso2
+        iso3
+        emoji
+        regions {
+            region {
+                name
+            }
+        }
+    }
+}
+
+query getCountryBySlug($slug: String!){
+    country: countryBySlug(slug: $slug){
+        id
+        name
+        iso3
+        iso2
+        flag
+        summary
+        regions {
+            region {
+                name
+            }
+        }
+    }
+}
+
+mutation newCountry($data: CountryInput!){
+    country: createCountry(data: $data){
+        id
+        slug
+        flag
+    }
+}
+
+mutation updateCountry($id: ID!, $data: CountryInput!){
+    updateCountry(id: $id, data: $data){
+        id
+        slug
+        flag
+        summary
+    }
+}
+
+mutation newRegionCountry($data: RegionCountryInput!){
+    createRegionCountry(data: $data){
+        countryId
+        regionId
+        isFeatured
+        isPrimary
+    }
+}
