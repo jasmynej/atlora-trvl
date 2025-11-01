@@ -1,0 +1,23 @@
+query getUserById($id: ID!){
+    user(id: $id){
+        id
+        name
+        email
+        image
+        agencyProfiles {
+            agency {
+                id
+                name
+            }
+        }
+    }
+}
+
+mutation updateUser($id: ID!, $data: UserInput!){
+    updateUser(id: $id, data: $data){
+        id
+        name
+        email
+        image
+    }
+}

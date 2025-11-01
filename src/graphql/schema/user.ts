@@ -7,18 +7,19 @@ export const userTypeDefs = gql`
     type User {
         id: ID!
         email: String!
-        name: String!
+        name: String
         image: String
         globalRole: GlobalRole!
+        agencyProfiles: [AgencyMember]
         createdAt: DateTime!
         updatedAt: DateTime!
     }
     
     input UserInput {
-        email: String!
-        name: String!
+        email: String
+        name: String
         image: String
-        globalRole: GlobalRole!
+        globalRole: GlobalRole
     }
     
     extend type Query {
