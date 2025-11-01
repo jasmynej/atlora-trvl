@@ -103,10 +103,21 @@ model User {
   name            String?
   image           String?
   globalRole      GlobalRole     @default(USER)
+  password        String
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   agencyProfiles  AgencyMember[]
   travelerProfile Traveler?
+  sessions        Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
 }
 
 enum AgencyRole {

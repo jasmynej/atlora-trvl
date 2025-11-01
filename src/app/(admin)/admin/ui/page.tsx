@@ -8,10 +8,10 @@ export default function AdminUiComponentView() {
         <div className="p-5">
             <h1 className="text-2xl">Testing UI components</h1>
             <div className="flex gap-5">
-                <Button color="primary">Primary</Button>
-                <Button color="accent_1">Accent 1</Button>
-                <Button color="accent_2">Accent 2</Button>
-                <Button color="accent_3">Accent 3</Button>
+                <Button color="primary" size="xs">Primary</Button>
+                <Button color="accent_1" size="sm">Accent 1</Button>
+                <Button color="accent_2" size="lg">Accent 2</Button>
+                <Button color="accent_3" size="xl">Accent 3</Button>
             </div>
             <div>
 
