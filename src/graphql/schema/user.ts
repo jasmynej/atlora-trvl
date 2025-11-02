@@ -24,8 +24,8 @@ export const userTypeDefs = gql`
     
     extend type Query {
         user(id: ID!): User!
-        allUsers: [User]!
-        allUsersByRole(role: GlobalRole!): [User]!
+        users: [User]!
+        usersByRole(role: GlobalRole!): [User]!
     }
     extend type Mutation {
         createUser(data: UserInput!): User!

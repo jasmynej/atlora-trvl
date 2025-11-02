@@ -8,6 +8,23 @@ query getUserById($id: ID!){
             agency {
                 id
                 name
+                logo
+            }
+            role
+        }
+    }
+}
+
+query allUsers {
+    users {
+        id
+        name
+        email
+        globalRole
+        agencyProfiles {
+            agency {
+                id
+                name
             }
         }
     }
@@ -21,3 +38,4 @@ mutation updateUser($id: ID!, $data: UserInput!){
         image
     }
 }
+

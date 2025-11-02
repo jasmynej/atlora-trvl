@@ -23,7 +23,7 @@ export const agencyResolvers = {
                     id: id,
                 }
             })
-        }
+        },
     },
     Mutation: {
         addAgency: async(_:any, { data }: {data: any}) => {
@@ -35,6 +35,14 @@ export const agencyResolvers = {
             return prisma.agency.update({
                 where: {id},
                 data: data
+            })
+        },
+        addAgencyMember: async(_: any, { data }: { data: any }) => {
+            return prisma.agencyMember.create({
+                data,
+                include: {
+                    agency: true,
+                }
             })
         }
     }

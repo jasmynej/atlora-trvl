@@ -11,6 +11,9 @@ export default function UnauthorizedPage() {
                 <Link href="/login">
                     <Button color="primary" size="xl">Login</Button>
                 </Link>
+                <Link href="/sign-up">
+                    <Button color="accent_1" size="xl">Sign Up</Button>
+                </Link>
             </div>
         </div>
     )

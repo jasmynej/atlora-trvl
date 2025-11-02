@@ -37,3 +37,12 @@ mutation updateAgency($id: ID!, $data: AgencyInput!){
         theme
     }
 }
+
+mutation addAgencyMember($data: AgencyMemberInput!){
+    addAgencyMember(data: $data){
+        agency {
+            id
+            name
+        }
+    }
+}

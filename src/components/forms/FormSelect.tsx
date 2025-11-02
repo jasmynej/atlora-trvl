@@ -1,4 +1,4 @@
-import { useFormContext } from "react-hook-form";
+import { useFormContext, FieldErrors, UseFormRegister } from "react-hook-form";
 
 type Option = { value: string; label: string };
 
@@ -8,6 +8,9 @@ type FormSelectProps = {
     options: Option[];
     required?: boolean;
     className?: string;
+    // Optional for standalone usage
+    register?: UseFormRegister<any>;
+    errors?: FieldErrors<any>;
 };
 
 export default function FormSelect({
@@ -16,13 +19,13 @@ export default function FormSelect({
                                        options,
                                        required,
                                        className = "",
+                                       register,
+                                       errors,
                                    }: FormSelectProps) {
-    const {
-        register,
-        formState: { errors },
-    } = useFormContext();
-
-    const error = errors[name]?.message as string | undefined;
+    const context = useFormContext();
+    const formRegister = register ?? context?.register;
+    const formErrors = errors ?? context?.formState?.errors ?? {};
+    const error = formErrors[name]?.message as string | undefined;
 
     return (
         <div className={`flex flex-col gap-1 ${className}`}>
@@ -33,9 +36,9 @@ export default function FormSelect({
             )}
             <select
                 id={name}
-                {...register(name, { required })}
+                {...(formRegister ? formRegister(name, { required }) : {})}
                 className={`border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary transition
-        ${error ? "border-red-500" : "border-gray-300"}`}
+                    ${error ? "border-red-500" : "border-gray-300"}`}
             >
                 <option value="">Select...</option>
                 {options.map((opt) => (

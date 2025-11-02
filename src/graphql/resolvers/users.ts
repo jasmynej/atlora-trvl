@@ -15,6 +15,17 @@ export const userResolvers = {
                     },
                 }
             })
+        },
+        users: async() => {
+            return prisma.user.findMany({
+                include: {
+                    agencyProfiles: {
+                        include: {
+                            agency: true
+                        }
+                    },
+                }
+            })
         }
     },
     Mutation: {
