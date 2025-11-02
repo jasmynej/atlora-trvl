@@ -1,4 +1,4 @@
-import {generateUploadPresignedUrl, getAgencyUploads, publicUrl, getGlobalUploads} from '@/lib/media'
+import {generateUploadPresignedUrl, getAgencyUploads, publicUrl, getGlobalUploads, getProfileImages} from '@/lib/media'
 import {NextRequest, NextResponse} from "next/server";
 
 const MAX_BYTES = 10 * 1024 * 1024;
@@ -78,23 +78,43 @@ export async function PUT(req: NextRequest) {
     }
 }
 
-export async function GET(req: NextRequest){
+export async function GET(req: NextRequest) {
     try {
-        const agencyParam = req.nextUrl.searchParams.get("agency");
-        if(!agencyParam){
-            return NextResponse.json({ error: "Missing ?agency=" }, { status: 400 });
+        const search = req.nextUrl.searchParams;
+        const agencyParam = search.get("agency");
+        const type = search.get("type");
+        const userId = search.get("user");
+
+        // 🧭 1️⃣ Handle profile image requests
+        if (type === "profile") {
+            if (!userId) {
+                return NextResponse.json(
+                    { error: "Missing ?user=" },
+                    { status: 400 }
+                );
+            }
+            const items = await getProfileImages(userId);
+            return NextResponse.json(items);
         }
-        let items = []
-        if(agencyParam === 'global'){
+
+        // 🧭 2️⃣ Fallback to agency/global upload logic
+        if (!agencyParam) {
+            return NextResponse.json(
+                { error: "Missing ?agency=" },
+                { status: 400 }
+            );
+        }
+
+        let items = [];
+        if (agencyParam === "global") {
             items = await getGlobalUploads();
-        }
-        else {
+        } else {
             items = await getAgencyUploads(agencyParam);
         }
 
         return NextResponse.json(items);
-
-    } catch (err: any){
+    } catch (err: any) {
+        console.error("GET /api/uploads error:", err);
         return NextResponse.json(
             { error: "Unexpected error", detail: err?.message ?? String(err) },
             { status: 500 }

@@ -7,6 +7,7 @@ import FormTextInput from "@/components/forms/FormTextInput";
 import Button from "@/components/base/Button";
 
 type SignUpFormValues = {
+    name: string;
     email: string;
     password: string;
     confirmPassword: string;
@@ -38,6 +39,7 @@ export default function SignUpPage() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
+                    name: data.name,
                     email: data.email,
                     password: data.password,
                     role: "USER",
@@ -50,7 +52,7 @@ export default function SignUpPage() {
             }
 
             // redirect after signup
-            router.push("/");
+            router.push("/settings");
         } catch (err: any) {
             setError(err.message || "Unexpected error");
         } finally {
@@ -67,6 +69,15 @@ export default function SignUpPage() {
                 <h1 className="text-2xl font-semibold mb-4 text-center">
                     Create an Account
                 </h1>
+
+                <FormTextInput
+                    name="name"
+                    label="Name"
+                    placeholder="Enter your name"
+                    required
+                    register={register}
+                    errors={errors}
+                />
 
                 <FormTextInput
                     name="email"

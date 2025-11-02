@@ -57,4 +57,42 @@ async function getGlobalUploads(){
     }));
 }
 
+export async function getProfileImages(userId: string) {
+    // 1️⃣ Fetch Atlora global default avatars
+    const globalCmd = new ListObjectsV2Command({
+        Bucket: BUCKET,
+        Prefix: `global/profile-images/`,
+    });
+    const globalRes = await s3.send(globalCmd);
+    const globalImages =
+        globalRes.Contents?.filter((obj) => obj.Key && !obj.Key.endsWith("/")).map(
+            (obj) => ({
+                key: obj.Key!,
+                type: "default" as const,
+                size: obj.Size ?? 0,
+                lastModified: obj.LastModified?.toISOString() ?? null,
+                url: publicUrl(obj.Key!),
+            })
+        ) ?? [];
+
+    // 2️⃣ Fetch user-uploaded profile images
+    const userCmd = new ListObjectsV2Command({
+        Bucket: BUCKET,
+        Prefix: `profiles/${userId}/`,
+    });
+    const userRes = await s3.send(userCmd);
+    const userImages =
+        userRes.Contents?.filter((obj) => obj.Key && !obj.Key.endsWith("/")).map(
+            (obj) => ({
+                key: obj.Key!,
+                type: "user" as const,
+                size: obj.Size ?? 0,
+                lastModified: obj.LastModified?.toISOString() ?? null,
+                url: publicUrl(obj.Key!),
+            })
+        ) ?? [];
+
+    // 3️⃣ Combine both sets, prioritizing user images first
+    return [...userImages, ...globalImages];
+}
 export {generateUploadPresignedUrl, getAgencyUploads, publicUrl, getGlobalUploads}

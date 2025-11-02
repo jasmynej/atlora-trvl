@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 type SignUpData = {
+    name: string;
     email: string;
     password: string;
     role: "USER" | "ATLORA_ADMIN";
@@ -13,6 +14,7 @@ async function signUp(data: SignUpData){
     const hashedPassword = await bcrypt.hash(data.password, 10);
     const user = await prisma.user.create({
         data: {
+            name: data.name,
             email: data.email,
             password: hashedPassword,
             globalRole: data.role
