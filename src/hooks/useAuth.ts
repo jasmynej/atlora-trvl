@@ -1,14 +1,15 @@
-"use client"
+"use client";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+
 export type AuthUser = {
     id: string;
     email: string;
     name?: string | null;
-    role?: string | null;
+    globalRole?: string | null;
     image?: string | null;
-    agencyProfiles?: any[]
+    agencyProfiles?: any[];
 };
 
 export function useAuth() {
@@ -16,6 +17,7 @@ export function useAuth() {
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [ready, setReady] = useState(false);
 
     const fetchUser = useCallback(async () => {
         try {
@@ -29,60 +31,57 @@ export function useAuth() {
                 setUser(null);
             }
         } catch (err: any) {
-            if (axios.isAxiosError(err)) {
-                // 401 = not logged in (not an actual error)
-                if (err.response?.status === 401) {
-                    setUser(null);
-                    setError(null);
-                } else {
-                    setError(err.message);
-                }
+            if (axios.isAxiosError(err) && err.response?.status === 401) {
+                setUser(null);
+                setError(null);
             } else {
                 setError("Unexpected error");
             }
         } finally {
             setLoading(false);
+            setReady(true);
         }
     }, []);
 
     useEffect(() => {
-        fetchUser().then(r => console.log(r));
+        fetchUser();
     }, [fetchUser]);
 
-    const login = useCallback(async (email: string, password: string) => {
-        try {
-            const res = await axios.post("/api/auth/login", { email, password });
-            if (res.status !== 200) {
-                throw new Error("Login failed");
+    const login = useCallback(
+        async (email: string, password: string) => {
+            try {
+                const res = await axios.post("/api/auth/login", { email, password });
+                if (res.status !== 200) throw new Error("Login failed");
+
+                const data = res.data;
+                setUser(data.user);
+                setError(null);
+                await fetchUser(); // refresh cookie-backed state
+
+                if (data.user.globalRole === "ATLORA_ADMIN") router.push("/admin");
+                else router.push("/");
+
+                return data.user;
+            } catch (err: any) {
+                setError(err.message);
             }
-
-            const data = res.data;
-            setUser(data.user);
-            return data.user;
-
-        }
-        catch (err: any) {
-            setError(err.message);
-        }
-    }, [])
+        },
+        [fetchUser, router]
+    );
 
     const logout = useCallback(async () => {
-        await fetch("/api/auth/logout", {
-            method: "POST",
-            credentials: "include",
-        });
+        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
         setUser(null);
         router.push("/login");
-    }, []);
+    }, [router]);
 
     return {
         user,
-        loading,
+        loading: !ready || loading,
         error,
         login,
         logout,
         refresh: fetchUser,
         isAuthenticated: !!user,
     };
-
 }
