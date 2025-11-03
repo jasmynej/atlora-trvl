@@ -55,10 +55,7 @@ export default function UserSettingsPage() {
                             const agency = profile?.agency;
                             if (!agency) return null;
                             const role = profile?.role || "TEAM_MEMBER"; // assuming your AgencyProfile model has role
-                            const consoleLink =
-                                role === "AGENCY_ADMIN"
-                                    ? `/agency/${agency?.id}/admin`
-                                    : `/agency/${agency?.id}/dashboard`;
+                            const consoleLink = `/agency/${agency?.slug}/console`
 
                             return (
                                 <div

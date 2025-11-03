@@ -9,6 +9,7 @@ query getUserById($id: ID!){
                 id
                 name
                 logo
+                slug
             }
             role
         }

@@ -29,8 +29,8 @@ export const agencyTypeDefs = gql`
     }
     
     input AgencyInput {
-        name: String!
-        slug: String!
+        name: String
+        slug: String
         contact: String
         logo: String
         theme: JSON

@@ -19,8 +19,8 @@
     /* Background & Text */
     --color-brand-bg: var(--color-brand-bg);
     --color-brand-text: var(--color-brand-text);
-    --font-heading: var(--font-heading), Garamond;
-    --font-body: var(--font-body), sans-serif;
+    --font-heading: var(--font-heading);
+    --font-body: var(--font-body);
 }
 
 :root {
@@ -38,6 +38,8 @@
 
     --color-brand-bg: #FAF8F6;
     --color-brand-text: #343432;
+    --default-font-heading: "Bodoni Moda", serif;
+    --default-font-body: "Nunito Sans", sans-serif;
 
 }
 
@@ -45,7 +47,11 @@
     font-family: var(--font-body), serif;
 }
 
+body {
+    font-family: var(--font-body, var(--default-font-body)), "Nunito Sans", sans-serif;
+}
+
 h1, h2, h3 {
-    font-family: var(--font-heading), serif;
+    font-family: var(--font-heading, var(--default-font-heading)), "Bodoni Moda", serif;
     color: var(--color-brand-text);
 }

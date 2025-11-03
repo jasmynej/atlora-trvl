@@ -7,12 +7,12 @@ import {AuthProvider} from "@/providers/AuthProvider";
 
 const bodoni = Bodoni_Moda({
     subsets: ["latin"],
-    variable: "--font-heading",
+    variable: "--default-font-heading",
 });
 
 const nunito = Nunito_Sans({
     subsets: ["latin"],
-    variable: "--font-body",
+    variable: "--default-font-body",
 });
 
 

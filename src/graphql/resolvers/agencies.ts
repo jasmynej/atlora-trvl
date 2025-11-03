@@ -13,7 +13,11 @@ export const agencyResolvers = {
                     slug,
                 },
                 include: {
-                    members: true
+                    members: {
+                        include: {
+                            user: true
+                        }
+                    }
                 }
             })
         },

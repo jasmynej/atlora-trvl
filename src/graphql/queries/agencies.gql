@@ -16,7 +16,12 @@ query getAgencyBySlug($slug: String!){
         theme
         logo
         members {
-            userId
+            role
+            user {
+                id
+                name
+                image
+            }
         }
     }
 }
