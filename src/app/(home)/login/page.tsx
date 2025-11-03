@@ -46,7 +46,7 @@ export default function LoginPage() {
             if (userRole === "ATLORA_ADMIN") {
                 router.push("/admin");
             } else {
-                router.push("/");
+                router.push("/settings");
             }
         } catch (err: any) {
             setError(err.message || "Unexpected error");

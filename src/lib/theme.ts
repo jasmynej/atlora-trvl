@@ -70,11 +70,36 @@ export function generateHoverColor(baseHex: string): string {
 }
 
 export const GOOGLE_FONT_OPTIONS = [
+    // --- Sans Serif ---
     { value: "Mulish", label: "Mulish" },
-    { value: "Cormorant Garamond", label: "Cormorant Garamond" },
     { value: "Nunito Sans", label: "Nunito Sans" },
-    { value: "Bodoni Moda", label: "Bodoni Moda" },
-    { value: "Playfair Display", label: "Playfair Display" },
     { value: "Poppins", label: "Poppins" },
+    { value: "Inter", label: "Inter" },
+    { value: "Rubik", label: "Rubik" },
+    { value: "Work Sans", label: "Work Sans" },
+    { value: "Manrope", label: "Manrope" },
+    { value: "Quicksand", label: "Quicksand" },
+    { value: "Source Sans 3", label: "Source Sans 3" },
+
+    // --- Serif ---
     { value: "Lora", label: "Lora" },
+    { value: "Merriweather", label: "Merriweather" },
+    { value: "Cormorant Garamond", label: "Cormorant Garamond" },
+    { value: "Playfair Display", label: "Playfair Display" },
+    { value: "Libre Baskerville", label: "Libre Baskerville" },
+    { value: "Bodoni Moda", label: "Bodoni Moda" },
+    { value: "Crimson Text", label: "Crimson Text" },
+    { value: "DM Serif Display", label: "DM Serif Display" },
+
+    // --- Display / Artistic ---
+    { value: "Abril Fatface", label: "Abril Fatface" },
+    { value: "Cinzel", label: "Cinzel" },
+    { value: "Josefin Sans", label: "Josefin Sans" },
+    { value: "Playfair Display SC", label: "Playfair Display SC" },
+    { value: "Bebas Neue", label: "Bebas Neue" },
+    { value: "Prata", label: "Prata" },
+    { value: "Great Vibes", label: "Great Vibes" },
+    { value: "Caveat", label: "Caveat" },
+    { value: "Dancing Script", label: "Dancing Script" },
+    { value: "Pacifico", label: "Pacifico" },
 ];

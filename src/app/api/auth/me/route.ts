@@ -10,7 +10,14 @@ export async function GET(req: NextRequest) {
 
         const session = await prisma.session.findUnique({
             where: { token },
-            include: { user: true },
+            include: {
+                user: {
+                    include: {
+                        agencyProfiles: true,
+                        travelerProfile: true,
+                    }
+                }
+            },
         });
 
         if (!session || session.expiresAt < new Date()) {

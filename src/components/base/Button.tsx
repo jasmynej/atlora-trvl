@@ -1,32 +1,8 @@
-import React, { useMemo } from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 
-// Define your button color keys
 type ButtonColor = "primary" | "accent_1" | "accent_2" | "accent_3";
 type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-    color?: ButtonColor;
-    size?: ButtonSize;
-};
-
-// Helper to get CSS variable value
-function getComputedColor(varName: string): string {
-    if (typeof window === "undefined") return "#000000";
-    const val = getComputedStyle(document.documentElement).getPropertyValue(varName);
-    return val.trim() || "#000000";
-}
-
-// Helper to calculate brightness
-function isColorLight(hex: string): boolean {
-    // Remove # and parse
-    const c = hex.replace("#", "");
-    const r = parseInt(c.substr(0, 2), 16);
-    const g = parseInt(c.substr(2, 2), 16);
-    const b = parseInt(c.substr(4, 2), 16);
-    // Perceived brightness formula
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return brightness > 170;
-}
 
 export default function Button({
                                    color = "primary",
@@ -34,7 +10,10 @@ export default function Button({
                                    children,
                                    className = "",
                                    ...props
-                               }: ButtonProps) {
+                               }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    color?: ButtonColor;
+    size?: ButtonSize;
+}) {
     const colors: Record<ButtonColor, string> = {
         primary: "bg-brand-primary hover:bg-brand-primary-hover",
         accent_1: "bg-brand-accent-1 hover:bg-brand-accent-1-hover",
@@ -51,11 +30,20 @@ export default function Button({
         "2xl": "px-6 py-[10px] text-lg rounded-lg tracking-wide",
     };
 
-    // Dynamically decide text color based on bg brightness
-    const textColor = useMemo(() => {
+    // Default color for SSR (always consistent)
+    const [textColor, setTextColor] = useState("text-white");
+
+    useEffect(() => {
         const varName = `--color-brand-${color.replace("_", "-")}`;
-        const bg = getComputedColor(varName);
-        return isColorLight(bg) ? "text-brand-text" : "text-white";
+        const val = getComputedStyle(document.documentElement).getPropertyValue(varName);
+        if (val) {
+            const hex = val.trim().replace("#", "");
+            const r = parseInt(hex.slice(0, 2), 16);
+            const g = parseInt(hex.slice(2, 4), 16);
+            const b = parseInt(hex.slice(4, 6), 16);
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+            setTextColor(brightness > 170 ? "text-brand-text" : "text-white");
+        }
     }, [color]);
 
     return (

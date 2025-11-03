@@ -7,6 +7,8 @@ export type AuthUser = {
     email: string;
     name?: string | null;
     role?: string | null;
+    image?: string | null;
+    agencyProfiles?: any[]
 };
 
 export function useAuth() {
