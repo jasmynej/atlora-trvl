@@ -1,0 +1,397 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   ATLORA TRAVEL — Design Foundations
+   Warm editorial minimalism: cream canvas, teal actions,
+   Bodoni Moda serif display + Raleway geometric sans.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('../fonts/BodoniModa.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('../fonts/BodoniModa-Italic.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Italic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    /* ── Brand primitives ── */
+    --teal:     #0091AB;
+    --pink:     #F7AAC1;
+    --gold:     #E7B06F;
+    --cream:    #FAF8F6;
+    --lavender: #B9B1C9;
+    --charcoal: #343432;
+
+    /* ── Teal scale ── */
+    --teal-50:  #E6F4F7;
+    --teal-100: #C2E5EC;
+    --teal-200: #8DD0DC;
+    --teal-300: #4FB6C8;
+    --teal-400: #1F9FB8;
+    --teal-500: #0091AB;
+    --teal-600: #007C93;
+    --teal-700: #006375;
+    --teal-800: #054C5A;
+    --teal-900: #0A3A44;
+
+    /* ── Warm neutrals (cream → charcoal) ── */
+    --sand-50:  #FFFFFF;
+    --sand-100: #FAF8F6;
+    --sand-150: #F4F0EB;
+    --sand-200: #EDE7DF;
+    --sand-300: #E0D8CD;
+    --sand-400: #C9BFB2;
+    --sand-500: #A89E90;
+    --sand-600: #7C7468;
+    --sand-700: #57524B;
+    --sand-800: #3D3A35;
+    --sand-900: #343432;
+
+    /* ── Accent tints ── */
+    --pink-100: #FDEDF2;
+    --pink-200: #FBD3DF;
+    --pink-500: #F7AAC1;
+    --pink-700: #D97A99;
+
+    --gold-100: #FBF1E3;
+    --gold-200: #F4DDBE;
+    --gold-500: #E7B06F;
+    --gold-700: #C68B43;
+
+    --lav-100:  #F1EFF5;
+    --lav-200:  #DEDAE7;
+    --lav-500:  #B9B1C9;
+    --lav-700:  #8C829F;
+
+    /* ── Semantic surfaces ── */
+    --bg:            var(--cream);
+    --bg-raised:     var(--sand-50);
+    --bg-sunken:     var(--sand-150);
+    --surface:       #FFFFFF;
+    --surface-muted: var(--sand-150);
+
+    /* ── Semantic foreground ── */
+    --fg1:        var(--charcoal);   /* primary text */
+    --fg2:        var(--sand-700);   /* secondary text */
+    --fg3:        var(--sand-600);   /* captions */
+    --fg-muted:   var(--sand-500);   /* placeholder / disabled */
+    --fg-on-teal: #FFFFFF;
+    --fg-on-dark: var(--cream);
+
+    /* ── Borders ── */
+    --border:        var(--sand-300);
+    --border-strong: var(--sand-400);
+    --border-faint:  var(--sand-200);
+
+    /* ── Interactive accent ── */
+    --accent:       var(--teal-500);
+    --accent-hover: var(--teal-600);
+    --accent-press: var(--teal-700);
+    --accent-soft:  var(--teal-50);
+    --link:         var(--teal-600);
+
+    /* ── Status ── */
+    --success:      #2F8F6B;
+    --success-soft: #E2F1EA;
+    --warning:      var(--gold-700);
+    --warning-soft: var(--gold-100);
+    --danger:       #C8553D;
+    --danger-soft:  #F8E5DF;
+    --info:         var(--teal-600);
+    --info-soft:    var(--teal-50);
+
+    /* ── Type families ── */
+    --font-serif: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+    --font-sans:  'Raleway', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono:  'SFMono-Regular', 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+    /* ── Type scale ── */
+    --text-xs:   0.75rem;
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-md:   1.125rem;
+    --text-lg:   1.375rem;
+    --text-xl:   1.75rem;
+    --text-2xl:  2.25rem;
+    --text-3xl:  3rem;
+    --text-4xl:  4rem;
+    --text-5xl:  5.5rem;
+
+    --leading-tight:   1.08;
+    --leading-snug:    1.25;
+    --leading-normal:  1.5;
+    --leading-relaxed: 1.7;
+
+    --tracking-tight:  -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide:   0.08em;
+    --tracking-wider:  0.18em;
+
+    /* ── Spacing (4px base) ── */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+
+    /* ── Radii ── */
+    --radius-xs:   4px;
+    --radius-sm:   8px;
+    --radius-md:   12px;
+    --radius-lg:   18px;
+    --radius-xl:   28px;
+    --radius-pill: 999px;
+
+    /* ── Shadows (warm-tinted, charcoal-based) ── */
+    --shadow-xs:   0 1px 2px rgba(52, 52, 50, 0.06);
+    --shadow-sm:   0 1px 3px rgba(52, 52, 50, 0.08), 0 1px 2px rgba(52, 52, 50, 0.04);
+    --shadow-md:   0 4px 12px rgba(52, 52, 50, 0.08), 0 2px 4px rgba(52, 52, 50, 0.05);
+    --shadow-lg:   0 12px 28px rgba(52, 52, 50, 0.12), 0 4px 8px rgba(52, 52, 50, 0.06);
+    --shadow-xl:   0 24px 56px rgba(52, 52, 50, 0.16), 0 8px 16px rgba(52, 52, 50, 0.07);
+    --shadow-teal: 0 8px 20px rgba(0, 145, 171, 0.22);
+    --ring:        0 0 0 3px rgba(0, 145, 171, 0.28);
+
+    /* ── Motion ── */
+    --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    --dur-fast:  120ms;
+    --dur-base:  220ms;
+    --dur-slow:  420ms;
+
+    /* ── Semantic theme tokens (Atlora defaults) ──────────────────────────── */
+    /* Override these in [data-theme="x"] blocks to skin the whole component  */
+    /* library for a different travel agency without touching component code.  */
+
+    /* Brand / primary action */
+    --color-brand:          #0091AB;
+    --color-brand-hover:    #007C93;
+    --color-brand-press:    #006375;
+    --color-brand-subtle:   #E6F4F7;
+    --color-brand-on:       #FFFFFF;
+    --color-brand-fg:       #007C93;
+    --shadow-brand:         0 8px 20px rgba(0, 145, 171, 0.22);
+    --ring-brand:           0 0 0 3px rgba(0, 145, 171, 0.28);
+
+    /* Premium accent */
+    --color-premium:        #C68B43;
+    --color-premium-subtle: #FBF1E3;
+    --color-premium-on:     #FAF8F6;
+    --color-premium-fg:     #C68B43;
+
+    /* Warm accent */
+    --color-warm:           #D97A99;
+    --color-warm-subtle:    #FDEDF2;
+    --color-warm-on:        #FFFFFF;
+    --color-warm-fg:        #D97A99;
+
+    /* Calm accent */
+    --color-calm:           #8C829F;
+    --color-calm-subtle:    #F1EFF5;
+    --color-calm-on:        #FFFFFF;
+    --color-calm-fg:        #8C829F;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg);
+    color: var(--fg1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ── Semantic typography utility classes ─────────────────── */
+@layer components {
+  .type-display {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fg1);
+  }
+
+  .type-h1 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fg1);
+  }
+
+  .type-h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--fg1);
+  }
+
+  .type-h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: var(--text-xl);
+    line-height: var(--leading-snug);
+    color: var(--fg1);
+  }
+
+  /* Spaced uppercase sans — the brand's signature label treatment */
+  .type-eyebrow {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    line-height: 1.4;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--teal-600);
+  }
+
+  .type-subtitle {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-md);
+    line-height: var(--leading-relaxed);
+    color: var(--fg2);
+  }
+
+  .type-body {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--fg1);
+  }
+
+  .type-body-sm {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--fg2);
+  }
+
+  .type-caption {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--text-xs);
+    line-height: var(--leading-normal);
+    color: var(--fg3);
+  }
+
+  .type-label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.01em;
+    color: var(--fg1);
+  }
+
+  /* Decorative serif italic — pull quotes, destination names */
+  .type-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--fg1);
+  }
+
+  .type-mono {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0;
+    color: var(--fg2);
+  }
+}
+
+/* ── Agency themes ───────────────────────────────────────────────────────────
+   Each [data-theme] block overrides the semantic tokens defined in :root.
+   The neutral (sand) scale and typographic tokens are shared across all themes.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+[data-theme="atlora"] {
+  --color-brand:          #0091AB;
+  --color-brand-hover:    #007C93;
+  --color-brand-press:    #006375;
+  --color-brand-subtle:   #E6F4F7;
+  --color-brand-on:       #FFFFFF;
+  --color-brand-fg:       #007C93;
+  --shadow-brand:         0 8px 20px rgba(0, 145, 171, 0.22);
+  --ring-brand:           0 0 0 3px rgba(0, 145, 171, 0.28);
+
+  --color-premium:        #C68B43;
+  --color-premium-subtle: #FBF1E3;
+  --color-premium-on:     #FAF8F6;
+  --color-premium-fg:     #C68B43;
+
+  --color-warm:           #D97A99;
+  --color-warm-subtle:    #FDEDF2;
+  --color-warm-on:        #FFFFFF;
+  --color-warm-fg:        #D97A99;
+
+  --color-calm:           #8C829F;
+  --color-calm-subtle:    #F1EFF5;
+  --color-calm-on:        #FFFFFF;
+  --color-calm-fg:        #8C829F;
+}
+
+/* Meridian Travel — boutique eco-adventure agency, Edinburgh
+   Brand: deep forest green / warm gold / terra cotta / sage teal            */
+[data-theme="meridian"] {
+  --color-brand:          #1F5C3A;
+  --color-brand-hover:    #174D30;
+  --color-brand-press:    #0F3E26;
+  --color-brand-subtle:   #EDFAF3;
+  --color-brand-on:       #FFFFFF;
+  --color-brand-fg:       #1F5C3A;
+  --shadow-brand:         0 8px 20px rgba(31, 92, 58, 0.22);
+  --ring-brand:           0 0 0 3px rgba(31, 92, 58, 0.28);
+
+  --color-premium:        #C49A28;
+  --color-premium-subtle: #FBF4DC;
+  --color-premium-on:     #2A1F00;
+  --color-premium-fg:     #A07D1C;
+
+  --color-warm:           #C2541A;
+  --color-warm-subtle:    #FBEDE5;
+  --color-warm-on:        #FFFFFF;
+  --color-warm-fg:        #A04415;
+
+  --color-calm:           #5B8F84;
+  --color-calm-subtle:    #EBF3F2;
+  --color-calm-on:        #FFFFFF;
+  --color-calm-fg:        #4A7870;
+}

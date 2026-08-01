@@ -1,0 +1,27 @@
+{
+  "agencyId": "meridian",
+  "name": "Meridian Travel",
+  "colors": {
+    "brand":          "#1F5C3A",
+    "brandHover":     "#174D30",
+    "brandPress":     "#0F3E26",
+    "brandSubtle":    "#EDFAF3",
+    "brandOn":        "#FFFFFF",
+    "brandFg":        "#1F5C3A",
+
+    "premium":        "#C49A28",
+    "premiumSubtle":  "#FBF4DC",
+    "premiumOn":      "#2A1F00",
+    "premiumFg":      "#A07D1C",
+
+    "warm":           "#C2541A",
+    "warmSubtle":     "#FBEDE5",
+    "warmOn":         "#FFFFFF",
+    "warmFg":         "#A04415",
+
+    "calm":           "#5B8F84",
+    "calmSubtle":     "#EBF3F2",
+    "calmOn":         "#FFFFFF",
+    "calmFg":         "#4A7870"
+  }
+}

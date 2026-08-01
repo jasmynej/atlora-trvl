@@ -1,0 +1,348 @@
+
+<style>
+  h2.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+  .epic { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); background: var(--color-background-primary); margin-bottom: 1.5rem; overflow: hidden; }
+  .epic-header { padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); cursor: pointer; user-select: none; }
+  .epic-header:hover { background: var(--color-background-secondary); }
+  .epic-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .epic-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); flex: 1; }
+  .epic-count { font-size: 12px; color: var(--color-text-secondary); }
+  .chevron { font-size: 14px; color: var(--color-text-secondary); transition: transform 0.2s; }
+  .chevron.open { transform: rotate(180deg); }
+  .stories { padding: 0 18px 14px; }
+  .story { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .story:last-child { border-bottom: none; }
+  .story-id { font-size: 11px; color: var(--color-text-tertiary); font-family: var(--font-mono); min-width: 48px; padding-top: 1px; }
+  .story-body { flex: 1; }
+  .story-title { font-size: 13px; color: var(--color-text-primary); margin: 0 0 3px; }
+  .story-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; margin: 0; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 6px; display: inline-block; }
+
+  .e1-badge { background: #E1F5EE; color: #0F6E56; }
+  .e2-badge { background: #EEEDFE; color: #3C3489; }
+  .e3-badge { background: #FBEAF0; color: #72243E; }
+  .e4-badge { background: #FAEEDA; color: #633806; }
+  .e5-badge { background: #E6F1FB; color: #0C447C; }
+
+  .tag-api { background: #E1F5EE; color: #0F6E56; }
+  .tag-db { background: #EEEDFE; color: #3C3489; }
+  .tag-web { background: #E6F1FB; color: #0C447C; }
+  .tag-auth { background: #FAEEDA; color: #633806; }
+  .tag-infra { background: #F1EFE8; color: #444441; }
+
+  @media (prefers-color-scheme: dark) {
+    .e1-badge { background: #085041; color: #9FE1CB; }
+    .e2-badge { background: #3C3489; color: #CECBF6; }
+    .e3-badge { background: #72243E; color: #F4C0D1; }
+    .e4-badge { background: #633806; color: #FAC775; }
+    .e5-badge { background: #0C447C; color: #B5D4F4; }
+    .tag-api { background: #085041; color: #9FE1CB; }
+    .tag-db { background: #3C3489; color: #CECBF6; }
+    .tag-web { background: #0C447C; color: #B5D4F4; }
+    .tag-auth { background: #633806; color: #FAC775; }
+    .tag-infra { background: #444441; color: #D3D1C7; }
+  }
+</style>
+
+<h2 class="sr-only">Atlora Phase 1 epics and user stories breakdown across five areas: infrastructure, auth, geography, trips, and public website.</h2>
+
+<div style="padding: 1rem 0 0.5rem;">
+  <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0 0 1rem;">Click an epic to expand its stories.</p>
+
+  <div class="epic" id="e1">
+    <div class="epic-header" onclick="toggle('e1')">
+      <span class="epic-badge e1-badge">E-01</span>
+      <span class="epic-title">Monorepo & infrastructure setup</span>
+      <span class="epic-count" id="e1-count">5 stories</span>
+      <i class="ti ti-chevron-down chevron" id="e1-chev" aria-hidden="true"></i>
+    </div>
+    <div class="stories" id="e1-stories" style="display:none;">
+      <div class="story">
+        <span class="story-id">E-01-01</span>
+        <div class="story-body">
+          <p class="story-title">Initialize Turborepo with app and package workspaces</p>
+          <p class="story-desc">Scaffold <code>apps/</code> and <code>packages/</code> with turbo.json pipeline tasks for build, dev, lint, and typecheck. Confirm task caching works.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-01-02</span>
+        <div class="story-body">
+          <p class="story-title">Bootstrap packages/db with Prisma and initial schema</p>
+          <p class="story-desc">Install Prisma, configure DATABASE_URL, define the Agency model as the root tenant entity. Run first migration.</p>
+          <span class="tag tag-db">db</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-01-03</span>
+        <div class="story-body">
+          <p class="story-title">Create packages/types with shared Zod schemas</p>
+          <p class="story-desc">Set up the shared types package. Add base schemas (id, timestamps, pagination). Export from package index.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-01-04</span>
+        <div class="story-body">
+          <p class="story-title">Bootstrap apps/api with Hono + tRPC</p>
+          <p class="story-desc">Create the Hono server, mount the tRPC handler, wire up packages/trpc router skeleton. Confirm a health endpoint returns 200.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-01-05</span>
+        <div class="story-body">
+          <p class="story-title">Bootstrap apps/web as Next.js 14 App Router app</p>
+          <p class="story-desc">Scaffold the Next.js app, install tRPC client, configure env vars. Confirm it renders a placeholder home page.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="epic" id="e2">
+    <div class="epic-header" onclick="toggle('e2')">
+      <span class="epic-badge e2-badge">E-02</span>
+      <span class="epic-title">Design system foundations (packages/ui)</span>
+      <span class="epic-count" id="e2-count">5 stories</span>
+      <i class="ti ti-chevron-down chevron" id="e2-chev" aria-hidden="true"></i>
+    </div>
+    <div class="stories" id="e2-stories" style="display:none;">
+      <div class="story">
+        <span class="story-id">E-02-01</span>
+        <div class="story-body">
+          <p class="story-title">Configure design tokens for brand and admin themes</p>
+          <p class="story-desc">Define CSS variables and Tailwind config extensions for the brand palette (teal/pink/gold/cream) and neutral admin palette. Both themes exportable as token sets.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-02-02</span>
+        <div class="story-body">
+          <p class="story-title">Set up Storybook inside packages/ui</p>
+          <p class="story-desc">Install and configure Storybook. Confirm it runs in isolation with both theme tokens loaded. Add a token showcase story.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-02-03</span>
+        <div class="story-body">
+          <p class="story-title">Build primitive components: Button, Input, Badge</p>
+          <p class="story-desc">Implement with full variant coverage (size, intent, disabled, loading). Stories for all states in both themes.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-02-04</span>
+        <div class="story-body">
+          <p class="story-title">Build layout primitives: Card, Modal, Dropdown</p>
+          <p class="story-desc">Headless-friendly, composable. Modal manages focus trap and scroll lock. Storybook stories for each.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-02-05</span>
+        <div class="story-body">
+          <p class="story-title">Build TripCard and DestinationCard composite components</p>
+          <p class="story-desc">Used by the public site to display trip and destination listings. Accept typed props; drive all data from outside.</p>
+          <span class="tag tag-infra">infra</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="epic" id="e3">
+    <div class="epic-header" onclick="toggle('e3')">
+      <span class="epic-badge e3-badge">E-03</span>
+      <span class="epic-title">Authentication & authorization</span>
+      <span class="epic-count" id="e3-count">5 stories</span>
+      <i class="ti ti-chevron-down chevron" id="e3-chev" aria-hidden="true"></i>
+    </div>
+    <div class="stories" id="e3-stories" style="display:none;">
+      <div class="story">
+        <span class="story-id">E-03-01</span>
+        <div class="story-body">
+          <p class="story-title">Integrate Clerk for agency admin authentication</p>
+          <p class="story-desc">Configure Clerk application, set up organization support (one org = one agency). Provision agency_admin and agency_staff roles.</p>
+          <span class="tag tag-auth">auth</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-03-02</span>
+        <div class="story-body">
+          <p class="story-title">JWT validation middleware in apps/api</p>
+          <p class="story-desc">Verify Clerk JWTs on every protected tRPC request. Extract agency_id and user role from the token and attach to context. Reject invalid or missing tokens with 401.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-03-03</span>
+        <div class="story-body">
+          <p class="story-title">Role-based procedure guards in tRPC</p>
+          <p class="story-desc">Implement protectedProcedure and adminProcedure middleware that checks roles from context before resolving. All write procedures require at minimum agency_staff.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-03-04</span>
+        <div class="story-body">
+          <p class="story-title">Seed Agency record tied to Clerk org on first login</p>
+          <p class="story-desc">On a new agency admin's first authenticated request, upsert an Agency row using the Clerk org ID as the external key. This is the multi-tenancy anchor.</p>
+          <span class="tag tag-api">api</span><span class="tag tag-db">db</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-03-05</span>
+        <div class="story-body">
+          <p class="story-title">Basic admin shell in apps/admin (login-gated)</p>
+          <p class="story-desc">Scaffold the Vite + React admin app with Clerk's React SDK. Show a sidebar nav behind auth. All routes redirect to Clerk's sign-in if unauthenticated.</p>
+          <span class="tag tag-web">web</span><span class="tag tag-auth">auth</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="epic" id="e4">
+    <div class="epic-header" onclick="toggle('e4')">
+      <span class="epic-badge e4-badge">E-04</span>
+      <span class="epic-title">Geography domain (countries, regions, destinations)</span>
+      <span class="epic-count" id="e4-count">7 stories</span>
+      <i class="ti ti-chevron-down chevron" id="e4-chev" aria-hidden="true"></i>
+    </div>
+    <div class="stories" id="e4-stories" style="display:none;">
+      <div class="story">
+        <span class="story-id">E-04-01</span>
+        <div class="story-body">
+          <p class="story-title">Prisma schema: Country, Region, Destination</p>
+          <p class="story-desc">Define models with agency_id FK, slug, name, description, hero image URL, and status (draft/published). Add foreign key relations and run migration.</p>
+          <span class="tag tag-db">db</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-02</span>
+        <div class="story-body">
+          <p class="story-title">tRPC router: Country CRUD</p>
+          <p class="story-desc">Procedures: list (public), getBySlug (public), create, update, archive (admin-only). Input validated by Zod schemas in packages/types.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-03</span>
+        <div class="story-body">
+          <p class="story-title">tRPC router: Region CRUD</p>
+          <p class="story-desc">Same shape as country router. Region has a many-to-many with Countries.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-04</span>
+        <div class="story-body">
+          <p class="story-title">tRPC router: Destination CRUD</p>
+          <p class="story-desc">Destination belongs to a Country. Procedures include paginated list with optional country filter, getBySlug, create, update, archive.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-05</span>
+        <div class="story-body">
+          <p class="story-title">Admin UI: Destinations list and create/edit form</p>
+          <p class="story-desc">Table of destinations with status badge, search, and create button. Create/edit form with slug auto-generation from name.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-06</span>
+        <div class="story-body">
+          <p class="story-title">Public site: destination index page</p>
+          <p class="story-desc">/destinations — ISR grid of published destinations using DestinationCard from packages/ui. Revalidates every 60s.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-04-07</span>
+        <div class="story-body">
+          <p class="story-title">Public site: destination detail page</p>
+          <p class="story-desc">/destinations/[slug] — SSR destination page with hero image, description, and linked trips. Returns 404 for unpublished slugs.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="epic" id="e5">
+    <div class="epic-header" onclick="toggle('e5')">
+      <span class="epic-badge e5-badge">E-05</span>
+      <span class="epic-title">Trips domain & public website</span>
+      <span class="epic-count" id="e5-count">7 stories</span>
+      <i class="ti ti-chevron-down chevron" id="e5-chev" aria-hidden="true"></i>
+    </div>
+    <div class="stories" id="e5-stories" style="display:none;">
+      <div class="story">
+        <span class="story-id">E-05-01</span>
+        <div class="story-body">
+          <p class="story-title">Prisma schema: Trip</p>
+          <p class="story-desc">Fields: agency_id, slug, title, tagline, description, price, duration_days, max_capacity, departure_date, status. Belongs to Destination.</p>
+          <span class="tag tag-db">db</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-02</span>
+        <div class="story-body">
+          <p class="story-title">tRPC router: Trip CRUD</p>
+          <p class="story-desc">list (public, filterable by destination and status), getBySlug (public), create, update, publish, archive. Pagination via cursor.</p>
+          <span class="tag tag-api">api</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-03</span>
+        <div class="story-body">
+          <p class="story-title">Admin UI: Trips list and create/edit form</p>
+          <p class="story-desc">Table with status, destination, price, departure date columns. Form includes rich text description field. Publish/unpublish toggle.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-04</span>
+        <div class="story-body">
+          <p class="story-title">Public site: trips index page</p>
+          <p class="story-desc">/trips — ISR grid of published trips. Filter by destination via query param. Uses TripCard component.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-05</span>
+        <div class="story-body">
+          <p class="story-title">Public site: trip detail page</p>
+          <p class="story-desc">/trips/[slug] — SSR trip detail page with hero, description, itinerary highlights, pricing, and a CTA to inquire. 404 for unpublished.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-06</span>
+        <div class="story-body">
+          <p class="story-title">Public site: marketing home page</p>
+          <p class="story-desc">Hero section, featured destinations row, featured trips row, brand value props. ISR. Pulls featured content from API via a featured flag.</p>
+          <span class="tag tag-web">web</span>
+        </div>
+      </div>
+      <div class="story">
+        <span class="story-id">E-05-07</span>
+        <div class="story-body">
+          <p class="story-title">Public site: static marketing pages (About, Contact, Services)</p>
+          <p class="story-desc">Statically rendered. Contact page has a basic inquiry form that submits as a guest (no auth). Form posts to a tRPC mutation — data stored for Phase 3 lead management.</p>
+          <span class="tag tag-web">web</span><span class="tag tag-api">api</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggle(id) {
+  const stories = document.getElementById(id + '-stories');
+  const chev = document.getElementById(id + '-chev');
+  const open = stories.style.display !== 'none';
+  stories.style.display = open ? 'none' : 'block';
+  chev.classList.toggle('open', !open);
+}
+</script>

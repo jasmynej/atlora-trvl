@@ -1,0 +1,28 @@
+{
+  "name": "@atlora/trpc",
+  "version": "0.0.1",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@atlora/api": "workspace:*",
+    "@trpc/server": "^11.0.0"
+  },
+  "peerDependencies": {
+    "@tanstack/react-query": "^5.50.0",
+    "@trpc/client": "^11.0.0",
+    "@trpc/react-query": "^11.0.0"
+  },
+  "devDependencies": {
+    "@tanstack/react-query": "^5.50.0",
+    "@trpc/client": "^11.0.0",
+    "@trpc/react-query": "^11.0.0",
+    "typescript": "^5.5.0"
+  }
+}

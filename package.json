@@ -1,0 +1,24 @@
+{
+  "name": "atlora",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=@atlora/api...",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "db:migrate": "pnpm --filter @atlora/db migrate",
+    "db:generate": "pnpm --filter @atlora/db generate",
+    "db:studio": "pnpm --filter @atlora/db studio"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "turbo": "^2.1.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.4.0"
+}
