@@ -38,9 +38,31 @@ export const UpdateMediaAttachmentSchema = CreateMediaAttachmentSchema.partial()
   id: z.string(),
 })
 
+// Child shape for embedding attachments in a parent (region/destination/poi)
+// create/update payload — entityType/entityId are supplied by the router from
+// context, not the caller.
+export const AttachMediaInputSchema = CreateMediaAttachmentSchema.omit({
+  entityType: true,
+  entityId: true,
+})
+
+export const SetHeroMediaInputSchema = z.object({
+  entityType: MediaEntityTypeSchema,
+  entityId: z.string(),
+  mediaId: z.string(),
+  sortOrder: z.number().int().optional(),
+})
+
+export const DetachMediaInputSchema = z.object({
+  id: z.string(),
+})
+
 export type Media = z.infer<typeof MediaSchema>
 export type CreateMedia = z.infer<typeof CreateMediaSchema>
 export type UpdateMedia = z.infer<typeof UpdateMediaSchema>
 export type MediaAttachment = z.infer<typeof MediaAttachmentSchema>
 export type CreateMediaAttachment = z.infer<typeof CreateMediaAttachmentSchema>
 export type UpdateMediaAttachment = z.infer<typeof UpdateMediaAttachmentSchema>
+export type AttachMediaInput = z.infer<typeof AttachMediaInputSchema>
+export type SetHeroMediaInput = z.infer<typeof SetHeroMediaInputSchema>
+export type DetachMediaInput = z.infer<typeof DetachMediaInputSchema>

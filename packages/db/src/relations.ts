@@ -18,6 +18,11 @@ export const relations = defineRelations(schema, (r) => ({
       from: r.regions.id.through(r.destinationsToRegions.regionId),
       to: r.destinations.id.through(r.destinationsToRegions.destinationId),
     }),
+    media: r.many.mediaAttachments({
+      from: r.regions.id,
+      to: r.mediaAttachments.entityId,
+      where: { entityType: "region" },
+    }),
   },
   destinations: {
     country: r.one.countries({
@@ -37,19 +42,29 @@ export const relations = defineRelations(schema, (r) => ({
       to: r.regions.id.through(r.destinationsToRegions.regionId),
     }),
     pois: r.many.poi({
-      from: r.poi.destinationId,
-      to: r.destinations.id
+      from: r.destinations.id,
+      to: r.poi.destinationId
     }),
     seasons: r.many.destinationSeason({
-      from: r.destinationSeason.destinationId,
-      to: r.destinations.id
-    })
+      from: r.destinations.id,
+      to: r.destinationSeason.destinationId
+    }),
+    media: r.many.mediaAttachments({
+      from: r.destinations.id,
+      to: r.mediaAttachments.entityId,
+      where: { entityType: "destination" },
+    }),
   },
   poi: {
     destination: r.one.destinations({
       from: r.poi.destinationId,
       to: r.destinations.id
-    })
+    }),
+    media: r.many.mediaAttachments({
+      from: r.poi.id,
+      to: r.mediaAttachments.entityId,
+      where: { entityType: "poi" },
+    }),
   },
   media: {
     attachments: r.many.mediaAttachments(),

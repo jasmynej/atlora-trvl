@@ -77,7 +77,6 @@ export const regions = pgTable("regions", {
   slug: text("slug").notNull().unique(),
   name: text("name").notNull(),
   description: text("description"),
-  heroImageUrl: text("heroImageUrl"),
   status: statusEnum("status").notNull(),
   createdAt: timestamp("createdAt", { precision: 3, mode: "date" })
     .notNull()
@@ -98,7 +97,6 @@ export const destinations = pgTable("destinations", {
   status: statusEnum("status").notNull(),
   tagline: text("tagline"),
   description: text("description"),
-  heroImageUrl: text("heroImageUrl"),
   bestTimeToVisit: text("bestTimeToVisit"),
   countryCode: text("countryCode").references(() => countries.code, {
     onDelete: "set null",
@@ -172,7 +170,10 @@ export const poi = pgTable("poi",
       slug: text("slug").notNull().unique(),
       name: text("name").notNull(),
       type: poiType("type").notNull(),
-      destinationId: text("destination_id").notNull(),
+      destinationId: text("destination_id").notNull().references(() => destinations.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
       lat: doublePrecision("lat"),
       lng: doublePrecision("lng"),
       address: text("address"),
