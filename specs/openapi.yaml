@@ -1,0 +1,1849 @@
+openapi: 3.0.3
+info:
+  title: Atlora API
+  version: 0.0.1
+  description: |
+    HTTP surface for the Atlora core API (`apps/api`), a **tRPC v11** router served over
+    Hono via `@hono/trpc-server` at `POST/GET /trpc/*`. There is no `trpc-to-openapi`
+    adapter wired up in the codebase — this document is a hand-authored description of
+    the wire protocol tRPC's fetch adapter actually speaks, so it can be exercised from
+    curl, Postman, or any OpenAPI-aware tool without a tRPC client.
+
+    ## Calling conventions
+
+    - **Every path below is `/trpc/{router}.{procedure}`.** Queries (read-only,
+      side-effect-free) are called with `GET`; mutations are called with `POST`.
+      This mirrors how the tRPC client splits `.query()` vs `.mutation()` calls, and is
+      the only method each endpoint actually accepts server-side.
+    - **Query input** is passed as a single `input` query-string parameter containing
+      **URL-encoded JSON** matching the procedure's input schema (see each operation's
+      `input` parameter description for the shape). Procedures with no input parameter
+      (e.g. `regions.list`) take no `input` param at all.
+    - **Mutation input** is the JSON request body, sent as-is (matching the procedure's
+      input schema) — it is **not** wrapped in an envelope — with `Content-Type:
+      application/json`.
+    - No `transformer` (e.g. superjson) is configured on the router
+      (`apps/api/src/trpc.ts`), so all input/output is plain JSON — no special
+      encoding for `Date`, `Map`, etc. Dates are serialized as ISO 8601 strings.
+    - **Successful responses** are always wrapped as `{ "result": { "data": <output> } }`
+      (see `TrpcSuccess`).
+    - **Errors** return a non-2xx HTTP status with a tRPC error envelope (see
+      `TrpcError`) — `NOT_FOUND` → 404, `BAD_REQUEST` / Zod validation failures → 400,
+      unhandled exceptions → 500, etc.
+    - tRPC's `httpBatchLink` batching protocol (`?batch=1`, comma-joined paths, an
+      `input` object keyed by index, array response) is also accepted by the underlying
+      `fetchRequestHandler`, but is intentionally **not** modeled here since OpenAPI has
+      no native way to describe a dynamic multi-call batch envelope. Call one procedure
+      per request when integrating against this spec.
+    - This API currently has **no authentication** — every `publicProcedure` is
+      unauthenticated. There is no `protectedProcedure` wired up yet.
+  contact:
+    name: Atlora
+servers:
+  - url: http://localhost:3001
+    description: Local development (apps/api, `pnpm dev --filter @atlora/api`)
+
+tags:
+  - name: health
+    description: Non-tRPC liveness endpoint served directly by Hono.
+  - name: countries
+  - name: regions
+  - name: destinations
+  - name: poi
+  - name: media
+  - name: siteConfig
+  - name: storage
+    description: Cloudflare R2 presigned upload/delete helpers.
+
+paths:
+  /:
+    get:
+      tags: [health]
+      summary: Liveness check
+      description: 'Plain Hono route (not tRPC) — always returns `{ "status": "ok" }`.'
+      operationId: health
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  # ---------------------------------------------------------------------
+  # countries
+  # ---------------------------------------------------------------------
+  /trpc/countries.list:
+    get:
+      tags: [countries]
+      summary: List all countries
+      description: Returns every country, ordered by `name` ascending. No input.
+      operationId: countriesList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_CountryArray"
+
+  /trpc/countries.byCode:
+    get:
+      tags: [countries]
+      summary: Get a country by ISO alpha-3 code
+      operationId: countriesByCode
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: The raw input is a JSON string, e.g. `"USA"` (URL-encoded as `input=%22USA%22`).
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK — `data` is `null` if no country matches.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_CountryOrNull"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/countries.create:
+    post:
+      tags: [countries]
+      summary: Create a country
+      operationId: countriesCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCountry"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Country"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/countries.update:
+    post:
+      tags: [countries]
+      summary: Update a country
+      operationId: countriesUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCountry"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Country"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/countries.delete:
+    post:
+      tags: [countries]
+      summary: Delete a country
+      operationId: countriesDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Country"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # regions
+  # ---------------------------------------------------------------------
+  /trpc/regions.list:
+    get:
+      tags: [regions]
+      summary: List regions (summary view)
+      description: >-
+        Returns id/slug/name/description/status/timestamps plus at most one
+        `media` attachment where `role = "hero"`. No input.
+      operationId: regionsList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_RegionListItemArray"
+
+  /trpc/regions.getById:
+    get:
+      tags: [regions]
+      summary: Get a region by id (full detail)
+      operationId: regionsGetById
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"id":"abc123"}`.'
+        schema:
+          type: object
+          required: [id]
+          properties:
+            id:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_RegionFullOrUndefined"
+
+  /trpc/regions.getBySlug:
+    get:
+      tags: [regions]
+      summary: Get a region by slug (full detail)
+      operationId: regionsGetBySlug
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"slug":"southeast-asia"}`.'
+        schema:
+          type: object
+          required: [slug]
+          properties:
+            slug:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_RegionFullOrUndefined"
+
+  /trpc/regions.create:
+    post:
+      tags: [regions]
+      summary: Create a region, optionally with hero/gallery media and country tags
+      operationId: regionsCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRegionWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_RegionFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/regions.update:
+    post:
+      tags: [regions]
+      summary: Update a region
+      description: >-
+        A `media` or `countryCodes` array that is present (including `[]`) fully
+        replaces the existing set; an omitted field leaves that collection untouched.
+      operationId: regionsUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateRegionWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_RegionFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/regions.delete:
+    post:
+      tags: [regions]
+      summary: Delete a region (and its media attachments)
+      operationId: regionsDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Region"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/regions.addCountry:
+    post:
+      tags: [regions]
+      summary: Tag a country onto a region
+      operationId: regionsAddCountry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddCountryToRegion"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_CountriesToRegionsArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/regions.removeCountry:
+    post:
+      tags: [regions]
+      summary: Remove a country tag from a region
+      operationId: regionsRemoveCountry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddCountryToRegion"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_CountriesToRegionsArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # destinations
+  # ---------------------------------------------------------------------
+  /trpc/destinations.list:
+    get:
+      tags: [destinations]
+      summary: List destinations (summary view)
+      description: >-
+        Returns the flat destination columns plus at most one `media` attachment
+        where `role = "hero"`. No input.
+      operationId: destinationsList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationListItemArray"
+
+  /trpc/destinations.getById:
+    get:
+      tags: [destinations]
+      summary: Get a destination by id (full detail)
+      operationId: destinationsGetById
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"id":"abc123"}`.'
+        schema:
+          type: object
+          required: [id]
+          properties:
+            id:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationFullOrUndefined"
+
+  /trpc/destinations.getBySlug:
+    get:
+      tags: [destinations]
+      summary: Get a destination by slug (full detail)
+      operationId: destinationsGetBySlug
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"slug":"bali"}`.'
+        schema:
+          type: object
+          required: [slug]
+          properties:
+            slug:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationFullOrUndefined"
+
+  /trpc/destinations.create:
+    post:
+      tags: [destinations]
+      summary: Create a destination, optionally with seasons, media, and region links
+      operationId: destinationsCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDestinationWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.update:
+    post:
+      tags: [destinations]
+      summary: Update a destination
+      description: >-
+        A `seasons`, `media`, or `regionIds` array that is present (including `[]`)
+        fully replaces the existing set; an omitted field leaves it untouched.
+      operationId: destinationsUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDestinationWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.delete:
+    post:
+      tags: [destinations]
+      summary: Delete a destination
+      description: >-
+        Cascades to its POIs, POI media attachments, destination-season rows, and
+        destination-region links; the destination's own media attachments are
+        cleaned up explicitly before the row is deleted.
+      operationId: destinationsDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Destination"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.addSeason:
+    post:
+      tags: [destinations]
+      summary: Add a best-time-to-visit rating for one month
+      operationId: destinationsAddSeason
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DestinationSeason"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationSeasonArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.removeSeason:
+    post:
+      tags: [destinations]
+      summary: Remove a destination's rating for one month
+      operationId: destinationsRemoveSeason
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RemoveSeasonInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationSeasonArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.addRegion:
+    post:
+      tags: [destinations]
+      summary: Link a destination into a region
+      operationId: destinationsAddRegion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddRegionToDestination"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationsToRegionsArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/destinations.removeRegion:
+    post:
+      tags: [destinations]
+      summary: Unlink a destination from a region
+      operationId: destinationsRemoveRegion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddRegionToDestination"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_DestinationsToRegionsArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # poi
+  # ---------------------------------------------------------------------
+  /trpc/poi.list:
+    get:
+      tags: [poi]
+      summary: List points of interest (summary view)
+      description: >-
+        Returns the flat POI columns plus at most one `media` attachment where
+        `role = "hero"`. No input.
+      operationId: poiList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_PoiListItemArray"
+
+  /trpc/poi.getById:
+    get:
+      tags: [poi]
+      summary: Get a POI by id (full detail)
+      operationId: poiGetById
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"id":"abc123"}`.'
+        schema:
+          type: object
+          required: [id]
+          properties:
+            id:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_PoiFullOrUndefined"
+
+  /trpc/poi.getBySlug:
+    get:
+      tags: [poi]
+      summary: Get a POI by slug (full detail)
+      operationId: poiGetBySlug
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"slug":"bali-uluwatu-temple"}`.'
+        schema:
+          type: object
+          required: [slug]
+          properties:
+            slug:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_PoiFullOrUndefined"
+
+  /trpc/poi.create:
+    post:
+      tags: [poi]
+      summary: Create a POI, optionally with media
+      operationId: poiCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePoiWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_PoiFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/poi.update:
+    post:
+      tags: [poi]
+      summary: Update a POI
+      description: >-
+        A `media` array that is present (including `[]`) fully replaces the
+        existing set; an omitted field leaves it untouched.
+      operationId: poiUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePoiWithRelations"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_PoiFullOrUndefined"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/poi.delete:
+    post:
+      tags: [poi]
+      summary: Delete a POI (and its media attachments)
+      operationId: poiDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Poi"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # media
+  # ---------------------------------------------------------------------
+  /trpc/media.list:
+    get:
+      tags: [media]
+      summary: List every media library row
+      operationId: mediaList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaArray"
+
+  /trpc/media.getById:
+    get:
+      tags: [media]
+      summary: Get a media row and its attachments
+      operationId: mediaGetById
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"id":"abc123"}`.'
+        schema:
+          type: object
+          required: [id]
+          properties:
+            id:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `undefined`/absent if not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaWithAttachmentsOrUndefined"
+
+  /trpc/media.create:
+    post:
+      tags: [media]
+      summary: Register a media row (after uploading the object to R2)
+      operationId: mediaCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMedia"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Media"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/media.update:
+    post:
+      tags: [media]
+      summary: Update a media row's metadata
+      operationId: mediaUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMedia"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Media"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/media.delete:
+    post:
+      tags: [media]
+      summary: Delete a media row and its underlying R2 object
+      operationId: mediaDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: OK — `data` is `null` if no row matched the id.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaOrNull"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/media.attach:
+    post:
+      tags: [media]
+      summary: Attach an existing media row to an entity
+      description: >-
+        If `role` is `"hero"`, any existing hero attachment for that entity is
+        deleted first so the single-hero-per-entity invariant holds.
+      operationId: mediaAttach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMediaAttachment"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaAttachment"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/media.detach:
+    post:
+      tags: [media]
+      summary: Remove a media attachment
+      operationId: mediaDetach
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DetachMediaInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaAttachmentArray"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/media.setHero:
+    post:
+      tags: [media]
+      summary: Set (or replace) an entity's hero media
+      operationId: mediaSetHero
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SetHeroMediaInput"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_MediaAttachment"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # siteConfig
+  # ---------------------------------------------------------------------
+  /trpc/siteConfig.list:
+    get:
+      tags: [siteConfig]
+      summary: List all site config key/value rows
+      description: Ordered by `key` ascending. No input.
+      operationId: siteConfigList
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfigArray"
+
+  /trpc/siteConfig.getById:
+    get:
+      tags: [siteConfig]
+      summary: Get a site config row by id
+      operationId: siteConfigGetById
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"id":"abc123"}`.'
+        schema:
+          type: object
+          required: [id]
+          properties:
+            id:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `null` if no row matches.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfigOrNull"
+
+  /trpc/siteConfig.getByKey:
+    get:
+      tags: [siteConfig]
+      summary: Get a site config row by key
+      operationId: siteConfigGetByKey
+      parameters:
+        - $ref: "#/components/parameters/InputAsString"
+      x-input-schema:
+        description: 'URL-encoded JSON object, e.g. `input={"key":"homepage.heroTitle"}`.'
+        schema:
+          type: object
+          required: [key]
+          properties:
+            key:
+              type: string
+      responses:
+        "200":
+          description: OK — `data` is `null` if no row matches.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfigOrNull"
+
+  /trpc/siteConfig.create:
+    post:
+      tags: [siteConfig]
+      summary: Create a site config row
+      operationId: siteConfigCreate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSiteConfig"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfig"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/siteConfig.update:
+    post:
+      tags: [siteConfig]
+      summary: Update a site config row
+      operationId: siteConfigUpdate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateSiteConfig"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfig"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/siteConfig.delete:
+    post:
+      tags: [siteConfig]
+      summary: Delete a site config row
+      operationId: siteConfigDelete
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [id]
+              properties:
+                id:
+                  type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_SiteConfig"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  # ---------------------------------------------------------------------
+  # storage
+  # ---------------------------------------------------------------------
+  /trpc/storage.getUploadUrl:
+    post:
+      tags: [storage]
+      summary: Get a presigned R2 PUT URL for a new object
+      description: The presigned URL expires in 300 seconds.
+      operationId: storageGetUploadUrl
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetUploadUrl"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_UploadUrlResponse"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+  /trpc/storage.deleteObject:
+    post:
+      tags: [storage]
+      summary: Delete an object directly from R2 by key
+      description: >-
+        Deletes the underlying object only — it does not touch the `media` table.
+        Prefer `media.delete`, which does both.
+      operationId: storageDeleteObject
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [key]
+              properties:
+                key:
+                  type: string
+                  minLength: 1
+      responses:
+        "200":
+          description: OK — raw S3 `DeleteObjectCommand` output.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrpcSuccess_Unknown"
+        default:
+          $ref: "#/components/responses/TrpcErrorResponse"
+
+components:
+  parameters:
+    InputAsString:
+      name: input
+      in: query
+      required: true
+      description: >-
+        URL-encoded JSON matching this procedure's input schema — see the
+        operation's `x-input-schema` extension for the shape. OpenAPI does not
+        have a native way to type a JSON-valued query parameter, so this is
+        typed as `string` here; treat `x-input-schema` as the source of truth.
+      schema:
+        type: string
+
+  responses:
+    TrpcErrorResponse:
+      description: >-
+        tRPC error envelope. HTTP status varies with the tRPC error code
+        (`BAD_REQUEST` → 400, `NOT_FOUND` → 404, `INTERNAL_SERVER_ERROR` → 500, etc).
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/TrpcError"
+
+  schemas:
+    # -- tRPC envelopes -----------------------------------------------------
+    TrpcError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            message:
+              type: string
+            code:
+              type: string
+              example: BAD_REQUEST
+            data:
+              type: object
+              properties:
+                code:
+                  type: string
+                  example: BAD_REQUEST
+                httpStatus:
+                  type: integer
+                  example: 400
+                path:
+                  type: string
+                  example: regions.create
+                zodError:
+                  type: object
+                  nullable: true
+                  description: Present when the input failed Zod validation.
+
+    TrpcSuccess_Unknown:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data: {}
+
+    TrpcSuccess_Country:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/Country"
+    TrpcSuccess_CountryOrNull:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/Country" }]
+    TrpcSuccess_CountryArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/Country" }
+
+    TrpcSuccess_Region:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/Region"
+    TrpcSuccess_RegionListItemArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/RegionListItem" }
+    TrpcSuccess_RegionFullOrUndefined:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/RegionFull" }]
+    TrpcSuccess_CountriesToRegionsArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/CountryToRegion" }
+
+    TrpcSuccess_Destination:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/Destination"
+    TrpcSuccess_DestinationListItemArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/DestinationListItem" }
+    TrpcSuccess_DestinationFullOrUndefined:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/DestinationFull" }]
+    TrpcSuccess_DestinationSeasonArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/DestinationSeason" }
+    TrpcSuccess_DestinationsToRegionsArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/DestinationToRegion" }
+
+    TrpcSuccess_Poi:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/Poi"
+    TrpcSuccess_PoiListItemArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/PoiListItem" }
+    TrpcSuccess_PoiFullOrUndefined:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/PoiFull" }]
+
+    TrpcSuccess_Media:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/Media"
+    TrpcSuccess_MediaOrNull:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/Media" }]
+    TrpcSuccess_MediaArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/Media" }
+    TrpcSuccess_MediaWithAttachmentsOrUndefined:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/MediaWithAttachments" }]
+    TrpcSuccess_MediaAttachment:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/MediaAttachment"
+    TrpcSuccess_MediaAttachmentArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+
+    TrpcSuccess_SiteConfig:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/SiteConfig"
+    TrpcSuccess_SiteConfigOrNull:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/SiteConfig" }]
+    TrpcSuccess_SiteConfigArray:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              type: array
+              items: { $ref: "#/components/schemas/SiteConfig" }
+
+    TrpcSuccess_UploadUrlResponse:
+      type: object
+      properties:
+        result:
+          type: object
+          properties:
+            data:
+              $ref: "#/components/schemas/UploadUrlResponse"
+
+    # -- enums ----------------------------------------------------------
+    Status:
+      type: string
+      enum: [DRAFT, PUBLISHED]
+    DestinationType:
+      type: string
+      enum: [city, region_area, island, beach, national_park, other]
+    Month:
+      type: string
+      enum:
+        [
+          january,
+          february,
+          march,
+          april,
+          may,
+          june,
+          july,
+          august,
+          september,
+          october,
+          november,
+          december,
+        ]
+    PoiType:
+      type: string
+      description: >-
+        `aiport` is not a typo fix — it matches the value actually stored in
+        Postgres (`packages/db/src/schema.ts`), so send it exactly as spelled.
+      enum: [hotel, attraction, restaurant, aiport, transport_hub, neighborhood]
+    MediaEntityType:
+      type: string
+      enum: [region, destination, poi]
+    MediaRole:
+      type: string
+      enum: [hero, gallery]
+
+    # -- countries --------------------------------------------------------
+    Country:
+      type: object
+      required:
+        [code, name, flagSvg, region, subRegion, borders, capital, capitalLat, capitalLong]
+      properties:
+        code:
+          type: string
+          description: ISO 3166-1 alpha-3 code; primary key.
+          example: USA
+        name: { type: string }
+        flagSvg: { type: string }
+        region: { type: string }
+        subRegion: { type: string }
+        borders:
+          type: array
+          items: { type: string }
+        capital: { type: string }
+        capitalLat: { type: number }
+        capitalLong: { type: number }
+    CreateCountry:
+      $ref: "#/components/schemas/Country"
+    UpdateCountry:
+      allOf:
+        - $ref: "#/components/schemas/Country"
+      description: All `Country` fields become optional except `code`, which is required.
+
+    CountryToRegion:
+      type: object
+      properties:
+        countryCode: { type: string }
+        regionId: { type: string }
+
+    # -- media --------------------------------------------------------------
+    Media:
+      type: object
+      required: [id, key, url, altText, width, height, mimeType, createdAt]
+      properties:
+        id: { type: string }
+        key: { type: string, description: R2 object key; unique. }
+        url: { type: string, format: uri }
+        altText: { type: string, nullable: true }
+        width: { type: integer, nullable: true }
+        height: { type: integer, nullable: true }
+        mimeType: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+    CreateMedia:
+      type: object
+      required: [key, url, altText, width, height, mimeType]
+      properties:
+        key: { type: string }
+        url: { type: string, format: uri }
+        altText: { type: string, nullable: true }
+        width: { type: integer, nullable: true }
+        height: { type: integer, nullable: true }
+        mimeType: { type: string, nullable: true }
+    UpdateMedia:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        key: { type: string }
+        url: { type: string, format: uri }
+        altText: { type: string, nullable: true }
+        width: { type: integer, nullable: true }
+        height: { type: integer, nullable: true }
+        mimeType: { type: string, nullable: true }
+
+    MediaAttachment:
+      type: object
+      required: [id, mediaId, entityType, entityId, role, sortOrder, createdAt]
+      properties:
+        id: { type: string }
+        mediaId: { type: string }
+        entityType: { $ref: "#/components/schemas/MediaEntityType" }
+        entityId: { type: string }
+        role: { $ref: "#/components/schemas/MediaRole" }
+        sortOrder: { type: integer }
+        createdAt: { type: string, format: date-time }
+        media:
+          allOf: [{ $ref: "#/components/schemas/Media" }]
+          description: 'Present when the attachment was fetched via a `with: { media: true }` relation.'
+    MediaWithAttachments:
+      allOf:
+        - $ref: "#/components/schemas/Media"
+        - type: object
+          properties:
+            attachments:
+              type: array
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+    CreateMediaAttachment:
+      type: object
+      required: [mediaId, entityType, entityId, role, sortOrder]
+      properties:
+        mediaId: { type: string }
+        entityType: { $ref: "#/components/schemas/MediaEntityType" }
+        entityId: { type: string }
+        role: { $ref: "#/components/schemas/MediaRole" }
+        sortOrder: { type: integer }
+    AttachMediaInput:
+      type: object
+      description: Same as `CreateMediaAttachment` minus `entityType`/`entityId`, which the parent router supplies from context.
+      required: [mediaId, role, sortOrder]
+      properties:
+        mediaId: { type: string }
+        role: { $ref: "#/components/schemas/MediaRole" }
+        sortOrder: { type: integer }
+    SetHeroMediaInput:
+      type: object
+      required: [entityType, entityId, mediaId]
+      properties:
+        entityType: { $ref: "#/components/schemas/MediaEntityType" }
+        entityId: { type: string }
+        mediaId: { type: string }
+        sortOrder: { type: integer, description: "Defaults to 0." }
+    DetachMediaInput:
+      type: object
+      required: [id]
+      properties:
+        id:
+          type: string
+          description: The `mediaAttachments` row id (not the `media` id).
+
+    # -- regions --------------------------------------------------------------
+    Region:
+      type: object
+      required: [id, slug, name, description, status, createdAt, updatedAt]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: string, nullable: true }
+        status: { $ref: "#/components/schemas/Status" }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    RegionListItem:
+      type: object
+      required: [id, slug, name, description, status, createdAt, updatedAt, media]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: string, nullable: true }
+        status: { $ref: "#/components/schemas/Status" }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+        media:
+          type: array
+          maxItems: 1
+          description: At most one attachment, filtered to `role = "hero"`.
+          items: { $ref: "#/components/schemas/MediaAttachment" }
+    RegionFull:
+      allOf:
+        - $ref: "#/components/schemas/Region"
+        - type: object
+          properties:
+            countries:
+              type: array
+              items: { $ref: "#/components/schemas/Country" }
+            destinations:
+              type: array
+              items: { $ref: "#/components/schemas/Destination" }
+            media:
+              type: array
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+    CreateRegionWithRelations:
+      type: object
+      required: [slug, name, status]
+      properties:
+        slug: { type: string }
+        name: { type: string }
+        description: { type: string, nullable: true }
+        status: { $ref: "#/components/schemas/Status" }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+        countryCodes:
+          type: array
+          items: { type: string }
+    UpdateRegionWithRelations:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        description: { type: string, nullable: true }
+        status: { $ref: "#/components/schemas/Status" }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+        countryCodes:
+          type: array
+          items: { type: string }
+    AddCountryToRegion:
+      type: object
+      required: [regionId, countryCode]
+      properties:
+        regionId: { type: string }
+        countryCode: { type: string }
+
+    # -- destinations -----------------------------------------------------
+    Destination:
+      type: object
+      required:
+        [
+          id,
+          slug,
+          name,
+          type,
+          status,
+          tagline,
+          description,
+          bestTimeToVisit,
+          countryCode,
+          parentId,
+          createdAt,
+          updatedAt,
+        ]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/DestinationType" }
+        status: { $ref: "#/components/schemas/Status" }
+        tagline: { type: string, nullable: true }
+        description: { type: string, nullable: true }
+        bestTimeToVisit: { type: string, nullable: true }
+        countryCode: { type: string, nullable: true }
+        parentId: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+    DestinationListItem:
+      allOf:
+        - $ref: "#/components/schemas/Destination"
+        - type: object
+          required: [media]
+          properties:
+            media:
+              type: array
+              maxItems: 1
+              description: At most one attachment, filtered to `role = "hero"`.
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+    DestinationFull:
+      allOf:
+        - $ref: "#/components/schemas/Destination"
+        - type: object
+          properties:
+            country:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/Country" }]
+            parent:
+              nullable: true
+              allOf: [{ $ref: "#/components/schemas/Destination" }]
+            children:
+              type: array
+              items: { $ref: "#/components/schemas/Destination" }
+            pois:
+              type: array
+              items: { $ref: "#/components/schemas/PoiFull" }
+            seasons:
+              type: array
+              items: { $ref: "#/components/schemas/DestinationSeason" }
+            media:
+              type: array
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+            regions:
+              type: array
+              items: { $ref: "#/components/schemas/Region" }
+    DestinationSeason:
+      type: object
+      required: [destinationId, month, rating, note]
+      properties:
+        destinationId: { type: string }
+        month: { $ref: "#/components/schemas/Month" }
+        rating: { type: string, nullable: true }
+        note: { type: string, nullable: true }
+    CreateDestinationSeasonInput:
+      type: object
+      description: Same as `DestinationSeason` minus `destinationId`, which the parent router supplies from context.
+      required: [month]
+      properties:
+        month: { $ref: "#/components/schemas/Month" }
+        rating: { type: string, nullable: true }
+        note: { type: string, nullable: true }
+    RemoveSeasonInput:
+      type: object
+      required: [destinationId, month]
+      properties:
+        destinationId: { type: string }
+        month: { $ref: "#/components/schemas/Month" }
+    CreateDestinationWithRelations:
+      type: object
+      required: [slug, name, type, status]
+      properties:
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/DestinationType" }
+        status: { $ref: "#/components/schemas/Status" }
+        tagline: { type: string, nullable: true }
+        description: { type: string, nullable: true }
+        bestTimeToVisit: { type: string, nullable: true }
+        countryCode: { type: string, nullable: true }
+        parentId: { type: string, nullable: true }
+        seasons:
+          type: array
+          items: { $ref: "#/components/schemas/CreateDestinationSeasonInput" }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+        regionIds:
+          type: array
+          items: { type: string }
+    UpdateDestinationWithRelations:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/DestinationType" }
+        status: { $ref: "#/components/schemas/Status" }
+        tagline: { type: string, nullable: true }
+        description: { type: string, nullable: true }
+        bestTimeToVisit: { type: string, nullable: true }
+        countryCode: { type: string, nullable: true }
+        parentId: { type: string, nullable: true }
+        seasons:
+          type: array
+          items: { $ref: "#/components/schemas/CreateDestinationSeasonInput" }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+        regionIds:
+          type: array
+          items: { type: string }
+    AddRegionToDestination:
+      type: object
+      required: [destinationId, regionId]
+      properties:
+        destinationId: { type: string }
+        regionId: { type: string }
+    DestinationToRegion:
+      type: object
+      properties:
+        destinationId: { type: string }
+        regionId: { type: string }
+
+    # -- poi ----------------------------------------------------------------
+    Poi:
+      type: object
+      required: [id, slug, name, type, destinationId, lat, lng, address, summary, website]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/PoiType" }
+        destinationId: { type: string }
+        lat: { type: number, nullable: true }
+        lng: { type: number, nullable: true }
+        address: { type: string, nullable: true }
+        summary: { type: string, nullable: true }
+        website: { type: string, nullable: true }
+    PoiListItem:
+      allOf:
+        - $ref: "#/components/schemas/Poi"
+        - type: object
+          required: [media]
+          properties:
+            media:
+              type: array
+              maxItems: 1
+              description: At most one attachment, filtered to `role = "hero"`.
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+    PoiFull:
+      allOf:
+        - $ref: "#/components/schemas/Poi"
+        - type: object
+          properties:
+            destination:
+              allOf: [{ $ref: "#/components/schemas/Destination" }]
+            media:
+              type: array
+              items: { $ref: "#/components/schemas/MediaAttachment" }
+    CreatePoiWithRelations:
+      type: object
+      required: [slug, name, type, destinationId]
+      properties:
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/PoiType" }
+        destinationId: { type: string }
+        lat: { type: number, nullable: true }
+        lng: { type: number, nullable: true }
+        address: { type: string, nullable: true }
+        summary: { type: string, nullable: true }
+        website: { type: string, nullable: true }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+    UpdatePoiWithRelations:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        name: { type: string }
+        type: { $ref: "#/components/schemas/PoiType" }
+        destinationId: { type: string }
+        lat: { type: number, nullable: true }
+        lng: { type: number, nullable: true }
+        address: { type: string, nullable: true }
+        summary: { type: string, nullable: true }
+        website: { type: string, nullable: true }
+        media:
+          type: array
+          items: { $ref: "#/components/schemas/AttachMediaInput" }
+
+    # -- siteConfig -----------------------------------------------------------
+    SiteConfig:
+      type: object
+      required: [id, key, value]
+      properties:
+        id: { type: string }
+        key: { type: string }
+        value: { type: string }
+    CreateSiteConfig:
+      type: object
+      required: [key, value]
+      properties:
+        key: { type: string }
+        value: { type: string }
+    UpdateSiteConfig:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        key: { type: string }
+        value: { type: string }
+
+    # -- storage --------------------------------------------------------------
+    GetUploadUrl:
+      type: object
+      required: [key, contentType]
+      properties:
+        key: { type: string, minLength: 1 }
+        contentType: { type: string, minLength: 1 }
+    UploadUrlResponse:
+      type: object
+      required: [uploadUrl, publicUrl, key]
+      properties:
+        uploadUrl: { type: string, format: uri, description: "Presigned R2 PUT URL, expires in 300s." }
+        publicUrl: { type: string, format: uri }
+        key: { type: string }

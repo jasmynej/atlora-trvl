@@ -1,0 +1,47 @@
+{
+  "id": "p7pva21jemmywrguko60qfoy",
+  "slug": "bali-uluwatu-temple",
+  "name": "Uluwatu Temple",
+  "type": "attraction",
+  "destinationId": "byr0hxge6de6b8n1edj04vse",
+  "lat": -8.8291,
+  "lng": 115.0849,
+  "address": "Pecatu, South Kuta, Badung Regency, Bali, Indonesia",
+  "summary": "A sea temple perched on a cliff, famous for sunset Kecak fire dances.",
+  "website": null,
+  "destination": {
+    "id": "byr0hxge6de6b8n1edj04vse",
+    "slug": "bali",
+    "name": "Bali",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Temples, terraces, and turquoise water",
+    "description": "An Indonesian island known for its rice terraces, surf breaks, and Hindu temples perched above the sea.",
+    "bestTimeToVisit": "April to October (dry season)",
+    "countryCode": "IDN",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.944Z",
+    "updatedAt": "2026-08-04T01:15:28.514Z"
+  },
+  "media": [
+    {
+      "id": "at6dqifmzm0rp3vndi4aab3g",
+      "mediaId": "fp6cvhrt0l8kcrd7yprx3vi7",
+      "entityType": "poi",
+      "entityId": "p7pva21jemmywrguko60qfoy",
+      "role": "hero",
+      "sortOrder": 0,
+      "createdAt": "2026-08-03T21:15:12.589Z",
+      "media": {
+        "id": "fp6cvhrt0l8kcrd7yprx3vi7",
+        "key": "poi-bali-uluwatu-temple-hero",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg/1920px-Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg",
+        "altText": "Uluwatu Temple perched on the cliffs of Bali",
+        "width": 1600,
+        "height": 1068,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:15:12.589Z"
+      }
+    }
+  ]
+}

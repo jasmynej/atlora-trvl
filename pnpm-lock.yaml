@@ -224,6 +224,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@atlora/types':
+        specifier: workspace:*
+        version: link:../types
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1

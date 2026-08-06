@@ -1,0 +1,503 @@
+[
+  {
+    "id": "iydvqrd5cjihw07iowr548pp",
+    "slug": "serengeti-naabi-hill-gate",
+    "name": "Naabi Hill Gate",
+    "type": "attraction",
+    "destinationId": "xurbnhskzw7w760543cyj9n3",
+    "lat": -2.8342,
+    "lng": 35.0022,
+    "address": "Naabi Hill, Serengeti National Park, Tanzania",
+    "summary": "The main southeastern entrance gate to Serengeti National Park.",
+    "website": null,
+    "media": [
+      {
+        "id": "qoaqqrm3nsdn3zishodmaoei",
+        "mediaId": "pno7ngdv2jpg968ec1c7zplx",
+        "entityType": "poi",
+        "entityId": "iydvqrd5cjihw07iowr548pp",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.596Z",
+        "media": {
+          "id": "pno7ngdv2jpg968ec1c7zplx",
+          "key": "poi-serengeti-naabi-hill-gate-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Common_Agama_at_Naabi_Hill_Gate%2C_Serengeti%2C_Tanzania.jpg/1920px-Common_Agama_at_Naabi_Hill_Gate%2C_Serengeti%2C_Tanzania.jpg",
+          "altText": "Naabi Hill Gate, Serengeti National Park",
+          "width": 1600,
+          "height": 900,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.596Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "bsdr6yvhwg5o35q8karc3enj",
+    "slug": "bangkok-suvarnabhumi-airport",
+    "name": "Suvarnabhumi Airport",
+    "type": "aiport",
+    "destinationId": "hqgcvanymqy2gq8e2vfq3wkr",
+    "lat": 13.69,
+    "lng": 100.7501,
+    "address": "Racha Thewa, Bang Phli, Samut Prakan, Thailand",
+    "summary": "Bangkok's principal international airport (BKK).",
+    "website": null,
+    "media": [
+      {
+        "id": "o6bsg1kvugjopb5d135n6y4z",
+        "mediaId": "cmoj56bbwev683xvcoxxgqjk",
+        "entityType": "poi",
+        "entityId": "bsdr6yvhwg5o35q8karc3enj",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.592Z",
+        "media": {
+          "id": "cmoj56bbwev683xvcoxxgqjk",
+          "key": "poi-bangkok-suvarnabhumi-airport-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Green-faced_Yaksha_statue_at_Suvarnabhumi_Airport_in_Bangkok.jpg/1920px-Green-faced_Yaksha_statue_at_Suvarnabhumi_Airport_in_Bangkok.jpg",
+          "altText": "A guardian statue at Suvarnabhumi Airport, Bangkok",
+          "width": 1600,
+          "height": 2844,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.592Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "my6kw4x6731gxo40lvyl8waf",
+    "slug": "bangkok-chatuchak-market",
+    "name": "Chatuchak Weekend Market",
+    "type": "neighborhood",
+    "destinationId": "hqgcvanymqy2gq8e2vfq3wkr",
+    "lat": 13.7999,
+    "lng": 100.5501,
+    "address": "Kamphaeng Phet 2 Rd, Chatuchak, Bangkok, Thailand",
+    "summary": "One of the world's largest weekend markets, with thousands of stalls.",
+    "website": null,
+    "media": [
+      {
+        "id": "vgce0t1tuwcwpy3r7cyuk1b4",
+        "mediaId": "qjybp1eol3j0qmejtroef6ct",
+        "entityType": "poi",
+        "entityId": "my6kw4x6731gxo40lvyl8waf",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.593Z",
+        "media": {
+          "id": "qjybp1eol3j0qmejtroef6ct",
+          "key": "poi-bangkok-chatuchak-market-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Chatuchak_weekend_market_outdoor_stalls_2.JPG/1920px-Chatuchak_weekend_market_outdoor_stalls_2.JPG",
+          "altText": "Outdoor stalls at Chatuchak Weekend Market",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.592Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ipajm0i3aqrzcrzdi9tz5f8e",
+    "slug": "santorini-oia",
+    "name": "Oia",
+    "type": "neighborhood",
+    "destinationId": "sn7acr9soud7j0ndfzi7xagf",
+    "lat": 36.4614,
+    "lng": 25.3753,
+    "address": "Oia, Santorini, Greece",
+    "summary": "A cliffside village famous for blue-domed churches and caldera sunsets.",
+    "website": null,
+    "media": [
+      {
+        "id": "mtxk23j6tfh3cvnzzihcrb52",
+        "mediaId": "ct9lsptemvuzbpp0pfw0r03i",
+        "entityType": "poi",
+        "entityId": "ipajm0i3aqrzcrzdi9tz5f8e",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.593Z",
+        "media": {
+          "id": "ct9lsptemvuzbpp0pfw0r03i",
+          "key": "poi-santorini-oia-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Village_Oia%2C_Santorini%2C_Gr%C3%A8ce%2C_2017.jpg",
+          "altText": "The village of Oia, Santorini",
+          "width": 1600,
+          "height": 2133,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.593Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "fjwobwg3l6iw2wro6xsogezu",
+    "slug": "santorini-airport",
+    "name": "Santorini (Thira) National Airport",
+    "type": "aiport",
+    "destinationId": "sn7acr9soud7j0ndfzi7xagf",
+    "lat": 36.3992,
+    "lng": 25.4793,
+    "address": "Monolithos, Santorini, Greece",
+    "summary": "Santorini's airport (JTR), on the island's east coast.",
+    "website": null,
+    "media": [
+      {
+        "id": "cco07t9rbhte9jguv7558kq4",
+        "mediaId": "w2p0jl2upyx5c5uqgdrtr9em",
+        "entityType": "poi",
+        "entityId": "fjwobwg3l6iw2wro6xsogezu",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.593Z",
+        "media": {
+          "id": "w2p0jl2upyx5c5uqgdrtr9em",
+          "key": "poi-santorini-airport-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Kamari_and_airport.jpg",
+          "altText": "Santorini (Thira) National Airport",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.593Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "p7pva21jemmywrguko60qfoy",
+    "slug": "bali-uluwatu-temple",
+    "name": "Uluwatu Temple",
+    "type": "attraction",
+    "destinationId": "byr0hxge6de6b8n1edj04vse",
+    "lat": -8.8291,
+    "lng": 115.0849,
+    "address": "Pecatu, South Kuta, Badung Regency, Bali, Indonesia",
+    "summary": "A sea temple perched on a cliff, famous for sunset Kecak fire dances.",
+    "website": null,
+    "media": [
+      {
+        "id": "at6dqifmzm0rp3vndi4aab3g",
+        "mediaId": "fp6cvhrt0l8kcrd7yprx3vi7",
+        "entityType": "poi",
+        "entityId": "p7pva21jemmywrguko60qfoy",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.589Z",
+        "media": {
+          "id": "fp6cvhrt0l8kcrd7yprx3vi7",
+          "key": "poi-bali-uluwatu-temple-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg/1920px-Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg",
+          "altText": "Uluwatu Temple perched on the cliffs of Bali",
+          "width": 1600,
+          "height": 1068,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.589Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hhv48vury17rhbs5syawcwzw",
+    "slug": "bali-potato-head-beach-club",
+    "name": "Potato Head Beach Club",
+    "type": "restaurant",
+    "destinationId": "byr0hxge6de6b8n1edj04vse",
+    "lat": -8.6858,
+    "lng": 115.157,
+    "address": "Jl. Petitenget, Seminyak, Bali, Indonesia",
+    "summary": "Beachfront restaurant and club overlooking Seminyak Beach.",
+    "website": "https://potatohead.co",
+    "media": []
+  },
+  {
+    "id": "xbhdxrvhdqgurys0j9rw3pxu",
+    "slug": "bali-four-seasons-sayan",
+    "name": "Four Seasons Resort Bali at Sayan",
+    "type": "hotel",
+    "destinationId": "byr0hxge6de6b8n1edj04vse",
+    "lat": -8.4931,
+    "lng": 115.2494,
+    "address": "Sayan, Ubud, Gianyar, Bali, Indonesia",
+    "summary": "A jungle-canopy resort set into the Ayung River valley near Ubud.",
+    "website": "https://www.fourseasons.com/sayan",
+    "media": [
+      {
+        "id": "jysq4paapdejgljxhmxt067w",
+        "mediaId": "acxgghqh78g0npt2cwb6n9pf",
+        "entityType": "poi",
+        "entityId": "xbhdxrvhdqgurys0j9rw3pxu",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.591Z",
+        "media": {
+          "id": "acxgghqh78g0npt2cwb6n9pf",
+          "key": "poi-bali-four-seasons-sayan-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bali_Urwald_SvG.jpg",
+          "altText": "Jungle canopy near the Ayung River, Ubud",
+          "width": 1600,
+          "height": 937,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.590Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "qgj0ev3nn82gk1mio6ribpyp",
+    "slug": "bali-ngurah-rai-airport",
+    "name": "Ngurah Rai International Airport",
+    "type": "aiport",
+    "destinationId": "byr0hxge6de6b8n1edj04vse",
+    "lat": -8.7482,
+    "lng": 115.1672,
+    "address": "Kuta, Badung Regency, Bali, Indonesia",
+    "summary": "Bali's main international gateway, serving Denpasar (DPS).",
+    "website": null,
+    "media": [
+      {
+        "id": "vja06uqxmfx7i6ec4rdbcbpq",
+        "mediaId": "ye2iakd5qittaj5czyho6y3z",
+        "entityType": "poi",
+        "entityId": "qgj0ev3nn82gk1mio6ribpyp",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.591Z",
+        "media": {
+          "id": "ye2iakd5qittaj5czyho6y3z",
+          "key": "poi-bali-ngurah-rai-airport-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg/1920px-Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg",
+          "altText": "Ngurah Rai International Airport, Bali",
+          "width": 1600,
+          "height": 1067,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.591Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tr9enel8mflvni3as7g6i9eh",
+    "slug": "bangkok-grand-palace",
+    "name": "Grand Palace",
+    "type": "attraction",
+    "destinationId": "hqgcvanymqy2gq8e2vfq3wkr",
+    "lat": 13.75,
+    "lng": 100.4913,
+    "address": "Na Phra Lan Rd, Phra Nakhon, Bangkok, Thailand",
+    "summary": "The former royal residence and home to the Temple of the Emerald Buddha.",
+    "website": null,
+    "media": [
+      {
+        "id": "glrit6opkxwmxc8w4eemj967",
+        "mediaId": "zgybg1nesnpyaeaw0zv8lxz0",
+        "entityType": "poi",
+        "entityId": "tr9enel8mflvni3as7g6i9eh",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.592Z",
+        "media": {
+          "id": "zgybg1nesnpyaeaw0zv8lxz0",
+          "key": "poi-bangkok-grand-palace-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%94%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1_%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%A7_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_-_Wat_Phra_Kaew%2C_Temple_of_Emerald_Buddha%2C_Bangkok%2C_Thailand.jpg/1920px-thumbnail.jpg",
+          "altText": "Wat Phra Kaew, Temple of the Emerald Buddha, at the Grand Palace",
+          "width": 1600,
+          "height": 1160,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.591Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cs9vk1e02whssykr63gbvyl0",
+    "slug": "santorini-canaves-oia-suites",
+    "name": "Canaves Oia Suites",
+    "type": "hotel",
+    "destinationId": "sn7acr9soud7j0ndfzi7xagf",
+    "lat": 36.4616,
+    "lng": 25.3757,
+    "address": "Oia, Santorini, Greece",
+    "summary": "A cliffside suite hotel carved into Oia's caldera-facing cliffs.",
+    "website": "https://www.canaves.com",
+    "media": []
+  },
+  {
+    "id": "p42n0a2j8464mjheku7raucl",
+    "slug": "barbados-bridgetown",
+    "name": "Bridgetown",
+    "type": "neighborhood",
+    "destinationId": "h7hpuc40fya4a8saalceubhm",
+    "lat": 13.0969,
+    "lng": -59.6145,
+    "address": "Bridgetown, Barbados",
+    "summary": "Barbados's capital and a UNESCO World Heritage historic centre.",
+    "website": null,
+    "media": [
+      {
+        "id": "u0mvpln24x5mjw1pvk52p1g2",
+        "mediaId": "ge3hjuknu5sjdwbbbehql2dl",
+        "entityType": "poi",
+        "entityId": "p42n0a2j8464mjheku7raucl",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.594Z",
+        "media": {
+          "id": "ge3hjuknu5sjdwbbbehql2dl",
+          "key": "poi-barbados-bridgetown-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/AIDAperla_in_Bridgetown%2C_Barbados_-_February_2020.jpg/1920px-AIDAperla_in_Bridgetown%2C_Barbados_-_February_2020.jpg",
+          "altText": "A cruise ship docked in Bridgetown, Barbados",
+          "width": 1600,
+          "height": 652,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.594Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "movjpkeu7yo7hdllts3dae0r",
+    "slug": "barbados-grantley-adams-airport",
+    "name": "Grantley Adams International Airport",
+    "type": "aiport",
+    "destinationId": "h7hpuc40fya4a8saalceubhm",
+    "lat": 13.0746,
+    "lng": -59.4925,
+    "address": "Christ Church, Barbados",
+    "summary": "Barbados's international airport (BGI), on the south coast.",
+    "website": null,
+    "media": [
+      {
+        "id": "fngjlnw2j3p2zocc5b6fp4bt",
+        "mediaId": "lqdrvdpdq7hf8teemc3zj2ss",
+        "entityType": "poi",
+        "entityId": "movjpkeu7yo7hdllts3dae0r",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.594Z",
+        "media": {
+          "id": "lqdrvdpdq7hf8teemc3zj2ss",
+          "key": "poi-barbados-grantley-adams-airport-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Sir_Grantley_Adams_Int_Airport%2C_Barbados-05.jpg",
+          "altText": "Grantley Adams International Airport, Barbados",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.594Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "yub08s89whpnk6joxmcqqhqs",
+    "slug": "barbados-sandy-lane",
+    "name": "Sandy Lane",
+    "type": "hotel",
+    "destinationId": "h7hpuc40fya4a8saalceubhm",
+    "lat": 13.0961,
+    "lng": -59.6383,
+    "address": "Sandy Lane, Saint James, Barbados",
+    "summary": "A luxury beachfront resort on Barbados's west coast.",
+    "website": "https://www.sandylane.com",
+    "media": [
+      {
+        "id": "pbt82aaxklh12hd7l79eeqwr",
+        "mediaId": "uhvsa7hr6g9mlkkcczdi69zi",
+        "entityType": "poi",
+        "entityId": "yub08s89whpnk6joxmcqqhqs",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.595Z",
+        "media": {
+          "id": "uhvsa7hr6g9mlkkcczdi69zi",
+          "key": "poi-barbados-sandy-lane-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sandy_Lane.jpg/1920px-Sandy_Lane.jpg",
+          "altText": "Sandy Lane resort, Barbados",
+          "width": 1600,
+          "height": 1063,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.594Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "nbb02xgxp6skx8q6s93rel5q",
+    "slug": "barbados-oistins-fish-fry",
+    "name": "Oistins Fish Fry",
+    "type": "restaurant",
+    "destinationId": "h7hpuc40fya4a8saalceubhm",
+    "lat": 13.0656,
+    "lng": -59.5364,
+    "address": "Oistins, Christ Church, Barbados",
+    "summary": "A weekly open-air fish fry and street party on the south coast.",
+    "website": null,
+    "media": [
+      {
+        "id": "tofop6s2tjh37zuvj9tdbsx1",
+        "mediaId": "cqzfmrx42dj0bmynkg7u2wb4",
+        "entityType": "poi",
+        "entityId": "nbb02xgxp6skx8q6s93rel5q",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.595Z",
+        "media": {
+          "id": "cqzfmrx42dj0bmynkg7u2wb4",
+          "key": "poi-barbados-oistins-fish-fry-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Oistins_shoreline_Barbados.jpg/1920px-Oistins_shoreline_Barbados.jpg",
+          "altText": "The Oistins shoreline, Barbados",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.595Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "utps9fke14pcoywz8l2aabjp",
+    "slug": "serengeti-seronera-airstrip",
+    "name": "Seronera Airstrip",
+    "type": "aiport",
+    "destinationId": "xurbnhskzw7w760543cyj9n3",
+    "lat": -2.4581,
+    "lng": 34.8222,
+    "address": "Seronera, Serengeti National Park, Tanzania",
+    "summary": "The main airstrip serving central Serengeti safari camps.",
+    "website": null,
+    "media": [
+      {
+        "id": "oxl3oho8k9s0f7o6uq4x3532",
+        "mediaId": "s619sowhgr6o7a5zgwvel62w",
+        "entityType": "poi",
+        "entityId": "utps9fke14pcoywz8l2aabjp",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T21:15:12.595Z",
+        "media": {
+          "id": "s619sowhgr6o7a5zgwvel62w",
+          "key": "poi-serengeti-seronera-airstrip-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Seronera_Airstrip.jpg/1920px-Seronera_Airstrip.jpg",
+          "altText": "Seronera Airstrip, Serengeti National Park",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T21:15:12.595Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "vbketgexm4utl95nlcbfkrl9",
+    "slug": "serengeti-four-seasons-safari-lodge",
+    "name": "Four Seasons Safari Lodge Serengeti",
+    "type": "hotel",
+    "destinationId": "xurbnhskzw7w760543cyj9n3",
+    "lat": -2.3306,
+    "lng": 34.8331,
+    "address": "Central Serengeti, Serengeti National Park, Tanzania",
+    "summary": "A lodge overlooking a watering hole in the heart of the Serengeti.",
+    "website": "https://www.fourseasons.com/serengeti",
+    "media": []
+  }
+]

@@ -1,0 +1,422 @@
+[
+  {
+    "id": "qoosg6ll1apdu29wfrs9vsa2",
+    "slug": "negril",
+    "name": "Negril",
+    "type": "beach",
+    "status": "DRAFT",
+    "tagline": "Seven miles of sand on Jamaica's west coast",
+    "description": "A relaxed resort town famous for Seven Mile Beach and cliff-diving at Rick's Cafe.",
+    "bestTimeToVisit": "November to mid-December",
+    "countryCode": "JAM",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.949Z",
+    "updatedAt": "2026-08-04T01:15:28.519Z",
+    "media": [
+      {
+        "id": "r3wvn7bccx33xzc2lbxzqng6",
+        "mediaId": "sdvahf64i1s1cbngq02whnlv",
+        "entityType": "destination",
+        "entityId": "qoosg6ll1apdu29wfrs9vsa2",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.966Z",
+        "media": {
+          "id": "sdvahf64i1s1cbngq02whnlv",
+          "key": "dest-negril-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Jamaica%2C_Negril_-_Flickr_-_VV_Nincic.jpg/1920px-Jamaica%2C_Negril_-_Flickr_-_VV_Nincic.jpg",
+          "altText": "Seven Mile Beach in Negril, Jamaica",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.966Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "xurbnhskzw7w760543cyj9n3",
+    "slug": "serengeti-national-park",
+    "name": "Serengeti National Park",
+    "type": "national_park",
+    "status": "PUBLISHED",
+    "tagline": "Endless plains and the great migration",
+    "description": "Tanzania's flagship safari park, home to the annual wildebeest migration and year-round big-cat sightings.",
+    "bestTimeToVisit": "June to October (dry season, best game viewing)",
+    "countryCode": "TZA",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.949Z",
+    "updatedAt": "2026-08-04T01:15:28.519Z",
+    "media": [
+      {
+        "id": "n6wkdpt9ek7bmigbbhcd29nb",
+        "mediaId": "zuysatdflmf8z0trqve5i7ro",
+        "entityType": "destination",
+        "entityId": "xurbnhskzw7w760543cyj9n3",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.967Z",
+        "media": {
+          "id": "zuysatdflmf8z0trqve5i7ro",
+          "key": "dest-serengeti-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-011_The_lion_king_Tryggve_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg",
+          "altText": "A lion resting on the plains of the Serengeti",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.967Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "uwyjac34p9chqmlgvquc3qna",
+    "slug": "zanzibar",
+    "name": "Zanzibar",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Spice-scented beaches off the Tanzanian coast",
+    "description": "An Indian Ocean island pairing Stone Town's Swahili architecture with reef-lined northern beaches.",
+    "bestTimeToVisit": "June to October",
+    "countryCode": "TZA",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.949Z",
+    "updatedAt": "2026-08-04T01:15:28.520Z",
+    "media": [
+      {
+        "id": "l7di4vntkh8cnvss2zwn1ul9",
+        "mediaId": "wpng1u6d32svzza5ch5eehoq",
+        "entityType": "destination",
+        "entityId": "uwyjac34p9chqmlgvquc3qna",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.967Z",
+        "media": {
+          "id": "wpng1u6d32svzza5ch5eehoq",
+          "key": "dest-zanzibar-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Puerto_de_Stone_Town%2C_Zanz%C3%ADbar%2C_Tanzania%2C_2024-05-31%2C_DD_03.jpg/1920px-Puerto_de_Stone_Town%2C_Zanz%C3%ADbar%2C_Tanzania%2C_2024-05-31%2C_DD_03.jpg",
+          "altText": "The waterfront of Stone Town, Zanzibar",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.967Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h55qq6bw4solm8zh5cz7f8yr",
+    "slug": "maasai-mara",
+    "name": "Maasai Mara",
+    "type": "national_park",
+    "status": "PUBLISHED",
+    "tagline": "Kenya's classic safari reserve",
+    "description": "A vast savanna reserve bordering the Serengeti, renowned for dense predator populations and Maasai culture.",
+    "bestTimeToVisit": "July to October (migration season)",
+    "countryCode": "KEN",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.950Z",
+    "updatedAt": "2026-08-04T01:15:28.520Z",
+    "media": [
+      {
+        "id": "ndfyux6fzq4p4f1j3f34dbuk",
+        "mediaId": "loer3zvgvaq9nxbrssg7xzg8",
+        "entityType": "destination",
+        "entityId": "h55qq6bw4solm8zh5cz7f8yr",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.968Z",
+        "media": {
+          "id": "loer3zvgvaq9nxbrssg7xzg8",
+          "key": "dest-maasai-mara-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Three_zebras_in_Masai_Mara_National_Park%2C_Kenya.jpg/1920px-Three_zebras_in_Masai_Mara_National_Park%2C_Kenya.jpg",
+          "altText": "Zebras grazing in Maasai Mara National Reserve",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.967Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "byr0hxge6de6b8n1edj04vse",
+    "slug": "bali",
+    "name": "Bali",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Temples, terraces, and turquoise water",
+    "description": "An Indonesian island known for its rice terraces, surf breaks, and Hindu temples perched above the sea.",
+    "bestTimeToVisit": "April to October (dry season)",
+    "countryCode": "IDN",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.944Z",
+    "updatedAt": "2026-08-04T01:15:28.514Z",
+    "media": [
+      {
+        "id": "xoxk6btxaegy4msbcn639c8x",
+        "mediaId": "z2coxrhq20om8xk4b47nqmq6",
+        "entityType": "destination",
+        "entityId": "byr0hxge6de6b8n1edj04vse",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.963Z",
+        "media": {
+          "id": "z2coxrhq20om8xk4b47nqmq6",
+          "key": "dest-bali-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bali%2C_Rice_fields%2C_Rice_terraces_in_East_Bali%2C_Indonesia.jpg/1920px-Bali%2C_Rice_fields%2C_Rice_terraces_in_East_Bali%2C_Indonesia.jpg",
+          "altText": "Terraced rice fields in East Bali, Indonesia",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.963Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "hqgcvanymqy2gq8e2vfq3wkr",
+    "slug": "bangkok",
+    "name": "Bangkok",
+    "type": "city",
+    "status": "PUBLISHED",
+    "tagline": "Thailand's neon-lit capital",
+    "description": "A sprawling capital of ornate temples, floating markets, and some of the world's best street food.",
+    "bestTimeToVisit": "November to February (cool, dry season)",
+    "countryCode": "THA",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.945Z",
+    "updatedAt": "2026-08-04T01:15:28.515Z",
+    "media": [
+      {
+        "id": "dykcejjald5zi5t5v4tlmiep",
+        "mediaId": "i0vfhgoo18w8f38qux75tf03",
+        "entityType": "destination",
+        "entityId": "hqgcvanymqy2gq8e2vfq3wkr",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.963Z",
+        "media": {
+          "id": "i0vfhgoo18w8f38qux75tf03",
+          "key": "dest-bangkok-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Bangkok_skytrain_sunset.jpg/1920px-Bangkok_skytrain_sunset.jpg",
+          "altText": "Bangkok skyline and skytrain at sunset",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.963Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cilygulbxad4e4h024id9f1t",
+    "slug": "ha-long-bay",
+    "name": "Ha Long Bay",
+    "type": "other",
+    "status": "PUBLISHED",
+    "tagline": "Thousands of limestone islands rising from the sea",
+    "description": "A UNESCO World Heritage seascape in northern Vietnam, best explored by traditional junk boat.",
+    "bestTimeToVisit": "October to April",
+    "countryCode": "VNM",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.946Z",
+    "updatedAt": "2026-08-04T01:15:28.516Z",
+    "media": [
+      {
+        "id": "bt3tln98bopqj95lmdfvwe6x",
+        "mediaId": "c1byh5synhe7djqn60yzc6tx",
+        "entityType": "destination",
+        "entityId": "cilygulbxad4e4h024id9f1t",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.964Z",
+        "media": {
+          "id": "c1byh5synhe7djqn60yzc6tx",
+          "key": "dest-halong-bay-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Halong_Bay_in_Vietnam.jpg",
+          "altText": "Junk boats among the limestone karsts of Ha Long Bay",
+          "width": 1920,
+          "height": 1280,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.964Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sn7acr9soud7j0ndfzi7xagf",
+    "slug": "santorini",
+    "name": "Santorini",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Blue domes and volcanic cliffs above the Aegean",
+    "description": "A Cycladic island famous for whitewashed villages, caldera sunsets, and volcanic beaches.",
+    "bestTimeToVisit": "Late April to early November",
+    "countryCode": "GRC",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.947Z",
+    "updatedAt": "2026-08-04T01:15:28.516Z",
+    "media": [
+      {
+        "id": "v13gp968aihhe0z6cd2dhw1y",
+        "mediaId": "lje4ebmwhx83qf4y19jceqgj",
+        "entityType": "destination",
+        "entityId": "sn7acr9soud7j0ndfzi7xagf",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.964Z",
+        "media": {
+          "id": "lje4ebmwhx83qf4y19jceqgj",
+          "key": "dest-santorini-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/1000_Three_domes_of_Oia_in_Santorini_Photo_by_Giles_Laurent.jpg/1920px-1000_Three_domes_of_Oia_in_Santorini_Photo_by_Giles_Laurent.jpg",
+          "altText": "Blue-domed churches overlooking the caldera in Oia, Santorini",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.964Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k8d1uy7v4cd124dgpgzlgsjh",
+    "slug": "amalfi-coast",
+    "name": "Amalfi Coast",
+    "type": "region_area",
+    "status": "PUBLISHED",
+    "tagline": "Cliffside towns above the Tyrrhenian Sea",
+    "description": "A dramatic stretch of Italian coastline linking Positano, Amalfi, and Ravello by winding coastal roads.",
+    "bestTimeToVisit": "May, June, September (shoulder season)",
+    "countryCode": "ITA",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.947Z",
+    "updatedAt": "2026-08-04T01:15:28.517Z",
+    "media": [
+      {
+        "id": "v6hxtxy1s8q4vbk9rqto527v",
+        "mediaId": "ijwwvihwbq0r4o9rw60fgnd6",
+        "entityType": "destination",
+        "entityId": "k8d1uy7v4cd124dgpgzlgsjh",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.965Z",
+        "media": {
+          "id": "ijwwvihwbq0r4o9rw60fgnd6",
+          "key": "dest-amalfi-coast-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/View_of_Positano.jpg/1920px-View_of_Positano.jpg",
+          "altText": "Pastel-colored houses stacked on the cliffs of Positano",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.964Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "k5s1im50q8trg6k8vkqn6wtn",
+    "slug": "barcelona",
+    "name": "Barcelona",
+    "type": "city",
+    "status": "DRAFT",
+    "tagline": "Gaudí's city on the Catalan coast",
+    "description": "A beach city known for Gaudí architecture, tapas culture, and the Gothic Quarter's narrow streets.",
+    "bestTimeToVisit": "May to June, September to October",
+    "countryCode": "ESP",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.947Z",
+    "updatedAt": "2026-08-04T01:15:28.517Z",
+    "media": [
+      {
+        "id": "jvbajo2cqoas2n452vrcu1c2",
+        "mediaId": "n6x9uwzs0hr01jgp72fezz9k",
+        "entityType": "destination",
+        "entityId": "k5s1im50q8trg6k8vkqn6wtn",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.965Z",
+        "media": {
+          "id": "n6x9uwzs0hr01jgp72fezz9k",
+          "key": "dest-barcelona-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Sagrada_Familia_March_2015-19bw.jpg/1920px-Sagrada_Familia_March_2015-19bw.jpg",
+          "altText": "The Sagrada Familia basilica in Barcelona",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.965Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "h7hpuc40fya4a8saalceubhm",
+    "slug": "barbados",
+    "name": "Barbados",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "The birthplace of rum, ringed by reef",
+    "description": "An easternmost Caribbean island with calm west-coast beaches, surf on the east coast, and a lively food scene.",
+    "bestTimeToVisit": "December to April (dry season)",
+    "countryCode": "BRB",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.948Z",
+    "updatedAt": "2026-08-04T01:15:28.518Z",
+    "media": [
+      {
+        "id": "utd3xc96qs00g23855f8x3ii",
+        "mediaId": "e97l5xoya4h6jri32ylqo2nz",
+        "entityType": "destination",
+        "entityId": "h7hpuc40fya4a8saalceubhm",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.966Z",
+        "media": {
+          "id": "e97l5xoya4h6jri32ylqo2nz",
+          "key": "dest-barbados-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Barbados_beach_%286735320631%29.jpg/1920px-Barbados_beach_%286735320631%29.jpg",
+          "altText": "A palm-lined beach in Barbados",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.965Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "ir1lfyj1zdjqsva3e9qfhvsj",
+    "slug": "providenciales",
+    "name": "Providenciales",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Home to Grace Bay's powder-white sand",
+    "description": "The main tourist island of Turks and Caicos, anchored by the twelve-mile arc of Grace Bay Beach.",
+    "bestTimeToVisit": "December to April",
+    "countryCode": "TCA",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.948Z",
+    "updatedAt": "2026-08-04T01:15:28.518Z",
+    "media": [
+      {
+        "id": "e0z8sxbzfxhrl00jbgw3l5tc",
+        "mediaId": "i6r278fcuube1a4q8mx8j6cj",
+        "entityType": "destination",
+        "entityId": "ir1lfyj1zdjqsva3e9qfhvsj",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.966Z",
+        "media": {
+          "id": "i6r278fcuube1a4q8mx8j6cj",
+          "key": "dest-providenciales-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Grace_Bay_Beach_Facing_North_With_Clouds_In_the_Distance.jpg/1920px-Grace_Bay_Beach_Facing_North_With_Clouds_In_the_Distance.jpg",
+          "altText": "Grace Bay Beach in Providenciales, Turks and Caicos",
+          "width": 1920,
+          "height": 1281,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.966Z"
+        }
+      }
+    ]
+  }
+]

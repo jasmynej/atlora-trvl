@@ -1,0 +1,27 @@
+{
+  "id": "hhv48vury17rhbs5syawcwzw",
+  "slug": "bali-potato-head-beach-club",
+  "name": "Potato Head Beach Club",
+  "type": "restaurant",
+  "destinationId": "byr0hxge6de6b8n1edj04vse",
+  "lat": -8.6858,
+  "lng": 115.157,
+  "address": "Jl. Petitenget, Seminyak, Bali, Indonesia",
+  "summary": "Beachfront restaurant and club overlooking Seminyak Beach.",
+  "website": "https://potatohead.co",
+  "destination": {
+    "id": "byr0hxge6de6b8n1edj04vse",
+    "slug": "bali",
+    "name": "Bali",
+    "type": "island",
+    "status": "PUBLISHED",
+    "tagline": "Temples, terraces, and turquoise water",
+    "description": "An Indonesian island known for its rice terraces, surf breaks, and Hindu temples perched above the sea.",
+    "bestTimeToVisit": "April to October (dry season)",
+    "countryCode": "IDN",
+    "parentId": null,
+    "createdAt": "2026-08-03T20:51:57.944Z",
+    "updatedAt": "2026-08-04T01:15:28.514Z"
+  },
+  "media": []
+}

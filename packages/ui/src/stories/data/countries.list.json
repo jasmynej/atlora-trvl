@@ -1,0 +1,3564 @@
+[
+  {
+    "code": "AFG",
+    "name": "Afghanistan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/af.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "IRN",
+      "PAK",
+      "TKM",
+      "UZB",
+      "TJK",
+      "CHN"
+    ],
+    "capital": "Kabul",
+    "capitalLat": 34.52,
+    "capitalLong": 69.18
+  },
+  {
+    "code": "ALA",
+    "name": "Åland Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ax.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Mariehamn",
+    "capitalLat": 60.12,
+    "capitalLong": 19.9
+  },
+  {
+    "code": "ALB",
+    "name": "Albania",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/al.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "MNE",
+      "GRC",
+      "MKD",
+      "UNK"
+    ],
+    "capital": "Tirana",
+    "capitalLat": 41.32,
+    "capitalLong": 19.82
+  },
+  {
+    "code": "DZA",
+    "name": "Algeria",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/dz.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "TUN",
+      "LBY",
+      "NER",
+      "ESH",
+      "MRT",
+      "MLI",
+      "MAR"
+    ],
+    "capital": "Algiers",
+    "capitalLat": 36.75,
+    "capitalLong": 3.05
+  },
+  {
+    "code": "ASM",
+    "name": "American Samoa",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/as.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Pago Pago",
+    "capitalLat": -14.27,
+    "capitalLong": -170.7
+  },
+  {
+    "code": "AND",
+    "name": "Andorra",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ad.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "FRA",
+      "ESP"
+    ],
+    "capital": "Andorra la Vella",
+    "capitalLat": 42.5,
+    "capitalLong": 1.52
+  },
+  {
+    "code": "AGO",
+    "name": "Angola",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ao.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "COG",
+      "COD",
+      "ZMB",
+      "NAM"
+    ],
+    "capital": "Luanda",
+    "capitalLat": -8.83,
+    "capitalLong": 13.22
+  },
+  {
+    "code": "AIA",
+    "name": "Anguilla",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ai.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "The Valley",
+    "capitalLat": 18.22,
+    "capitalLong": -63.05
+  },
+  {
+    "code": "ATA",
+    "name": "Antarctica",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/aq.svg",
+    "region": "Antarctic",
+    "subRegion": "",
+    "borders": [],
+    "capital": "",
+    "capitalLat": 0,
+    "capitalLong": 0
+  },
+  {
+    "code": "ATG",
+    "name": "Antigua and Barbuda",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ag.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Saint John's",
+    "capitalLat": 17.12,
+    "capitalLong": -61.85
+  },
+  {
+    "code": "ARG",
+    "name": "Argentina",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ar.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BOL",
+      "BRA",
+      "CHL",
+      "PRY",
+      "URY"
+    ],
+    "capital": "Buenos Aires",
+    "capitalLat": -34.58,
+    "capitalLong": -58.67
+  },
+  {
+    "code": "ARM",
+    "name": "Armenia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/am.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "AZE",
+      "GEO",
+      "IRN",
+      "TUR"
+    ],
+    "capital": "Yerevan",
+    "capitalLat": 40.17,
+    "capitalLong": 44.5
+  },
+  {
+    "code": "ABW",
+    "name": "Aruba",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/aw.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Oranjestad",
+    "capitalLat": 12.52,
+    "capitalLong": -70.03
+  },
+  {
+    "code": "AUS",
+    "name": "Australia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/au.svg",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "borders": [],
+    "capital": "Canberra",
+    "capitalLat": -35.27,
+    "capitalLong": 149.13
+  },
+  {
+    "code": "AUT",
+    "name": "Austria",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/at.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "CZE",
+      "DEU",
+      "HUN",
+      "ITA",
+      "LIE",
+      "SVK",
+      "SVN",
+      "CHE"
+    ],
+    "capital": "Vienna",
+    "capitalLat": 48.2,
+    "capitalLong": 16.37
+  },
+  {
+    "code": "AZE",
+    "name": "Azerbaijan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/az.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "ARM",
+      "GEO",
+      "IRN",
+      "RUS",
+      "TUR"
+    ],
+    "capital": "Baku",
+    "capitalLat": 40.38,
+    "capitalLong": 49.87
+  },
+  {
+    "code": "BHS",
+    "name": "Bahamas",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bs.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Nassau",
+    "capitalLat": 25.08,
+    "capitalLong": -77.35
+  },
+  {
+    "code": "BHR",
+    "name": "Bahrain",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bh.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [],
+    "capital": "Manama",
+    "capitalLat": 26.23,
+    "capitalLong": 50.57
+  },
+  {
+    "code": "BGD",
+    "name": "Bangladesh",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bd.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "MMR",
+      "IND"
+    ],
+    "capital": "Dhaka",
+    "capitalLat": 23.72,
+    "capitalLong": 90.4
+  },
+  {
+    "code": "BRB",
+    "name": "Barbados",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bb.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Bridgetown",
+    "capitalLat": 13.1,
+    "capitalLong": -59.62
+  },
+  {
+    "code": "BLR",
+    "name": "Belarus",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/by.svg",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "borders": [
+      "LVA",
+      "LTU",
+      "POL",
+      "RUS",
+      "UKR"
+    ],
+    "capital": "Minsk",
+    "capitalLat": 53.9,
+    "capitalLong": 27.57
+  },
+  {
+    "code": "BEL",
+    "name": "Belgium",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/be.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "FRA",
+      "DEU",
+      "LUX",
+      "NLD"
+    ],
+    "capital": "Brussels",
+    "capitalLat": 50.83,
+    "capitalLong": 4.33
+  },
+  {
+    "code": "BLZ",
+    "name": "Belize",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bz.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "GTM",
+      "MEX"
+    ],
+    "capital": "Belmopan",
+    "capitalLat": 17.25,
+    "capitalLong": -88.77
+  },
+  {
+    "code": "BEN",
+    "name": "Benin",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bj.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BFA",
+      "NER",
+      "NGA",
+      "TGO"
+    ],
+    "capital": "Porto-Novo",
+    "capitalLat": 6.48,
+    "capitalLong": 2.62
+  },
+  {
+    "code": "BMU",
+    "name": "Bermuda",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bm.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [],
+    "capital": "Hamilton",
+    "capitalLat": 32.28,
+    "capitalLong": -64.78
+  },
+  {
+    "code": "BTN",
+    "name": "Bhutan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bt.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "CHN",
+      "IND"
+    ],
+    "capital": "Thimphu",
+    "capitalLat": 27.47,
+    "capitalLong": 89.63
+  },
+  {
+    "code": "BOL",
+    "name": "Bolivia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bo.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "ARG",
+      "BRA",
+      "CHL",
+      "PRY",
+      "PER"
+    ],
+    "capital": "Sucre",
+    "capitalLat": -19.04,
+    "capitalLong": -65.26
+  },
+  {
+    "code": "BIH",
+    "name": "Bosnia and Herzegovina",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ba.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "HRV",
+      "MNE",
+      "SRB"
+    ],
+    "capital": "Sarajevo",
+    "capitalLat": 43.87,
+    "capitalLong": 18.42
+  },
+  {
+    "code": "BWA",
+    "name": "Botswana",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bw.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "NAM",
+      "ZAF",
+      "ZMB",
+      "ZWE"
+    ],
+    "capital": "Gaborone",
+    "capitalLat": -24.63,
+    "capitalLong": 25.9
+  },
+  {
+    "code": "BVT",
+    "name": "Bouvet Island",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bv.svg",
+    "region": "Antarctic",
+    "subRegion": "",
+    "borders": [],
+    "capital": "",
+    "capitalLat": 0,
+    "capitalLong": 0
+  },
+  {
+    "code": "BRA",
+    "name": "Brazil",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/br.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "ARG",
+      "BOL",
+      "COL",
+      "GUF",
+      "GUY",
+      "PRY",
+      "PER",
+      "SUR",
+      "URY",
+      "VEN"
+    ],
+    "capital": "Brasília",
+    "capitalLat": -15.79,
+    "capitalLong": -47.88
+  },
+  {
+    "code": "IOT",
+    "name": "British Indian Ocean Territory",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/io.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Diego Garcia",
+    "capitalLat": -7.3133,
+    "capitalLong": 72.4111
+  },
+  {
+    "code": "VGB",
+    "name": "British Virgin Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/vg.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Road Town",
+    "capitalLat": 18.42,
+    "capitalLong": -64.62
+  },
+  {
+    "code": "BRN",
+    "name": "Brunei",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bn.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "MYS"
+    ],
+    "capital": "Bandar Seri Begawan",
+    "capitalLat": 4.88,
+    "capitalLong": 114.93
+  },
+  {
+    "code": "BGR",
+    "name": "Bulgaria",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bg.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "GRC",
+      "MKD",
+      "ROU",
+      "SRB",
+      "TUR"
+    ],
+    "capital": "Sofia",
+    "capitalLat": 42.68,
+    "capitalLong": 23.32
+  },
+  {
+    "code": "BFA",
+    "name": "Burkina Faso",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bf.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BEN",
+      "CIV",
+      "GHA",
+      "MLI",
+      "NER",
+      "TGO"
+    ],
+    "capital": "Ouagadougou",
+    "capitalLat": 12.37,
+    "capitalLong": -1.52
+  },
+  {
+    "code": "BDI",
+    "name": "Burundi",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bi.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "COD",
+      "RWA",
+      "TZA"
+    ],
+    "capital": "Gitega",
+    "capitalLat": -3.43,
+    "capitalLong": 29.93
+  },
+  {
+    "code": "CPV",
+    "name": "Cabo Verde",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cv.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [],
+    "capital": "Praia",
+    "capitalLat": 14.92,
+    "capitalLong": -23.52
+  },
+  {
+    "code": "KHM",
+    "name": "Cambodia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kh.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "LAO",
+      "THA",
+      "VNM"
+    ],
+    "capital": "Phnom Penh",
+    "capitalLat": 11.55,
+    "capitalLong": 104.92
+  },
+  {
+    "code": "CMR",
+    "name": "Cameroon",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cm.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CAF",
+      "TCD",
+      "COG",
+      "GNQ",
+      "GAB",
+      "NGA"
+    ],
+    "capital": "Yaoundé",
+    "capitalLat": 3.85,
+    "capitalLong": 11.5
+  },
+  {
+    "code": "CAN",
+    "name": "Canada",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ca.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [
+      "USA"
+    ],
+    "capital": "Ottawa",
+    "capitalLat": 45.42,
+    "capitalLong": -75.7
+  },
+  {
+    "code": "BES",
+    "name": "Caribbean Netherlands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bq.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Kralendijk",
+    "capitalLat": 12.14,
+    "capitalLong": -68.27
+  },
+  {
+    "code": "CYM",
+    "name": "Cayman Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ky.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "George Town",
+    "capitalLat": 19.3,
+    "capitalLong": -81.38
+  },
+  {
+    "code": "CAF",
+    "name": "Central African Republic",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cf.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CMR",
+      "TCD",
+      "COD",
+      "COG",
+      "SSD",
+      "SDN"
+    ],
+    "capital": "Bangui",
+    "capitalLat": 4.37,
+    "capitalLong": 18.58
+  },
+  {
+    "code": "TCD",
+    "name": "Chad",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/td.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CMR",
+      "CAF",
+      "LBY",
+      "NER",
+      "NGA",
+      "SDN"
+    ],
+    "capital": "N'Djamena",
+    "capitalLat": 12.1,
+    "capitalLong": 15.03
+  },
+  {
+    "code": "CHL",
+    "name": "Chile",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cl.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "ARG",
+      "BOL",
+      "PER"
+    ],
+    "capital": "Santiago",
+    "capitalLat": -33.45,
+    "capitalLong": -70.67
+  },
+  {
+    "code": "CHN",
+    "name": "China",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cn.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "AFG",
+      "BTN",
+      "MMR",
+      "HKG",
+      "IND",
+      "KAZ",
+      "NPL",
+      "PRK",
+      "KGZ",
+      "LAO",
+      "MAC",
+      "MNG",
+      "PAK",
+      "RUS",
+      "TJK",
+      "VNM"
+    ],
+    "capital": "Beijing",
+    "capitalLat": 39.92,
+    "capitalLong": 116.38
+  },
+  {
+    "code": "CXR",
+    "name": "Christmas Island",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cx.svg",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "borders": [],
+    "capital": "Flying Fish Cove",
+    "capitalLat": -10.42,
+    "capitalLong": 105.68
+  },
+  {
+    "code": "CCK",
+    "name": "Cocos (Keeling) Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cc.svg",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "borders": [],
+    "capital": "West Island",
+    "capitalLat": -12.17,
+    "capitalLong": 96.83
+  },
+  {
+    "code": "COL",
+    "name": "Colombia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/co.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BRA",
+      "ECU",
+      "PAN",
+      "PER",
+      "VEN"
+    ],
+    "capital": "Bogotá",
+    "capitalLat": 4.71,
+    "capitalLong": -74.07
+  },
+  {
+    "code": "COM",
+    "name": "Comoros",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/km.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Moroni",
+    "capitalLat": -11.7,
+    "capitalLong": 43.23
+  },
+  {
+    "code": "COG",
+    "name": "Congo",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cg.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "AGO",
+      "CMR",
+      "CAF",
+      "COD",
+      "GAB"
+    ],
+    "capital": "Brazzaville",
+    "capitalLat": -4.25,
+    "capitalLong": 15.28
+  },
+  {
+    "code": "COK",
+    "name": "Cook Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ck.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Avarua",
+    "capitalLat": -21.2,
+    "capitalLong": -159.77
+  },
+  {
+    "code": "CRI",
+    "name": "Costa Rica",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cr.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "NIC",
+      "PAN"
+    ],
+    "capital": "San José",
+    "capitalLat": 9.93,
+    "capitalLong": -84.09
+  },
+  {
+    "code": "HRV",
+    "name": "Croatia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/hr.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "BIH",
+      "HUN",
+      "MNE",
+      "SRB",
+      "SVN"
+    ],
+    "capital": "Zagreb",
+    "capitalLat": 45.815,
+    "capitalLong": 15.9819
+  },
+  {
+    "code": "CUB",
+    "name": "Cuba",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cu.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Havana",
+    "capitalLat": 23.12,
+    "capitalLong": -82.35
+  },
+  {
+    "code": "CUW",
+    "name": "Curaçao",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cw.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Willemstad",
+    "capitalLat": 12.1,
+    "capitalLong": -68.92
+  },
+  {
+    "code": "CYP",
+    "name": "Cyprus",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cy.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [],
+    "capital": "Nicosia",
+    "capitalLat": 35.17,
+    "capitalLong": 33.37
+  },
+  {
+    "code": "CZE",
+    "name": "Czechia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cz.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "AUT",
+      "DEU",
+      "POL",
+      "SVK"
+    ],
+    "capital": "Prague",
+    "capitalLat": 50.08,
+    "capitalLong": 14.47
+  },
+  {
+    "code": "DNK",
+    "name": "Denmark",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/dk.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "DEU"
+    ],
+    "capital": "Copenhagen",
+    "capitalLat": 55.67,
+    "capitalLong": 12.58
+  },
+  {
+    "code": "DJI",
+    "name": "Djibouti",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/dj.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "ERI",
+      "ETH",
+      "SOM"
+    ],
+    "capital": "Djibouti",
+    "capitalLat": 11.58,
+    "capitalLong": 43.15
+  },
+  {
+    "code": "DMA",
+    "name": "Dominica",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/dm.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Roseau",
+    "capitalLat": 15.301,
+    "capitalLong": -61.3881
+  },
+  {
+    "code": "DOM",
+    "name": "Dominican Republic",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/do.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [
+      "HTI"
+    ],
+    "capital": "Santo Domingo",
+    "capitalLat": 18.47,
+    "capitalLong": -69.9
+  },
+  {
+    "code": "COD",
+    "name": "DRC",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/cd.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "AGO",
+      "BDI",
+      "CAF",
+      "COG",
+      "RWA",
+      "SSD",
+      "TZA",
+      "UGA",
+      "ZMB"
+    ],
+    "capital": "Kinshasa",
+    "capitalLat": -4.32,
+    "capitalLong": 15.3
+  },
+  {
+    "code": "ECU",
+    "name": "Ecuador",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ec.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "COL",
+      "PER"
+    ],
+    "capital": "Quito",
+    "capitalLat": -0.22,
+    "capitalLong": -78.5
+  },
+  {
+    "code": "EGY",
+    "name": "Egypt",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/eg.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "ISR",
+      "LBY",
+      "PSE",
+      "SDN"
+    ],
+    "capital": "Cairo",
+    "capitalLat": 30.05,
+    "capitalLong": 31.25
+  },
+  {
+    "code": "SLV",
+    "name": "El Salvador",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sv.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "GTM",
+      "HND"
+    ],
+    "capital": "San Salvador",
+    "capitalLat": 13.6929,
+    "capitalLong": -89.2182
+  },
+  {
+    "code": "GNQ",
+    "name": "Equatorial Guinea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gq.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CMR",
+      "GAB"
+    ],
+    "capital": "Malabo",
+    "capitalLat": 3.75,
+    "capitalLong": 8.78
+  },
+  {
+    "code": "ERI",
+    "name": "Eritrea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/er.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "DJI",
+      "ETH",
+      "SDN"
+    ],
+    "capital": "Asmara",
+    "capitalLat": 15.33,
+    "capitalLong": 38.93
+  },
+  {
+    "code": "EST",
+    "name": "Estonia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ee.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "LVA",
+      "RUS"
+    ],
+    "capital": "Tallinn",
+    "capitalLat": 59.43,
+    "capitalLong": 24.72
+  },
+  {
+    "code": "SWZ",
+    "name": "Eswatini",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sz.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "MOZ",
+      "ZAF"
+    ],
+    "capital": "Mbabane",
+    "capitalLat": -26.31,
+    "capitalLong": 31.13
+  },
+  {
+    "code": "ETH",
+    "name": "Ethiopia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/et.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "DJI",
+      "ERI",
+      "KEN",
+      "SOM",
+      "SSD",
+      "SDN"
+    ],
+    "capital": "Addis Ababa",
+    "capitalLat": 9.03,
+    "capitalLong": 38.7
+  },
+  {
+    "code": "FLK",
+    "name": "Falkland Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fk.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [],
+    "capital": "Stanley",
+    "capitalLat": -51.7,
+    "capitalLong": -57.85
+  },
+  {
+    "code": "FRO",
+    "name": "Faroe Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fo.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Tórshavn",
+    "capitalLat": 62.01,
+    "capitalLong": -6.77
+  },
+  {
+    "code": "FJI",
+    "name": "Fiji",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fj.svg",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "borders": [],
+    "capital": "Suva",
+    "capitalLat": -18.13,
+    "capitalLong": 178.42
+  },
+  {
+    "code": "FIN",
+    "name": "Finland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fi.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "NOR",
+      "SWE",
+      "RUS"
+    ],
+    "capital": "Helsinki",
+    "capitalLat": 60.17,
+    "capitalLong": 24.93
+  },
+  {
+    "code": "FRA",
+    "name": "France",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fr.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "AND",
+      "BEL",
+      "DEU",
+      "ITA",
+      "LUX",
+      "MCO",
+      "ESP",
+      "CHE"
+    ],
+    "capital": "Paris",
+    "capitalLat": 48.87,
+    "capitalLong": 2.33
+  },
+  {
+    "code": "GUF",
+    "name": "French Guiana",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gf.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BRA",
+      "SUR"
+    ],
+    "capital": "Cayenne",
+    "capitalLat": 4.94,
+    "capitalLong": -52.33
+  },
+  {
+    "code": "PYF",
+    "name": "French Polynesia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pf.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Papeetē",
+    "capitalLat": -17.53,
+    "capitalLong": -149.56
+  },
+  {
+    "code": "ATF",
+    "name": "French Southern and Antarctic Lands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tf.svg",
+    "region": "Antarctic",
+    "subRegion": "",
+    "borders": [],
+    "capital": "Port-aux-Français",
+    "capitalLat": -49.35,
+    "capitalLong": 70.2167
+  },
+  {
+    "code": "GAB",
+    "name": "Gabon",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ga.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CMR",
+      "COG",
+      "GNQ"
+    ],
+    "capital": "Libreville",
+    "capitalLat": 0.38,
+    "capitalLong": 9.45
+  },
+  {
+    "code": "GMB",
+    "name": "Gambia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gm.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "SEN"
+    ],
+    "capital": "Banjul",
+    "capitalLat": 13.45,
+    "capitalLong": -16.57
+  },
+  {
+    "code": "GEO",
+    "name": "Georgia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ge.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "ARM",
+      "AZE",
+      "RUS",
+      "TUR"
+    ],
+    "capital": "Tbilisi",
+    "capitalLat": 41.68,
+    "capitalLong": 44.83
+  },
+  {
+    "code": "DEU",
+    "name": "Germany",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/de.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "AUT",
+      "BEL",
+      "CZE",
+      "DNK",
+      "FRA",
+      "LUX",
+      "NLD",
+      "POL",
+      "CHE"
+    ],
+    "capital": "Berlin",
+    "capitalLat": 52.52,
+    "capitalLong": 13.4
+  },
+  {
+    "code": "GHA",
+    "name": "Ghana",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gh.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BFA",
+      "CIV",
+      "TGO"
+    ],
+    "capital": "Accra",
+    "capitalLat": 5.55,
+    "capitalLong": -0.22
+  },
+  {
+    "code": "GIB",
+    "name": "Gibraltar",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gi.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "ESP"
+    ],
+    "capital": "Gibraltar",
+    "capitalLat": 36.13,
+    "capitalLong": -5.35
+  },
+  {
+    "code": "GRC",
+    "name": "Greece",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gr.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "ALB",
+      "BGR",
+      "TUR",
+      "MKD"
+    ],
+    "capital": "Athens",
+    "capitalLat": 37.98,
+    "capitalLong": 23.73
+  },
+  {
+    "code": "GRL",
+    "name": "Greenland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gl.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [],
+    "capital": "Nuuk",
+    "capitalLat": 64.18,
+    "capitalLong": -51.75
+  },
+  {
+    "code": "GRD",
+    "name": "Grenada",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gd.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "St. George's",
+    "capitalLat": 12.0529,
+    "capitalLong": -61.7523
+  },
+  {
+    "code": "GLP",
+    "name": "Guadeloupe",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gp.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Basse-Terre",
+    "capitalLat": 16.03,
+    "capitalLong": -61.73
+  },
+  {
+    "code": "GUM",
+    "name": "Guam",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gu.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Hagåtña",
+    "capitalLat": 13.48,
+    "capitalLong": 144.75
+  },
+  {
+    "code": "GTM",
+    "name": "Guatemala",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gt.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "BLZ",
+      "SLV",
+      "HND",
+      "MEX"
+    ],
+    "capital": "Guatemala City",
+    "capitalLat": 14.62,
+    "capitalLong": -90.52
+  },
+  {
+    "code": "GGY",
+    "name": "Guernsey",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gg.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "St. Peter Port",
+    "capitalLat": 49.45,
+    "capitalLong": -2.54
+  },
+  {
+    "code": "GIN",
+    "name": "Guinea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gn.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "CIV",
+      "GNB",
+      "LBR",
+      "MLI",
+      "SEN",
+      "SLE"
+    ],
+    "capital": "Conakry",
+    "capitalLat": 9.6412,
+    "capitalLong": -13.5784
+  },
+  {
+    "code": "GNB",
+    "name": "Guinea-Bissau",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gw.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "GIN",
+      "SEN"
+    ],
+    "capital": "Bissau",
+    "capitalLat": 11.85,
+    "capitalLong": -15.58
+  },
+  {
+    "code": "GUY",
+    "name": "Guyana",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gy.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BRA",
+      "SUR",
+      "VEN"
+    ],
+    "capital": "Georgetown",
+    "capitalLat": 6.8,
+    "capitalLong": -58.15
+  },
+  {
+    "code": "HTI",
+    "name": "Haiti",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ht.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [
+      "DOM"
+    ],
+    "capital": "Port-au-Prince",
+    "capitalLat": 18.53,
+    "capitalLong": -72.33
+  },
+  {
+    "code": "HMD",
+    "name": "Heard Island and McDonald Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/hm.svg",
+    "region": "Antarctic",
+    "subRegion": "",
+    "borders": [],
+    "capital": "",
+    "capitalLat": 0,
+    "capitalLong": 0
+  },
+  {
+    "code": "HND",
+    "name": "Honduras",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/hn.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "GTM",
+      "SLV",
+      "NIC"
+    ],
+    "capital": "Tegucigalpa",
+    "capitalLat": 14.1,
+    "capitalLong": -87.22
+  },
+  {
+    "code": "HKG",
+    "name": "Hong Kong",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/hk.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "CHN"
+    ],
+    "capital": "City of Victoria",
+    "capitalLat": 22.267,
+    "capitalLong": 114.188
+  },
+  {
+    "code": "HUN",
+    "name": "Hungary",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/hu.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "AUT",
+      "HRV",
+      "ROU",
+      "SRB",
+      "SVK",
+      "SVN",
+      "UKR"
+    ],
+    "capital": "Budapest",
+    "capitalLat": 47.5,
+    "capitalLong": 19.08
+  },
+  {
+    "code": "ISL",
+    "name": "Iceland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/is.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Reykjavik",
+    "capitalLat": 64.15,
+    "capitalLong": -21.95
+  },
+  {
+    "code": "IND",
+    "name": "India",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/in.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "BGD",
+      "BTN",
+      "MMR",
+      "CHN",
+      "NPL",
+      "PAK"
+    ],
+    "capital": "New Delhi",
+    "capitalLat": 28.6139,
+    "capitalLong": 77.209
+  },
+  {
+    "code": "IDN",
+    "name": "Indonesia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/id.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "TLS",
+      "MYS",
+      "PNG"
+    ],
+    "capital": "Jakarta",
+    "capitalLat": -6.17,
+    "capitalLong": 106.82
+  },
+  {
+    "code": "IRN",
+    "name": "Iran",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ir.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "AFG",
+      "ARM",
+      "AZE",
+      "IRQ",
+      "PAK",
+      "TUR",
+      "TKM"
+    ],
+    "capital": "Tehran",
+    "capitalLat": 35.7,
+    "capitalLong": 51.42
+  },
+  {
+    "code": "IRQ",
+    "name": "Iraq",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/iq.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "IRN",
+      "JOR",
+      "KWT",
+      "SAU",
+      "SYR",
+      "TUR"
+    ],
+    "capital": "Baghdad",
+    "capitalLat": 33.33,
+    "capitalLong": 44.4
+  },
+  {
+    "code": "IRL",
+    "name": "Ireland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ie.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "GBR"
+    ],
+    "capital": "Dublin",
+    "capitalLat": 53.32,
+    "capitalLong": -6.23
+  },
+  {
+    "code": "IMN",
+    "name": "Isle of Man",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/im.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Douglas",
+    "capitalLat": 54.15,
+    "capitalLong": -4.48
+  },
+  {
+    "code": "ISR",
+    "name": "Israel",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/il.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "EGY",
+      "JOR",
+      "LBN",
+      "PSE",
+      "SYR"
+    ],
+    "capital": "Jerusalem",
+    "capitalLat": 31.77,
+    "capitalLong": 35.23
+  },
+  {
+    "code": "ITA",
+    "name": "Italy",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/it.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "AUT",
+      "FRA",
+      "SMR",
+      "SVN",
+      "CHE",
+      "VAT"
+    ],
+    "capital": "Rome",
+    "capitalLat": 41.9,
+    "capitalLong": 12.48
+  },
+  {
+    "code": "CIV",
+    "name": "Ivory Coast",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ci.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BFA",
+      "GHA",
+      "GIN",
+      "LBR",
+      "MLI"
+    ],
+    "capital": "Yamoussoukro",
+    "capitalLat": 6.82,
+    "capitalLong": -5.27
+  },
+  {
+    "code": "JAM",
+    "name": "Jamaica",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/jm.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Kingston",
+    "capitalLat": 17.99702,
+    "capitalLong": -76.79358
+  },
+  {
+    "code": "JPN",
+    "name": "Japan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/jp.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [],
+    "capital": "Tokyo",
+    "capitalLat": 35.68,
+    "capitalLong": 139.75
+  },
+  {
+    "code": "JEY",
+    "name": "Jersey",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/je.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Saint Helier",
+    "capitalLat": 49.18,
+    "capitalLong": -2.1
+  },
+  {
+    "code": "JOR",
+    "name": "Jordan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/jo.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "IRQ",
+      "ISR",
+      "PSE",
+      "SAU",
+      "SYR"
+    ],
+    "capital": "Amman",
+    "capitalLat": 31.95,
+    "capitalLong": 35.93
+  },
+  {
+    "code": "KAZ",
+    "name": "Kazakhstan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kz.svg",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "borders": [
+      "CHN",
+      "KGZ",
+      "RUS",
+      "TKM",
+      "UZB"
+    ],
+    "capital": "Astana",
+    "capitalLat": 51.16,
+    "capitalLong": 71.45
+  },
+  {
+    "code": "KEN",
+    "name": "Kenya",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ke.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "ETH",
+      "SOM",
+      "SSD",
+      "TZA",
+      "UGA"
+    ],
+    "capital": "Nairobi",
+    "capitalLat": -1.28,
+    "capitalLong": 36.82
+  },
+  {
+    "code": "KIR",
+    "name": "Kiribati",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ki.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "South Tarawa",
+    "capitalLat": 1.33,
+    "capitalLong": 172.98
+  },
+  {
+    "code": "UNK",
+    "name": "Kosovo",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/xk.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "ALB",
+      "MKD",
+      "MNE",
+      "SRB"
+    ],
+    "capital": "Pristina",
+    "capitalLat": 42.67,
+    "capitalLong": 21.17
+  },
+  {
+    "code": "KWT",
+    "name": "Kuwait",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kw.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "IRQ",
+      "SAU"
+    ],
+    "capital": "Kuwait City",
+    "capitalLat": 29.37,
+    "capitalLong": 47.97
+  },
+  {
+    "code": "KGZ",
+    "name": "Kyrgyzstan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kg.svg",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "borders": [
+      "CHN",
+      "KAZ",
+      "TJK",
+      "UZB"
+    ],
+    "capital": "Bishkek",
+    "capitalLat": 42.87,
+    "capitalLong": 74.6
+  },
+  {
+    "code": "LAO",
+    "name": "Laos",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/la.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "MMR",
+      "KHM",
+      "CHN",
+      "THA",
+      "VNM"
+    ],
+    "capital": "Vientiane",
+    "capitalLat": 17.97,
+    "capitalLong": 102.6
+  },
+  {
+    "code": "LVA",
+    "name": "Latvia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lv.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "BLR",
+      "EST",
+      "LTU",
+      "RUS"
+    ],
+    "capital": "Riga",
+    "capitalLat": 56.95,
+    "capitalLong": 24.1
+  },
+  {
+    "code": "LBN",
+    "name": "Lebanon",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lb.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "ISR",
+      "SYR"
+    ],
+    "capital": "Beirut",
+    "capitalLat": 33.87,
+    "capitalLong": 35.5
+  },
+  {
+    "code": "LSO",
+    "name": "Lesotho",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ls.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "ZAF"
+    ],
+    "capital": "Maseru",
+    "capitalLat": -29.32,
+    "capitalLong": 27.48
+  },
+  {
+    "code": "LBR",
+    "name": "Liberia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lr.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "GIN",
+      "CIV",
+      "SLE"
+    ],
+    "capital": "Monrovia",
+    "capitalLat": 6.3156,
+    "capitalLong": -10.8074
+  },
+  {
+    "code": "LBY",
+    "name": "Libya",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ly.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "DZA",
+      "TCD",
+      "EGY",
+      "NER",
+      "SDN",
+      "TUN"
+    ],
+    "capital": "Tripoli",
+    "capitalLat": 32.88,
+    "capitalLong": 13.17
+  },
+  {
+    "code": "LIE",
+    "name": "Liechtenstein",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/li.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "AUT",
+      "CHE"
+    ],
+    "capital": "Vaduz",
+    "capitalLat": 47.13,
+    "capitalLong": 9.52
+  },
+  {
+    "code": "LTU",
+    "name": "Lithuania",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lt.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "BLR",
+      "LVA",
+      "POL",
+      "RUS"
+    ],
+    "capital": "Vilnius",
+    "capitalLat": 54.68,
+    "capitalLong": 25.32
+  },
+  {
+    "code": "LUX",
+    "name": "Luxembourg",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lu.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "BEL",
+      "FRA",
+      "DEU"
+    ],
+    "capital": "Luxembourg",
+    "capitalLat": 49.6,
+    "capitalLong": 6.12
+  },
+  {
+    "code": "MAC",
+    "name": "Macau",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mo.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "CHN"
+    ],
+    "capital": "",
+    "capitalLat": 0,
+    "capitalLong": 0
+  },
+  {
+    "code": "MDG",
+    "name": "Madagascar",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mg.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Antananarivo",
+    "capitalLat": -18.92,
+    "capitalLong": 47.52
+  },
+  {
+    "code": "MWI",
+    "name": "Malawi",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mw.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "MOZ",
+      "TZA",
+      "ZMB"
+    ],
+    "capital": "Lilongwe",
+    "capitalLat": -13.97,
+    "capitalLong": 33.78
+  },
+  {
+    "code": "MYS",
+    "name": "Malaysia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/my.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "BRN",
+      "IDN",
+      "THA"
+    ],
+    "capital": "Kuala Lumpur",
+    "capitalLat": 3.17,
+    "capitalLong": 101.7
+  },
+  {
+    "code": "MDV",
+    "name": "Maldives",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mv.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [],
+    "capital": "Malé",
+    "capitalLat": 4.17,
+    "capitalLong": 73.51
+  },
+  {
+    "code": "MLI",
+    "name": "Mali",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ml.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "DZA",
+      "BFA",
+      "GIN",
+      "CIV",
+      "MRT",
+      "NER",
+      "SEN"
+    ],
+    "capital": "Bamako",
+    "capitalLat": 12.65,
+    "capitalLong": -8
+  },
+  {
+    "code": "MLT",
+    "name": "Malta",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mt.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [],
+    "capital": "Valletta",
+    "capitalLat": 35.88,
+    "capitalLong": 14.5
+  },
+  {
+    "code": "MHL",
+    "name": "Marshall Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mh.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Majuro",
+    "capitalLat": 7.1,
+    "capitalLong": 171.38
+  },
+  {
+    "code": "MTQ",
+    "name": "Martinique",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mq.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Fort-de-France",
+    "capitalLat": 14.6,
+    "capitalLong": -61.08
+  },
+  {
+    "code": "MRT",
+    "name": "Mauritania",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mr.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "DZA",
+      "MLI",
+      "SEN",
+      "ESH"
+    ],
+    "capital": "Nouakchott",
+    "capitalLat": 18.07,
+    "capitalLong": -15.97
+  },
+  {
+    "code": "MUS",
+    "name": "Mauritius",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mu.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Port Louis",
+    "capitalLat": -20.15,
+    "capitalLong": 57.48
+  },
+  {
+    "code": "MYT",
+    "name": "Mayotte",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/yt.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Mamoudzou",
+    "capitalLat": -12.78,
+    "capitalLong": 45.22
+  },
+  {
+    "code": "MEX",
+    "name": "Mexico",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mx.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [
+      "BLZ",
+      "GTM",
+      "USA"
+    ],
+    "capital": "Mexico City",
+    "capitalLat": 19.43,
+    "capitalLong": -99.13
+  },
+  {
+    "code": "FSM",
+    "name": "Micronesia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/fm.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Palikir",
+    "capitalLat": 6.92,
+    "capitalLong": 158.15
+  },
+  {
+    "code": "MDA",
+    "name": "Moldova",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/md.svg",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "borders": [
+      "ROU",
+      "UKR"
+    ],
+    "capital": "Chișinău",
+    "capitalLat": 47.01,
+    "capitalLong": 28.9
+  },
+  {
+    "code": "MCO",
+    "name": "Monaco",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mc.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "FRA"
+    ],
+    "capital": "Monaco",
+    "capitalLat": 43.73,
+    "capitalLong": 7.42
+  },
+  {
+    "code": "MNG",
+    "name": "Mongolia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mn.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "CHN",
+      "RUS"
+    ],
+    "capital": "Ulan Bator",
+    "capitalLat": 47.92,
+    "capitalLong": 106.91
+  },
+  {
+    "code": "MNE",
+    "name": "Montenegro",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/me.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "ALB",
+      "BIH",
+      "HRV",
+      "UNK",
+      "SRB"
+    ],
+    "capital": "Podgorica",
+    "capitalLat": 42.43,
+    "capitalLong": 19.27
+  },
+  {
+    "code": "MSR",
+    "name": "Montserrat",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ms.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Plymouth",
+    "capitalLat": 16.7,
+    "capitalLong": -62.22
+  },
+  {
+    "code": "MAR",
+    "name": "Morocco",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ma.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "DZA",
+      "ESH",
+      "ESP"
+    ],
+    "capital": "Rabat",
+    "capitalLat": 34.02,
+    "capitalLong": -6.82
+  },
+  {
+    "code": "MOZ",
+    "name": "Mozambique",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mz.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "MWI",
+      "ZAF",
+      "SWZ",
+      "TZA",
+      "ZMB",
+      "ZWE"
+    ],
+    "capital": "Maputo",
+    "capitalLat": -25.95,
+    "capitalLong": 32.58
+  },
+  {
+    "code": "MMR",
+    "name": "Myanmar",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mm.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "BGD",
+      "CHN",
+      "IND",
+      "LAO",
+      "THA"
+    ],
+    "capital": "Naypyidaw",
+    "capitalLat": 19.76,
+    "capitalLong": 96.07
+  },
+  {
+    "code": "NAM",
+    "name": "Namibia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/na.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "AGO",
+      "BWA",
+      "ZAF",
+      "ZMB"
+    ],
+    "capital": "Windhoek",
+    "capitalLat": -22.57,
+    "capitalLong": 17.08
+  },
+  {
+    "code": "NRU",
+    "name": "Nauru",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nr.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Yaren",
+    "capitalLat": -0.55,
+    "capitalLong": 166.92
+  },
+  {
+    "code": "NPL",
+    "name": "Nepal",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/np.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "CHN",
+      "IND"
+    ],
+    "capital": "Kathmandu",
+    "capitalLat": 27.72,
+    "capitalLong": 85.32
+  },
+  {
+    "code": "NLD",
+    "name": "Netherlands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nl.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "BEL",
+      "DEU"
+    ],
+    "capital": "Amsterdam",
+    "capitalLat": 52.35,
+    "capitalLong": 4.92
+  },
+  {
+    "code": "NCL",
+    "name": "New Caledonia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nc.svg",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "borders": [],
+    "capital": "Nouméa",
+    "capitalLat": -22.27,
+    "capitalLong": 166.45
+  },
+  {
+    "code": "NZL",
+    "name": "New Zealand",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nz.svg",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "borders": [],
+    "capital": "Wellington",
+    "capitalLat": -41.3,
+    "capitalLong": 174.78
+  },
+  {
+    "code": "NIC",
+    "name": "Nicaragua",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ni.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "CRI",
+      "HND"
+    ],
+    "capital": "Managua",
+    "capitalLat": 12.13,
+    "capitalLong": -86.25
+  },
+  {
+    "code": "NER",
+    "name": "Niger",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ne.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "DZA",
+      "BEN",
+      "BFA",
+      "TCD",
+      "LBY",
+      "MLI",
+      "NGA"
+    ],
+    "capital": "Niamey",
+    "capitalLat": 13.52,
+    "capitalLong": 2.12
+  },
+  {
+    "code": "NGA",
+    "name": "Nigeria",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ng.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BEN",
+      "CMR",
+      "TCD",
+      "NER"
+    ],
+    "capital": "Abuja",
+    "capitalLat": 9.08,
+    "capitalLong": 7.53
+  },
+  {
+    "code": "NIU",
+    "name": "Niue",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nu.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Alofi",
+    "capitalLat": -19.02,
+    "capitalLong": -169.92
+  },
+  {
+    "code": "NFK",
+    "name": "Norfolk Island",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/nf.svg",
+    "region": "Oceania",
+    "subRegion": "Australia and New Zealand",
+    "borders": [],
+    "capital": "Kingston",
+    "capitalLat": -29.05,
+    "capitalLong": 167.97
+  },
+  {
+    "code": "PRK",
+    "name": "North Korea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kp.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "CHN",
+      "KOR",
+      "RUS"
+    ],
+    "capital": "Pyongyang",
+    "capitalLat": 39.02,
+    "capitalLong": 125.75
+  },
+  {
+    "code": "MKD",
+    "name": "North Macedonia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mk.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "ALB",
+      "BGR",
+      "GRC",
+      "UNK",
+      "SRB"
+    ],
+    "capital": "Skopje",
+    "capitalLat": 42,
+    "capitalLong": 21.43
+  },
+  {
+    "code": "MNP",
+    "name": "Northern Mariana Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mp.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Saipan",
+    "capitalLat": 15.2,
+    "capitalLong": 145.75
+  },
+  {
+    "code": "NOR",
+    "name": "Norway",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/no.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "FIN",
+      "SWE",
+      "RUS"
+    ],
+    "capital": "Oslo",
+    "capitalLat": 59.92,
+    "capitalLong": 10.75
+  },
+  {
+    "code": "OMN",
+    "name": "Oman",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/om.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "SAU",
+      "ARE",
+      "YEM"
+    ],
+    "capital": "Muscat",
+    "capitalLat": 23.62,
+    "capitalLong": 58.58
+  },
+  {
+    "code": "PAK",
+    "name": "Pakistan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pk.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [
+      "AFG",
+      "CHN",
+      "IND",
+      "IRN"
+    ],
+    "capital": "Islamabad",
+    "capitalLat": 33.68,
+    "capitalLong": 73.05
+  },
+  {
+    "code": "PLW",
+    "name": "Palau",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pw.svg",
+    "region": "Oceania",
+    "subRegion": "Micronesia",
+    "borders": [],
+    "capital": "Ngerulmud",
+    "capitalLat": 7.5,
+    "capitalLong": 134.62
+  },
+  {
+    "code": "PSE",
+    "name": "Palestine",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ps.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "ISR",
+      "EGY",
+      "JOR"
+    ],
+    "capital": "Ramallah",
+    "capitalLat": 31.9038,
+    "capitalLong": 35.2034
+  },
+  {
+    "code": "PAN",
+    "name": "Panama",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pa.svg",
+    "region": "Americas",
+    "subRegion": "Central America",
+    "borders": [
+      "COL",
+      "CRI"
+    ],
+    "capital": "Panama City",
+    "capitalLat": 8.97,
+    "capitalLong": -79.53
+  },
+  {
+    "code": "PNG",
+    "name": "Papua New Guinea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pg.svg",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "borders": [
+      "IDN"
+    ],
+    "capital": "Port Moresby",
+    "capitalLat": -9.45,
+    "capitalLong": 147.18
+  },
+  {
+    "code": "PRY",
+    "name": "Paraguay",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/py.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "ARG",
+      "BOL",
+      "BRA"
+    ],
+    "capital": "Asunción",
+    "capitalLat": -25.28,
+    "capitalLong": -57.57
+  },
+  {
+    "code": "PER",
+    "name": "Peru",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pe.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BOL",
+      "BRA",
+      "CHL",
+      "COL",
+      "ECU"
+    ],
+    "capital": "Lima",
+    "capitalLat": -12.05,
+    "capitalLong": -77.05
+  },
+  {
+    "code": "PHL",
+    "name": "Philippines",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ph.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [],
+    "capital": "Manila",
+    "capitalLat": 14.6,
+    "capitalLong": 120.97
+  },
+  {
+    "code": "PCN",
+    "name": "Pitcairn Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pn.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Adamstown",
+    "capitalLat": -25.07,
+    "capitalLong": -130.08
+  },
+  {
+    "code": "POL",
+    "name": "Poland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pl.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "BLR",
+      "CZE",
+      "DEU",
+      "LTU",
+      "RUS",
+      "SVK",
+      "UKR"
+    ],
+    "capital": "Warsaw",
+    "capitalLat": 52.25,
+    "capitalLong": 21
+  },
+  {
+    "code": "PRT",
+    "name": "Portugal",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pt.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "ESP"
+    ],
+    "capital": "Lisbon",
+    "capitalLat": 38.72,
+    "capitalLong": -9.13
+  },
+  {
+    "code": "PRI",
+    "name": "Puerto Rico",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pr.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "San Juan",
+    "capitalLat": 18.47,
+    "capitalLong": -66.12
+  },
+  {
+    "code": "QAT",
+    "name": "Qatar",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/qa.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "SAU"
+    ],
+    "capital": "Doha",
+    "capitalLat": 25.28,
+    "capitalLong": 51.53
+  },
+  {
+    "code": "REU",
+    "name": "Réunion",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/re.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Saint-Denis",
+    "capitalLat": -20.88,
+    "capitalLong": 55.45
+  },
+  {
+    "code": "ROU",
+    "name": "Romania",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ro.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "BGR",
+      "HUN",
+      "MDA",
+      "SRB",
+      "UKR"
+    ],
+    "capital": "Bucharest",
+    "capitalLat": 44.43,
+    "capitalLong": 26.1
+  },
+  {
+    "code": "RUS",
+    "name": "Russia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ru.svg",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "borders": [
+      "AZE",
+      "BLR",
+      "CHN",
+      "EST",
+      "FIN",
+      "GEO",
+      "KAZ",
+      "PRK",
+      "LVA",
+      "LTU",
+      "MNG",
+      "NOR",
+      "POL",
+      "UKR"
+    ],
+    "capital": "Moscow",
+    "capitalLat": 55.75,
+    "capitalLong": 37.6
+  },
+  {
+    "code": "RWA",
+    "name": "Rwanda",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/rw.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "BDI",
+      "COD",
+      "TZA",
+      "UGA"
+    ],
+    "capital": "Kigali",
+    "capitalLat": -1.95,
+    "capitalLong": 30.05
+  },
+  {
+    "code": "BLM",
+    "name": "Saint Barthélemy",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/bl.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Gustavia",
+    "capitalLat": 17.88,
+    "capitalLong": -62.85
+  },
+  {
+    "code": "SHN",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sh.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [],
+    "capital": "Jamestown",
+    "capitalLat": -15.93,
+    "capitalLong": -5.72
+  },
+  {
+    "code": "KNA",
+    "name": "Saint Kitts and Nevis",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kn.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Basseterre",
+    "capitalLat": 17.3,
+    "capitalLong": -62.72
+  },
+  {
+    "code": "LCA",
+    "name": "Saint Lucia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lc.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Castries",
+    "capitalLat": 13.9957,
+    "capitalLong": -61.0061
+  },
+  {
+    "code": "MAF",
+    "name": "Saint Martin",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/mf.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [
+      "SXM"
+    ],
+    "capital": "Marigot",
+    "capitalLat": 18.07,
+    "capitalLong": -63.08
+  },
+  {
+    "code": "SPM",
+    "name": "Saint Pierre and Miquelon",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/pm.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [],
+    "capital": "Saint-Pierre",
+    "capitalLat": 46.77,
+    "capitalLong": -56.18
+  },
+  {
+    "code": "VCT",
+    "name": "Saint Vincent and the Grenadines",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/vc.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Kingstown",
+    "capitalLat": 13.13,
+    "capitalLong": -61.22
+  },
+  {
+    "code": "WSM",
+    "name": "Samoa",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ws.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Apia",
+    "capitalLat": -13.82,
+    "capitalLong": -171.77
+  },
+  {
+    "code": "SMR",
+    "name": "San Marino",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sm.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "ITA"
+    ],
+    "capital": "City of San Marino",
+    "capitalLat": 43.94,
+    "capitalLong": 12.45
+  },
+  {
+    "code": "STP",
+    "name": "São Tomé and Príncipe",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/st.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [],
+    "capital": "São Tomé",
+    "capitalLat": 0.34,
+    "capitalLong": 6.73
+  },
+  {
+    "code": "SAU",
+    "name": "Saudi Arabia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sa.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "IRQ",
+      "JOR",
+      "KWT",
+      "OMN",
+      "QAT",
+      "ARE",
+      "YEM"
+    ],
+    "capital": "Riyadh",
+    "capitalLat": 24.65,
+    "capitalLong": 46.7
+  },
+  {
+    "code": "SEN",
+    "name": "Senegal",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sn.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "GMB",
+      "GIN",
+      "GNB",
+      "MLI",
+      "MRT"
+    ],
+    "capital": "Dakar",
+    "capitalLat": 14.73,
+    "capitalLong": -17.63
+  },
+  {
+    "code": "SRB",
+    "name": "Serbia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/rs.svg",
+    "region": "Europe",
+    "subRegion": "Southeast Europe",
+    "borders": [
+      "BIH",
+      "BGR",
+      "HRV",
+      "HUN",
+      "UNK",
+      "MKD",
+      "MNE",
+      "ROU"
+    ],
+    "capital": "Belgrade",
+    "capitalLat": 44.83,
+    "capitalLong": 20.5
+  },
+  {
+    "code": "SYC",
+    "name": "Seychelles",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sc.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [],
+    "capital": "Victoria",
+    "capitalLat": -4.62,
+    "capitalLong": 55.45
+  },
+  {
+    "code": "SLE",
+    "name": "Sierra Leone",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sl.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "GIN",
+      "LBR"
+    ],
+    "capital": "Freetown",
+    "capitalLat": 8.48,
+    "capitalLong": -13.23
+  },
+  {
+    "code": "SGP",
+    "name": "Singapore",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sg.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [],
+    "capital": "Singapore",
+    "capitalLat": 1.28,
+    "capitalLong": 103.85
+  },
+  {
+    "code": "SXM",
+    "name": "Sint Maarten",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sx.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [
+      "MAF"
+    ],
+    "capital": "Philipsburg",
+    "capitalLat": 18.02,
+    "capitalLong": -63.03
+  },
+  {
+    "code": "SVK",
+    "name": "Slovakia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sk.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "AUT",
+      "CZE",
+      "HUN",
+      "POL",
+      "UKR"
+    ],
+    "capital": "Bratislava",
+    "capitalLat": 48.15,
+    "capitalLong": 17.12
+  },
+  {
+    "code": "SVN",
+    "name": "Slovenia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/si.svg",
+    "region": "Europe",
+    "subRegion": "Central Europe",
+    "borders": [
+      "AUT",
+      "HRV",
+      "ITA",
+      "HUN"
+    ],
+    "capital": "Ljubljana",
+    "capitalLat": 46.05,
+    "capitalLong": 14.52
+  },
+  {
+    "code": "SLB",
+    "name": "Solomon Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sb.svg",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "borders": [],
+    "capital": "Honiara",
+    "capitalLat": -9.43,
+    "capitalLong": 159.95
+  },
+  {
+    "code": "SOM",
+    "name": "Somalia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/so.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "DJI",
+      "ETH",
+      "KEN"
+    ],
+    "capital": "Mogadishu",
+    "capitalLat": 2.07,
+    "capitalLong": 45.33
+  },
+  {
+    "code": "ZAF",
+    "name": "South Africa",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/za.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "BWA",
+      "LSO",
+      "MOZ",
+      "NAM",
+      "SWZ",
+      "ZWE"
+    ],
+    "capital": "Pretoria",
+    "capitalLat": -25.74,
+    "capitalLong": 28.19
+  },
+  {
+    "code": "SGS",
+    "name": "South Georgia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gs.svg",
+    "region": "Antarctic",
+    "subRegion": "",
+    "borders": [],
+    "capital": "King Edward Point",
+    "capitalLat": -54.28,
+    "capitalLong": -36.5
+  },
+  {
+    "code": "KOR",
+    "name": "South Korea",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/kr.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [
+      "PRK"
+    ],
+    "capital": "Seoul",
+    "capitalLat": 37.55,
+    "capitalLong": 126.98
+  },
+  {
+    "code": "SSD",
+    "name": "South Sudan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ss.svg",
+    "region": "Africa",
+    "subRegion": "Middle Africa",
+    "borders": [
+      "CAF",
+      "COD",
+      "ETH",
+      "KEN",
+      "SDN",
+      "UGA"
+    ],
+    "capital": "Juba",
+    "capitalLat": 4.85,
+    "capitalLong": 31.62
+  },
+  {
+    "code": "ESP",
+    "name": "Spain",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/es.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "AND",
+      "FRA",
+      "GIB",
+      "PRT",
+      "MAR"
+    ],
+    "capital": "Madrid",
+    "capitalLat": 40.4,
+    "capitalLong": -3.68
+  },
+  {
+    "code": "LKA",
+    "name": "Sri Lanka",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/lk.svg",
+    "region": "Asia",
+    "subRegion": "Southern Asia",
+    "borders": [],
+    "capital": "Sri Jayawardenepura Kotte",
+    "capitalLat": 6.89,
+    "capitalLong": 79.9
+  },
+  {
+    "code": "SDN",
+    "name": "Sudan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sd.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "CAF",
+      "TCD",
+      "EGY",
+      "ERI",
+      "ETH",
+      "LBY",
+      "SSD"
+    ],
+    "capital": "Khartoum",
+    "capitalLat": 15.6,
+    "capitalLong": 32.53
+  },
+  {
+    "code": "SUR",
+    "name": "Suriname",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sr.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BRA",
+      "GUF",
+      "GUY"
+    ],
+    "capital": "Paramaribo",
+    "capitalLat": 5.83,
+    "capitalLong": -55.17
+  },
+  {
+    "code": "SJM",
+    "name": "Svalbard and Jan Mayen",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sj.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [],
+    "capital": "Longyearbyen",
+    "capitalLat": 78.22,
+    "capitalLong": 15.63
+  },
+  {
+    "code": "SWE",
+    "name": "Sweden",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/se.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "FIN",
+      "NOR"
+    ],
+    "capital": "Stockholm",
+    "capitalLat": 59.33,
+    "capitalLong": 18.05
+  },
+  {
+    "code": "CHE",
+    "name": "Switzerland",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ch.svg",
+    "region": "Europe",
+    "subRegion": "Western Europe",
+    "borders": [
+      "AUT",
+      "FRA",
+      "ITA",
+      "LIE",
+      "DEU"
+    ],
+    "capital": "Bern",
+    "capitalLat": 46.92,
+    "capitalLong": 7.47
+  },
+  {
+    "code": "SYR",
+    "name": "Syria",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/sy.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "IRQ",
+      "ISR",
+      "JOR",
+      "LBN",
+      "TUR"
+    ],
+    "capital": "Damascus",
+    "capitalLat": 33.5138,
+    "capitalLong": 36.2765
+  },
+  {
+    "code": "TWN",
+    "name": "Taiwan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tw.svg",
+    "region": "Asia",
+    "subRegion": "Eastern Asia",
+    "borders": [],
+    "capital": "Taipei",
+    "capitalLat": 25.03,
+    "capitalLong": 121.52
+  },
+  {
+    "code": "TJK",
+    "name": "Tajikistan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tj.svg",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "borders": [
+      "AFG",
+      "CHN",
+      "KGZ",
+      "UZB"
+    ],
+    "capital": "Dushanbe",
+    "capitalLat": 38.55,
+    "capitalLong": 68.77
+  },
+  {
+    "code": "TZA",
+    "name": "Tanzania",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tz.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "BDI",
+      "COD",
+      "KEN",
+      "MWI",
+      "MOZ",
+      "RWA",
+      "UGA",
+      "ZMB"
+    ],
+    "capital": "Dodoma",
+    "capitalLat": -6.16,
+    "capitalLong": 35.75
+  },
+  {
+    "code": "THA",
+    "name": "Thailand",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/th.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "MMR",
+      "KHM",
+      "LAO",
+      "MYS"
+    ],
+    "capital": "Bangkok",
+    "capitalLat": 13.75,
+    "capitalLong": 100.52
+  },
+  {
+    "code": "TLS",
+    "name": "Timor-Leste",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tl.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "IDN"
+    ],
+    "capital": "Dili",
+    "capitalLat": -8.58,
+    "capitalLong": 125.6
+  },
+  {
+    "code": "TGO",
+    "name": "Togo",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tg.svg",
+    "region": "Africa",
+    "subRegion": "Western Africa",
+    "borders": [
+      "BEN",
+      "BFA",
+      "GHA"
+    ],
+    "capital": "Lomé",
+    "capitalLat": 6.14,
+    "capitalLong": 1.21
+  },
+  {
+    "code": "TKL",
+    "name": "Tokelau",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tk.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Fakaofo",
+    "capitalLat": -9.38,
+    "capitalLong": -171.22
+  },
+  {
+    "code": "TON",
+    "name": "Tonga",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/to.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Nuku'alofa",
+    "capitalLat": -21.13,
+    "capitalLong": -175.2
+  },
+  {
+    "code": "TTO",
+    "name": "Trinidad and Tobago",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tt.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Port of Spain",
+    "capitalLat": 10.65,
+    "capitalLong": -61.52
+  },
+  {
+    "code": "TUN",
+    "name": "Tunisia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tn.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "DZA",
+      "LBY"
+    ],
+    "capital": "Tunis",
+    "capitalLat": 36.8,
+    "capitalLong": 10.18
+  },
+  {
+    "code": "TUR",
+    "name": "Turkey",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tr.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "ARM",
+      "AZE",
+      "BGR",
+      "GEO",
+      "GRC",
+      "IRN",
+      "IRQ",
+      "SYR"
+    ],
+    "capital": "Ankara",
+    "capitalLat": 39.93,
+    "capitalLong": 32.87
+  },
+  {
+    "code": "TKM",
+    "name": "Turkmenistan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tm.svg",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "borders": [
+      "AFG",
+      "IRN",
+      "KAZ",
+      "UZB"
+    ],
+    "capital": "Ashgabat",
+    "capitalLat": 37.95,
+    "capitalLong": 58.38
+  },
+  {
+    "code": "TCA",
+    "name": "Turks and Caicos Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tc.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Cockburn Town",
+    "capitalLat": 21.46,
+    "capitalLong": -71.14
+  },
+  {
+    "code": "TUV",
+    "name": "Tuvalu",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/tv.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Funafuti",
+    "capitalLat": -8.52,
+    "capitalLong": 179.22
+  },
+  {
+    "code": "UGA",
+    "name": "Uganda",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ug.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "COD",
+      "KEN",
+      "RWA",
+      "SSD",
+      "TZA"
+    ],
+    "capital": "Kampala",
+    "capitalLat": 0.32,
+    "capitalLong": 32.55
+  },
+  {
+    "code": "UKR",
+    "name": "Ukraine",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ua.svg",
+    "region": "Europe",
+    "subRegion": "Eastern Europe",
+    "borders": [
+      "BLR",
+      "HUN",
+      "MDA",
+      "POL",
+      "ROU",
+      "RUS",
+      "SVK"
+    ],
+    "capital": "Kyiv",
+    "capitalLat": 50.43,
+    "capitalLong": 30.52
+  },
+  {
+    "code": "ARE",
+    "name": "United Arab Emirates",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ae.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "OMN",
+      "SAU"
+    ],
+    "capital": "Abu Dhabi",
+    "capitalLat": 24.47,
+    "capitalLong": 54.37
+  },
+  {
+    "code": "GBR",
+    "name": "United Kingdom",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/gb.svg",
+    "region": "Europe",
+    "subRegion": "Northern Europe",
+    "borders": [
+      "IRL"
+    ],
+    "capital": "London",
+    "capitalLat": 51.5,
+    "capitalLong": -0.08
+  },
+  {
+    "code": "USA",
+    "name": "United States",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/us.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [
+      "CAN",
+      "MEX"
+    ],
+    "capital": "Washington, D.C.",
+    "capitalLat": 38.89,
+    "capitalLong": -77.05
+  },
+  {
+    "code": "UMI",
+    "name": "United States Minor Outlying Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/um.svg",
+    "region": "Americas",
+    "subRegion": "North America",
+    "borders": [],
+    "capital": "",
+    "capitalLat": 0,
+    "capitalLong": 0
+  },
+  {
+    "code": "VIR",
+    "name": "United States Virgin Islands",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/vi.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Charlotte Amalie",
+    "capitalLat": 18.35,
+    "capitalLong": -64.93
+  },
+  {
+    "code": "URY",
+    "name": "Uruguay",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/uy.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "ARG",
+      "BRA"
+    ],
+    "capital": "Montevideo",
+    "capitalLat": -34.85,
+    "capitalLong": -56.17
+  },
+  {
+    "code": "UZB",
+    "name": "Uzbekistan",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/uz.svg",
+    "region": "Asia",
+    "subRegion": "Central Asia",
+    "borders": [
+      "AFG",
+      "KAZ",
+      "KGZ",
+      "TJK",
+      "TKM"
+    ],
+    "capital": "Tashkent",
+    "capitalLat": 41.32,
+    "capitalLong": 69.25
+  },
+  {
+    "code": "VUT",
+    "name": "Vanuatu",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/vu.svg",
+    "region": "Oceania",
+    "subRegion": "Melanesia",
+    "borders": [],
+    "capital": "Port Vila",
+    "capitalLat": -17.73,
+    "capitalLong": 168.32
+  },
+  {
+    "code": "VAT",
+    "name": "Vatican City",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/va.svg",
+    "region": "Europe",
+    "subRegion": "Southern Europe",
+    "borders": [
+      "ITA"
+    ],
+    "capital": "Vatican City",
+    "capitalLat": 41.9,
+    "capitalLong": 12.45
+  },
+  {
+    "code": "VEN",
+    "name": "Venezuela",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ve.svg",
+    "region": "Americas",
+    "subRegion": "South America",
+    "borders": [
+      "BRA",
+      "COL",
+      "GUY"
+    ],
+    "capital": "Caracas",
+    "capitalLat": 10.48,
+    "capitalLong": -66.87
+  },
+  {
+    "code": "VNM",
+    "name": "Vietnam",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/vn.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "KHM",
+      "CHN",
+      "LAO"
+    ],
+    "capital": "Hanoi",
+    "capitalLat": 21.03,
+    "capitalLong": 105.85
+  },
+  {
+    "code": "WLF",
+    "name": "Wallis and Futuna",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/wf.svg",
+    "region": "Oceania",
+    "subRegion": "Polynesia",
+    "borders": [],
+    "capital": "Mata-Utu",
+    "capitalLat": -13.95,
+    "capitalLong": -171.93
+  },
+  {
+    "code": "ESH",
+    "name": "Western Sahara",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/eh.svg",
+    "region": "Africa",
+    "subRegion": "Northern Africa",
+    "borders": [
+      "DZA",
+      "MRT",
+      "MAR"
+    ],
+    "capital": "El Aaiún",
+    "capitalLat": 27.1253,
+    "capitalLong": -13.1625
+  },
+  {
+    "code": "YEM",
+    "name": "Yemen",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/ye.svg",
+    "region": "Asia",
+    "subRegion": "Western Asia",
+    "borders": [
+      "OMN",
+      "SAU"
+    ],
+    "capital": "Sana'a",
+    "capitalLat": 15.37,
+    "capitalLong": 44.19
+  },
+  {
+    "code": "ZMB",
+    "name": "Zambia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/zm.svg",
+    "region": "Africa",
+    "subRegion": "Eastern Africa",
+    "borders": [
+      "AGO",
+      "BWA",
+      "COD",
+      "MWI",
+      "MOZ",
+      "NAM",
+      "TZA",
+      "ZWE"
+    ],
+    "capital": "Lusaka",
+    "capitalLat": -15.42,
+    "capitalLong": 28.28
+  },
+  {
+    "code": "ZWE",
+    "name": "Zimbabwe",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/zw.svg",
+    "region": "Africa",
+    "subRegion": "Southern Africa",
+    "borders": [
+      "BWA",
+      "MOZ",
+      "ZAF",
+      "ZMB"
+    ],
+    "capital": "Harare",
+    "capitalLat": -17.82,
+    "capitalLong": 31.03
+  }
+]

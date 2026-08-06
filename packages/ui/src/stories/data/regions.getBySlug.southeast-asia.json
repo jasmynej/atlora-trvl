@@ -1,0 +1,160 @@
+{
+  "id": "yje26whs2i661rqz1tm3srb3",
+  "slug": "southeast-asia",
+  "name": "Southeast Asia",
+  "description": "Limestone karsts, golden temples, and street food capitals strung across Indonesia, Thailand, and Vietnam.",
+  "status": "PUBLISHED",
+  "createdAt": "2026-08-03T20:51:57.926Z",
+  "updatedAt": "2026-08-04T01:15:28.473Z",
+  "countries": [
+    {
+      "code": "IDN",
+      "name": "Indonesia",
+      "flagSvg": "https://flags.restcountries.com/v5/svg/id.svg",
+      "region": "Asia",
+      "subRegion": "South-Eastern Asia",
+      "borders": [
+        "TLS",
+        "MYS",
+        "PNG"
+      ],
+      "capital": "Jakarta",
+      "capitalLat": -6.17,
+      "capitalLong": 106.82
+    },
+    {
+      "code": "THA",
+      "name": "Thailand",
+      "flagSvg": "https://flags.restcountries.com/v5/svg/th.svg",
+      "region": "Asia",
+      "subRegion": "South-Eastern Asia",
+      "borders": [
+        "MMR",
+        "KHM",
+        "LAO",
+        "MYS"
+      ],
+      "capital": "Bangkok",
+      "capitalLat": 13.75,
+      "capitalLong": 100.52
+    },
+    {
+      "code": "VNM",
+      "name": "Vietnam",
+      "flagSvg": "https://flags.restcountries.com/v5/svg/vn.svg",
+      "region": "Asia",
+      "subRegion": "South-Eastern Asia",
+      "borders": [
+        "KHM",
+        "CHN",
+        "LAO"
+      ],
+      "capital": "Hanoi",
+      "capitalLat": 21.03,
+      "capitalLong": 105.85
+    }
+  ],
+  "destinations": [
+    {
+      "id": "byr0hxge6de6b8n1edj04vse",
+      "slug": "bali",
+      "name": "Bali",
+      "type": "island",
+      "status": "PUBLISHED",
+      "tagline": "Temples, terraces, and turquoise water",
+      "description": "An Indonesian island known for its rice terraces, surf breaks, and Hindu temples perched above the sea.",
+      "bestTimeToVisit": "April to October (dry season)",
+      "countryCode": "IDN",
+      "parentId": null,
+      "createdAt": "2026-08-03T20:51:57.944Z",
+      "updatedAt": "2026-08-04T01:15:28.514Z"
+    },
+    {
+      "id": "hqgcvanymqy2gq8e2vfq3wkr",
+      "slug": "bangkok",
+      "name": "Bangkok",
+      "type": "city",
+      "status": "PUBLISHED",
+      "tagline": "Thailand's neon-lit capital",
+      "description": "A sprawling capital of ornate temples, floating markets, and some of the world's best street food.",
+      "bestTimeToVisit": "November to February (cool, dry season)",
+      "countryCode": "THA",
+      "parentId": null,
+      "createdAt": "2026-08-03T20:51:57.945Z",
+      "updatedAt": "2026-08-04T01:15:28.515Z"
+    },
+    {
+      "id": "cilygulbxad4e4h024id9f1t",
+      "slug": "ha-long-bay",
+      "name": "Ha Long Bay",
+      "type": "other",
+      "status": "PUBLISHED",
+      "tagline": "Thousands of limestone islands rising from the sea",
+      "description": "A UNESCO World Heritage seascape in northern Vietnam, best explored by traditional junk boat.",
+      "bestTimeToVisit": "October to April",
+      "countryCode": "VNM",
+      "parentId": null,
+      "createdAt": "2026-08-03T20:51:57.946Z",
+      "updatedAt": "2026-08-04T01:15:28.516Z"
+    }
+  ],
+  "media": [
+    {
+      "id": "loa5v0w8wjyhqdzvi2z8x2uk",
+      "mediaId": "docjpiwc9h2nr0cpdn0cxqvo",
+      "entityType": "region",
+      "entityId": "yje26whs2i661rqz1tm3srb3",
+      "role": "hero",
+      "sortOrder": 0,
+      "createdAt": "2026-08-03T20:51:57.961Z",
+      "media": {
+        "id": "docjpiwc9h2nr0cpdn0cxqvo",
+        "key": "region-southeast-asia-hero",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Halong_Bay_in_Vietnam.jpg",
+        "altText": "Limestone karsts rising from the water in Ha Long Bay, Vietnam",
+        "width": 1920,
+        "height": 1280,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T20:51:57.960Z"
+      }
+    },
+    {
+      "id": "njozxmoeb6dt3lvjvj3btook",
+      "mediaId": "gcqkek0la7f91gsr8k52gd85",
+      "entityType": "region",
+      "entityId": "yje26whs2i661rqz1tm3srb3",
+      "role": "gallery",
+      "sortOrder": 1,
+      "createdAt": "2026-08-03T21:02:25.582Z",
+      "media": {
+        "id": "gcqkek0la7f91gsr8k52gd85",
+        "key": "region-southeast-asia-gallery-1",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Railay_Beach_5.jpg/1920px-Railay_Beach_5.jpg",
+        "altText": "Railay Beach, Thailand",
+        "width": 1600,
+        "height": 958,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.581Z"
+      }
+    },
+    {
+      "id": "u0daz92jm930vmgbolfp1uh5",
+      "mediaId": "stcefqp9qr55fdoh1rlt9h57",
+      "entityType": "region",
+      "entityId": "yje26whs2i661rqz1tm3srb3",
+      "role": "gallery",
+      "sortOrder": 2,
+      "createdAt": "2026-08-03T21:02:25.583Z",
+      "media": {
+        "id": "stcefqp9qr55fdoh1rlt9h57",
+        "key": "region-southeast-asia-gallery-2",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Vietnam%2C_Phong_Dien%2C_Mekong_Delta%2C_River.jpg/1920px-Vietnam%2C_Phong_Dien%2C_Mekong_Delta%2C_River.jpg",
+        "altText": "The Mekong Delta near Phong Dien, Vietnam",
+        "width": 1600,
+        "height": 1067,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.583Z"
+      }
+    }
+  ]
+}

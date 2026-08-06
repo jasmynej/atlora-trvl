@@ -1,0 +1,118 @@
+{
+  "id": "qoosg6ll1apdu29wfrs9vsa2",
+  "slug": "negril",
+  "name": "Negril",
+  "type": "beach",
+  "status": "DRAFT",
+  "tagline": "Seven miles of sand on Jamaica's west coast",
+  "description": "A relaxed resort town famous for Seven Mile Beach and cliff-diving at Rick's Cafe.",
+  "bestTimeToVisit": "November to mid-December",
+  "countryCode": "JAM",
+  "parentId": null,
+  "createdAt": "2026-08-03T20:51:57.949Z",
+  "updatedAt": "2026-08-04T01:15:28.519Z",
+  "country": {
+    "code": "JAM",
+    "name": "Jamaica",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/jm.svg",
+    "region": "Americas",
+    "subRegion": "Caribbean",
+    "borders": [],
+    "capital": "Kingston",
+    "capitalLat": 17.99702,
+    "capitalLong": -76.79358
+  },
+  "parent": null,
+  "children": [],
+  "pois": [],
+  "seasons": [],
+  "media": [
+    {
+      "id": "r3wvn7bccx33xzc2lbxzqng6",
+      "mediaId": "sdvahf64i1s1cbngq02whnlv",
+      "entityType": "destination",
+      "entityId": "qoosg6ll1apdu29wfrs9vsa2",
+      "role": "hero",
+      "sortOrder": 0,
+      "createdAt": "2026-08-03T20:51:57.966Z",
+      "media": {
+        "id": "sdvahf64i1s1cbngq02whnlv",
+        "key": "dest-negril-hero",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Jamaica%2C_Negril_-_Flickr_-_VV_Nincic.jpg/1920px-Jamaica%2C_Negril_-_Flickr_-_VV_Nincic.jpg",
+        "altText": "Seven Mile Beach in Negril, Jamaica",
+        "width": 1920,
+        "height": 1281,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T20:51:57.966Z"
+      }
+    },
+    {
+      "id": "gare1bdqtlo2q209oobi75et",
+      "mediaId": "s7ea12pysy9v9o5ygxhakzbv",
+      "entityType": "destination",
+      "entityId": "qoosg6ll1apdu29wfrs9vsa2",
+      "role": "gallery",
+      "sortOrder": 1,
+      "createdAt": "2026-08-03T21:02:25.598Z",
+      "media": {
+        "id": "s7ea12pysy9v9o5ygxhakzbv",
+        "key": "dest-negril-gallery-1",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Rick%27s_Cafe%2C_Negril%2C_Jamaica_%28Unsplash%29.jpg/1920px-Rick%27s_Cafe%2C_Negril%2C_Jamaica_%28Unsplash%29.jpg",
+        "altText": "Rick's Cafe cliffs, Negril",
+        "width": 1600,
+        "height": 1067,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.598Z"
+      }
+    },
+    {
+      "id": "lomg53g1ujdaxiyqgjh0wdg5",
+      "mediaId": "o4ecc478l3m71wxeafp8tjbs",
+      "entityType": "destination",
+      "entityId": "qoosg6ll1apdu29wfrs9vsa2",
+      "role": "gallery",
+      "sortOrder": 2,
+      "createdAt": "2026-08-03T21:02:25.598Z",
+      "media": {
+        "id": "o4ecc478l3m71wxeafp8tjbs",
+        "key": "dest-negril-gallery-2",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Ricks_Negril_Jamaica_Photo_Don_Ramey_Logan.jpg/1920px-Ricks_Negril_Jamaica_Photo_Don_Ramey_Logan.jpg",
+        "altText": "Cliff diving at Rick's Cafe, Negril",
+        "width": 1600,
+        "height": 1063,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.598Z"
+      }
+    },
+    {
+      "id": "ldkjo7eav0hkaqy63nj8hn9z",
+      "mediaId": "tw39ruobwmqpnl4i3b1xoxkk",
+      "entityType": "destination",
+      "entityId": "qoosg6ll1apdu29wfrs9vsa2",
+      "role": "gallery",
+      "sortOrder": 3,
+      "createdAt": "2026-08-03T21:02:25.599Z",
+      "media": {
+        "id": "tw39ruobwmqpnl4i3b1xoxkk",
+        "key": "dest-negril-gallery-3",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Jamaica_-_Negril_-_048.jpg/1920px-Jamaica_-_Negril_-_048.jpg",
+        "altText": "Seven Mile Beach, Negril",
+        "width": 1600,
+        "height": 1200,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.598Z"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": "qgblxejjh5en6ktts9g0ghbu",
+      "slug": "caribbean-islands",
+      "name": "Caribbean Islands",
+      "description": "Reef-lined beaches and laid-back island life across Barbados, Turks and Caicos, and Jamaica.",
+      "status": "PUBLISHED",
+      "createdAt": "2026-08-03T20:51:57.937Z",
+      "updatedAt": "2026-08-04T01:15:28.511Z"
+    }
+  ]
+}

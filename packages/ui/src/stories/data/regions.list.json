@@ -1,0 +1,122 @@
+[
+  {
+    "id": "yje26whs2i661rqz1tm3srb3",
+    "slug": "southeast-asia",
+    "name": "Southeast Asia",
+    "description": "Limestone karsts, golden temples, and street food capitals strung across Indonesia, Thailand, and Vietnam.",
+    "status": "PUBLISHED",
+    "createdAt": "2026-08-03T20:51:57.926Z",
+    "updatedAt": "2026-08-04T01:15:28.473Z",
+    "media": [
+      {
+        "id": "loa5v0w8wjyhqdzvi2z8x2uk",
+        "mediaId": "docjpiwc9h2nr0cpdn0cxqvo",
+        "entityType": "region",
+        "entityId": "yje26whs2i661rqz1tm3srb3",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.961Z",
+        "media": {
+          "id": "docjpiwc9h2nr0cpdn0cxqvo",
+          "key": "region-southeast-asia-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Halong_Bay_in_Vietnam.jpg",
+          "altText": "Limestone karsts rising from the water in Ha Long Bay, Vietnam",
+          "width": 1920,
+          "height": 1280,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.960Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mh99whw3n8jct87ywdyy6371",
+    "slug": "mediterranean-coast",
+    "name": "Mediterranean Coast",
+    "description": "Whitewashed clifftop towns, cliffside drives, and centuries of history along the Greek, Italian, and Spanish coastlines.",
+    "status": "PUBLISHED",
+    "createdAt": "2026-08-03T20:51:57.937Z",
+    "updatedAt": "2026-08-04T01:15:28.510Z",
+    "media": [
+      {
+        "id": "tto2cqu0krqpzigw5av25rf2",
+        "mediaId": "d4iku4i9fihm4ei7l26yzfrc",
+        "entityType": "region",
+        "entityId": "mh99whw3n8jct87ywdyy6371",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.961Z",
+        "media": {
+          "id": "d4iku4i9fihm4ei7l26yzfrc",
+          "key": "region-mediterranean-coast-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Atrani_%28Costiera_Amalfitana%2C_23-8-2011%29.jpg/1920px-Atrani_%28Costiera_Amalfitana%2C_23-8-2011%29.jpg",
+          "altText": "Cliffside village overlooking the sea on the Amalfi Coast, Italy",
+          "width": 1920,
+          "height": 1440,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.961Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "qgblxejjh5en6ktts9g0ghbu",
+    "slug": "caribbean-islands",
+    "name": "Caribbean Islands",
+    "description": "Reef-lined beaches and laid-back island life across Barbados, Turks and Caicos, and Jamaica.",
+    "status": "PUBLISHED",
+    "createdAt": "2026-08-03T20:51:57.937Z",
+    "updatedAt": "2026-08-04T01:15:28.511Z",
+    "media": [
+      {
+        "id": "dm468pimv38dfybes9jw4msq",
+        "mediaId": "ct3hl9k28k2e3dgs6f3kxmb8",
+        "entityType": "region",
+        "entityId": "qgblxejjh5en6ktts9g0ghbu",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.962Z",
+        "media": {
+          "id": "ct3hl9k28k2e3dgs6f3kxmb8",
+          "key": "region-caribbean-islands-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/The_Pitons_at_Soufriere_Saint_Lucia.jpg/1920px-The_Pitons_at_Soufriere_Saint_Lucia.jpg",
+          "altText": "The twin Piton peaks rising above the Caribbean Sea, Saint Lucia",
+          "width": 1600,
+          "height": 1200,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.962Z"
+        }
+      }
+    ]
+  },
+  {
+    "id": "wh2g744uk9ejthxydt14kp7d",
+    "slug": "east-africa-safari-circuit",
+    "name": "East Africa Safari Circuit",
+    "description": "Endless savanna and the great migration across Tanzania and Kenya's premier safari parks.",
+    "status": "PUBLISHED",
+    "createdAt": "2026-08-03T20:51:57.938Z",
+    "updatedAt": "2026-08-04T01:15:28.511Z",
+    "media": [
+      {
+        "id": "txcswzqhgqt8pxhnls6iofy5",
+        "mediaId": "icz9rkq8dmhpv8iejwornry2",
+        "entityType": "region",
+        "entityId": "wh2g744uk9ejthxydt14kp7d",
+        "role": "hero",
+        "sortOrder": 0,
+        "createdAt": "2026-08-03T20:51:57.962Z",
+        "media": {
+          "id": "icz9rkq8dmhpv8iejwornry2",
+          "key": "region-east-africa-safari-hero",
+          "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/040_Blue_wildebeest_with_wattled_starlings_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg/1920px-040_Blue_wildebeest_with_wattled_starlings_in_the_Serengeti_National_Park_Photo_by_Giles_Laurent.jpg",
+          "altText": "Wildebeest crossing the savanna in Serengeti National Park, Tanzania",
+          "width": 1920,
+          "height": 1280,
+          "mimeType": "image/jpeg",
+          "createdAt": "2026-08-03T20:51:57.962Z"
+        }
+      }
+    ]
+  }
+]

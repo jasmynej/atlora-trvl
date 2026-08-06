@@ -1,0 +1,235 @@
+{
+  "id": "byr0hxge6de6b8n1edj04vse",
+  "slug": "bali",
+  "name": "Bali",
+  "type": "island",
+  "status": "PUBLISHED",
+  "tagline": "Temples, terraces, and turquoise water",
+  "description": "An Indonesian island known for its rice terraces, surf breaks, and Hindu temples perched above the sea.",
+  "bestTimeToVisit": "April to October (dry season)",
+  "countryCode": "IDN",
+  "parentId": null,
+  "createdAt": "2026-08-03T20:51:57.944Z",
+  "updatedAt": "2026-08-04T01:15:28.514Z",
+  "country": {
+    "code": "IDN",
+    "name": "Indonesia",
+    "flagSvg": "https://flags.restcountries.com/v5/svg/id.svg",
+    "region": "Asia",
+    "subRegion": "South-Eastern Asia",
+    "borders": [
+      "TLS",
+      "MYS",
+      "PNG"
+    ],
+    "capital": "Jakarta",
+    "capitalLat": -6.17,
+    "capitalLong": 106.82
+  },
+  "parent": null,
+  "children": [],
+  "pois": [
+    {
+      "id": "p7pva21jemmywrguko60qfoy",
+      "slug": "bali-uluwatu-temple",
+      "name": "Uluwatu Temple",
+      "type": "attraction",
+      "destinationId": "byr0hxge6de6b8n1edj04vse",
+      "lat": -8.8291,
+      "lng": 115.0849,
+      "address": "Pecatu, South Kuta, Badung Regency, Bali, Indonesia",
+      "summary": "A sea temple perched on a cliff, famous for sunset Kecak fire dances.",
+      "website": null,
+      "media": [
+        {
+          "id": "at6dqifmzm0rp3vndi4aab3g",
+          "mediaId": "fp6cvhrt0l8kcrd7yprx3vi7",
+          "entityType": "poi",
+          "entityId": "p7pva21jemmywrguko60qfoy",
+          "role": "hero",
+          "sortOrder": 0,
+          "createdAt": "2026-08-03T21:15:12.589Z",
+          "media": {
+            "id": "fp6cvhrt0l8kcrd7yprx3vi7",
+            "key": "poi-bali-uluwatu-temple-hero",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg/1920px-Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg",
+            "altText": "Uluwatu Temple perched on the cliffs of Bali",
+            "width": 1600,
+            "height": 1068,
+            "mimeType": "image/jpeg",
+            "createdAt": "2026-08-03T21:15:12.589Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hhv48vury17rhbs5syawcwzw",
+      "slug": "bali-potato-head-beach-club",
+      "name": "Potato Head Beach Club",
+      "type": "restaurant",
+      "destinationId": "byr0hxge6de6b8n1edj04vse",
+      "lat": -8.6858,
+      "lng": 115.157,
+      "address": "Jl. Petitenget, Seminyak, Bali, Indonesia",
+      "summary": "Beachfront restaurant and club overlooking Seminyak Beach.",
+      "website": "https://potatohead.co",
+      "media": []
+    },
+    {
+      "id": "xbhdxrvhdqgurys0j9rw3pxu",
+      "slug": "bali-four-seasons-sayan",
+      "name": "Four Seasons Resort Bali at Sayan",
+      "type": "hotel",
+      "destinationId": "byr0hxge6de6b8n1edj04vse",
+      "lat": -8.4931,
+      "lng": 115.2494,
+      "address": "Sayan, Ubud, Gianyar, Bali, Indonesia",
+      "summary": "A jungle-canopy resort set into the Ayung River valley near Ubud.",
+      "website": "https://www.fourseasons.com/sayan",
+      "media": [
+        {
+          "id": "jysq4paapdejgljxhmxt067w",
+          "mediaId": "acxgghqh78g0npt2cwb6n9pf",
+          "entityType": "poi",
+          "entityId": "xbhdxrvhdqgurys0j9rw3pxu",
+          "role": "hero",
+          "sortOrder": 0,
+          "createdAt": "2026-08-03T21:15:12.591Z",
+          "media": {
+            "id": "acxgghqh78g0npt2cwb6n9pf",
+            "key": "poi-bali-four-seasons-sayan-hero",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bali_Urwald_SvG.jpg",
+            "altText": "Jungle canopy near the Ayung River, Ubud",
+            "width": 1600,
+            "height": 937,
+            "mimeType": "image/jpeg",
+            "createdAt": "2026-08-03T21:15:12.590Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "qgj0ev3nn82gk1mio6ribpyp",
+      "slug": "bali-ngurah-rai-airport",
+      "name": "Ngurah Rai International Airport",
+      "type": "aiport",
+      "destinationId": "byr0hxge6de6b8n1edj04vse",
+      "lat": -8.7482,
+      "lng": 115.1672,
+      "address": "Kuta, Badung Regency, Bali, Indonesia",
+      "summary": "Bali's main international gateway, serving Denpasar (DPS).",
+      "website": null,
+      "media": [
+        {
+          "id": "vja06uqxmfx7i6ec4rdbcbpq",
+          "mediaId": "ye2iakd5qittaj5czyho6y3z",
+          "entityType": "poi",
+          "entityId": "qgj0ev3nn82gk1mio6ribpyp",
+          "role": "hero",
+          "sortOrder": 0,
+          "createdAt": "2026-08-03T21:15:12.591Z",
+          "media": {
+            "id": "ye2iakd5qittaj5czyho6y3z",
+            "key": "poi-bali-ngurah-rai-airport-hero",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg/1920px-Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg",
+            "altText": "Ngurah Rai International Airport, Bali",
+            "width": 1600,
+            "height": 1067,
+            "mimeType": "image/jpeg",
+            "createdAt": "2026-08-03T21:15:12.591Z"
+          }
+        }
+      ]
+    }
+  ],
+  "seasons": [],
+  "media": [
+    {
+      "id": "xoxk6btxaegy4msbcn639c8x",
+      "mediaId": "z2coxrhq20om8xk4b47nqmq6",
+      "entityType": "destination",
+      "entityId": "byr0hxge6de6b8n1edj04vse",
+      "role": "hero",
+      "sortOrder": 0,
+      "createdAt": "2026-08-03T20:51:57.963Z",
+      "media": {
+        "id": "z2coxrhq20om8xk4b47nqmq6",
+        "key": "dest-bali-hero",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bali%2C_Rice_fields%2C_Rice_terraces_in_East_Bali%2C_Indonesia.jpg/1920px-Bali%2C_Rice_fields%2C_Rice_terraces_in_East_Bali%2C_Indonesia.jpg",
+        "altText": "Terraced rice fields in East Bali, Indonesia",
+        "width": 1920,
+        "height": 1281,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T20:51:57.963Z"
+      }
+    },
+    {
+      "id": "dblxgvxqre29egkxj9ydpgzj",
+      "mediaId": "tu9twv8y5tpsid0jbmdzoeoo",
+      "entityType": "destination",
+      "entityId": "byr0hxge6de6b8n1edj04vse",
+      "role": "gallery",
+      "sortOrder": 1,
+      "createdAt": "2026-08-03T21:02:25.587Z",
+      "media": {
+        "id": "tu9twv8y5tpsid0jbmdzoeoo",
+        "key": "dest-bali-gallery-1",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Uluwatu_Temple_sunset_-_Indonesia.jpg/1920px-Uluwatu_Temple_sunset_-_Indonesia.jpg",
+        "altText": "Uluwatu Temple at sunset, Bali",
+        "width": 1600,
+        "height": 2146,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.586Z"
+      }
+    },
+    {
+      "id": "h057z172caqn6yk99y15sbgb",
+      "mediaId": "qnwusquv49y3nfa9mb7m7wke",
+      "entityType": "destination",
+      "entityId": "byr0hxge6de6b8n1edj04vse",
+      "role": "gallery",
+      "sortOrder": 2,
+      "createdAt": "2026-08-03T21:02:25.588Z",
+      "media": {
+        "id": "qnwusquv49y3nfa9mb7m7wke",
+        "key": "dest-bali-gallery-2",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Rice_terraces_on_Bali_-_Tegalalang_Rice_Terrace_-_Indonesia_04.jpg/1920px-Rice_terraces_on_Bali_-_Tegalalang_Rice_Terrace_-_Indonesia_04.jpg",
+        "altText": "The Tegalalang Rice Terrace, Bali",
+        "width": 1600,
+        "height": 2400,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.587Z"
+      }
+    },
+    {
+      "id": "xlcypysbukbj02eovu3lwtaj",
+      "mediaId": "o0iexs1pwb8gb5e1sme4m66r",
+      "entityType": "destination",
+      "entityId": "byr0hxge6de6b8n1edj04vse",
+      "role": "gallery",
+      "sortOrder": 3,
+      "createdAt": "2026-08-03T21:02:25.589Z",
+      "media": {
+        "id": "o0iexs1pwb8gb5e1sme4m66r",
+        "key": "dest-bali-gallery-3",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Tanah_Lot%2C_Bali%2C_Indonesia%2C_20220827_0959_1118.jpg/1920px-Tanah_Lot%2C_Bali%2C_Indonesia%2C_20220827_0959_1118.jpg",
+        "altText": "Tanah Lot sea temple, Bali",
+        "width": 1600,
+        "height": 1068,
+        "mimeType": "image/jpeg",
+        "createdAt": "2026-08-03T21:02:25.589Z"
+      }
+    }
+  ],
+  "regions": [
+    {
+      "id": "yje26whs2i661rqz1tm3srb3",
+      "slug": "southeast-asia",
+      "name": "Southeast Asia",
+      "description": "Limestone karsts, golden temples, and street food capitals strung across Indonesia, Thailand, and Vietnam.",
+      "status": "PUBLISHED",
+      "createdAt": "2026-08-03T20:51:57.926Z",
+      "updatedAt": "2026-08-04T01:15:28.473Z"
+    }
+  ]
+}
