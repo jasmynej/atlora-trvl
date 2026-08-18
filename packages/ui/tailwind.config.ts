@@ -167,6 +167,28 @@ export default {
         9: '6rem',
       },
 
+      // Shared height scale for interactive controls (Button, Input, Select,
+      // Textarea, Switch...). Deliberately separate from `spacing` above —
+      // that scale remaps keys 1-9, and height/width utilities read from
+      // `spacing` by default, so reusing e.g. `h-8` there silently resolves
+      // to 4rem instead of the expected 2rem. Every control's `sm`/`md`/`lg`
+      // size variant should read its height from here, never from `h-<n>`.
+      height: {
+        'control-sm': '2rem',   // 32px
+        'control-md': '2.5rem', // 40px
+        'control-lg': '3rem',   // 48px
+      },
+
+      // Shared horizontal padding scale for the same set of controls, kept
+      // under the `control-*` name so it reads as one pair with `height`
+      // above — a control's `sm`/`md`/`lg` variant always sets both
+      // `h-control-{size}` and `px-control-{size}`, nothing else.
+      padding: {
+        'control-sm': '1rem',   // 16px
+        'control-md': '1.5rem', // 24px
+        'control-lg': '2rem',   // 32px
+      },
+
       transitionTimingFunction: {
         'brand-out':  'cubic-bezier(0.22, 1, 0.36, 1)',
         'brand-soft': 'cubic-bezier(0.4, 0, 0.2, 1)',

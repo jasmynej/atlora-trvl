@@ -32,9 +32,9 @@ const buttonVariants = cva(
         neutral: '',
       },
       size: {
-        sm: 'h-8 px-4 text-xs gap-1.5',
-        md: 'h-10 px-5 text-xs',
-        lg: 'h-12 px-6 text-sm',
+        sm: 'h-control-sm px-control-sm text-xs gap-1.5',
+        md: 'h-control-md px-control-md text-xs',
+        lg: 'h-control-lg px-control-lg text-sm',
       },
     },
 

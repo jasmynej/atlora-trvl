@@ -1,8 +1,12 @@
-# Atlora Travel — Architecture
+# Atlora — Architecture
+
+> **Status:** Revised for the two-sided marketplace model. Supersedes the previous single-sided white-label CMS/CRM framing. Read alongside `FEATURES.md` and `BRAND.md`.
 
 ## Overview
 
-Atlora is structured as a **Turborepo monorepo** with three frontend applications, one core API server, one dedicated AI microservice, and a standalone design system package with its own Storybook environment. A reverse proxy unifies all services under a single host.
+Atlora is a **Turborepo monorepo** containing three web applications, one mobile application, one core API server, one AI microservice, and a standalone design system package with its own Storybook environment. A reverse proxy unifies the web services under a single host.
+
+The architecture is shaped by one constraint above all others: **data lives at three different ownership levels — platform, agency, and traveler — and the boundaries between them are security boundaries, not conveniences.** The shared destination catalog is platform-owned. CRM and trip data are agency-owned. Identity, documents, and self-planned itineraries are traveler-owned. Every routing, auth, and data-access decision below follows from that split.
 
 ---
 
@@ -11,16 +15,17 @@ Atlora is structured as a **Turborepo monorepo** with three frontend application
 ```
 atlora/
 ├── apps/
-│   ├── web/              # Next.js — public marketing site
+│   ├── web/              # Next.js — public site, discovery, catalog
 │   ├── admin/            # Vite + React — agency admin portal
 │   ├── portal/           # Vite + React — traveler portal
+│   ├── mobile/           # Expo — traveler mobile app
 │   ├── api/              # Node.js + Hono — core tRPC API
 │   └── ai-service/       # Python + FastAPI — AI microservice
 │
 ├── packages/
 │   ├── ui/               # Design system — components, tokens, Storybook
-│   ├── db/               # Drizzle schema + client
-│   ├── trpc/             # tRPC router definitions (shared)
+│   ├── db/               # Prisma schema + client
+│   ├── trpc/             # tRPC router definitions + procedure guards
 │   └── types/            # Shared Zod schemas + TypeScript types
 │
 ├── turbo.json
@@ -29,175 +34,192 @@ atlora/
 
 ---
 
-## Design System (`packages/ui`)
+## Data Ownership Model
 
-The design system is a **standalone package** that lives inside the monorepo but is developed and tested in complete isolation from the apps that consume it. It is not an app itself — it has no server, no routing, no data fetching. It is purely a library of components, design tokens, and visual primitives.
+This is the core architectural constraint. Three ownership levels, three enforcement keys.
 
-### What it contains
+| Level | Key | Examples | Guard |
+|---|---|---|---|
+| **Platform** | none | `Destination`, `Region`, `DestinationType`, platform config | `platformProcedure` |
+| **Agency** | `agency_id` | `Trip`, `Client`, `Booking`, `Communication`, `AgencyProfile`, `AdvisorProfile` | `agencyProcedure` |
+| **Traveler** | `traveler_id` | `TravelerProfile`, `TravelerDocument`, `PartyMember`, traveler-owned `Itinerary`, saved trips | `travelerProcedure` |
 
-- **Design tokens** — colors, spacing, typography, shadows, border radii defined as CSS variables and Tailwind config extensions
-- **Primitive components** — Button, Input, Badge, Card, Modal, Dropdown, etc.
-- **Composite components** — TripCard, DestinationHero, BookingStatus, DataTable, etc.
-- **Two token themes** — `brand` (public site: teal/pink/gold luxury palette) and `admin` (neutral, data-dense dashboard palette)
-- **Storybook** — runs inside `packages/ui`, used to develop, document, and visually test components in isolation
+**Cross-boundary reads never happen by direct FK access.** An agency reading traveler-granted profile fields resolves through the `Engagement` record and its consent tier. There is no query path from `Client` to `TravelerProfile` sensitive fields that bypasses consent resolution.
 
-### How apps consume it
+### Notable model splits
 
-Each app installs `packages/ui` as a local workspace dependency:
+- **`TravelerProfile` / `Client` / `Engagement`** — identity is platform-level and traveler-owned; relationship data is agency-owned; the join carries consent tier and status. A `TravelerProfile` can exist with zero agency relationships, which is what makes discovery and self-planning possible at all.
+- **`Trip` vs. `Itinerary`** — `Trip` is an agency's packaged sellable offering and stays agency-scoped. `Itinerary` is a day-by-day plan with a polymorphic owner (traveler or agency) and supports **fork with ownership change**, which makes traveler→agency handoff, agency→traveler personalization, and agency→agency templating the same operation.
 
-```json
-// apps/web/package.json
-{
-  "dependencies": {
-    "@atlora/ui": "workspace:*"
-  }
-}
+---
+
+## Procedure Scoping (`packages/trpc`)
+
+Three-way scoping is a security boundary and must exist before any traveler surface is built.
+
+```ts
+platformProcedure  // platform admin role — destination catalog, platform config
+agencyProcedure    // agency_id from JWT — trips, clients, CRM, agency profile
+travelerProcedure  // traveler_id from JWT — profile vault, saved trips, self-planned itineraries, trip hub
 ```
 
-Then imports components directly:
+Entitlement checks resolve through a single function called from procedures rather than scattered per-route:
 
-```tsx
-import { Button, TripCard } from "@atlora/ui";
+```ts
+hasEntitlement(subject, feature)  // subject: Agency | TravelerProfile
 ```
-
-The app itself has no knowledge of how the component is built — it just uses the export. This means you can refactor, restyle, or swap the underlying implementation (e.g. change the headless primitive library) without touching any app code, as long as the component API stays the same.
-
-### Why this separation matters
-
-Keeping the design system as its own package with its own Storybook environment means:
-
-- Components are built and tested against a blank canvas, not inside a real page where global styles, routing, and data can mask problems
-- Any of the three apps can adopt a new component the moment it's published to the package — there's no duplication across apps
-- Storybook serves as living documentation — designers, other developers, or future contributors can see every component and its variants without running the full app stack
-- When multi-tenancy arrives in Phase 4, per-agency theming is a token-level change in `packages/ui`, not a surgery across three apps
-
-### Storybook
-
-Storybook runs as a dev tool inside `packages/ui`. It is never deployed as part of the production system — it is a development and documentation environment only.
-
-```bash
-# Run Storybook for component development
-cd packages/ui
-pnpm storybook
-```
-
-Stories cover:
-- All component variants and states (default, hover, disabled, loading, error)
-- Both `brand` and `admin` themes
-- Responsive behavior
 
 ---
 
 ## Applications
 
-### `apps/web` — Public Site
-- **Framework:** Next.js 14 (App Router)
-- **Rendering:** SSR + ISR for destination/trip/blog pages
-- **Responsibilities:** Marketing pages, destination pages, trip discovery, blog, travel guides
-- **Auth:** None (public) — inquiry form submits as guest
-- **Design theme:** `brand` (luxury palette)
+### `apps/web` — Public Site & Discovery
+- **Framework:** Next.js (App Router)
+- **Rendering:** SSR + ISR for destination, advisor profile, and trip pages
+- **Responsibilities:** Destination catalog browse, advisor discovery and directory, agency/advisor profile pages, trip discovery, guided match intake, inquiry submission, advisor-authored content surfaced contextually
+- **Auth:** Public; optional traveler session for saved state
+- **Design theme:** `brand`
 - **Communicates with:** `api` via tRPC HTTP client
 
-### `apps/admin` — Agency Admin Portal
-- **Framework:** Vite + React
-- **Rendering:** SPA (no SSR needed)
-- **Responsibilities:** CMS, CRM, trip/booking management, reporting
-- **Who uses it:** Agency staff and agency admins (not platform owner)
-- **Auth:** JWT via Clerk (`agency_admin`, `agency_staff` roles)
-- **Design theme:** `admin` (neutral dashboard palette)
-- **Communicates with:** `api` via tRPC
+> SEO matters here more than anywhere else in the system. Destination and advisor profile pages are the top of the traveler funnel, which is why this app is the one that needs server rendering.
 
-> Note: A future `platform_admin` role will grant access to a super-admin section within this app for platform-level management (billing, agency provisioning, impersonation). This is a Phase 4 concern.
+### `apps/admin` — Agency Admin Portal
+- **Framework:** Vite + React (SPA)
+- **Responsibilities:** CRM, trip and itinerary management, agency and advisor profile editing, inbound lead handling, consent-scoped traveler profile reads, Workbench tools, reporting
+- **Who uses it:** Agency staff and agency admins
+- **Auth:** Clerk (`agency_admin`, `agency_staff`)
+- **Design theme:** `admin`
+
+> A future `platform_admin` role grants access to a super-admin section for catalog management, billing, agency provisioning, and impersonation. Deferred.
 
 ### `apps/portal` — Traveler Portal
-- **Framework:** Vite + React
-- **Rendering:** SPA
-- **Responsibilities:** Saved trips, bookings, documents, messages
-- **Auth:** JWT via Clerk (`traveler` role)
-- **Design theme:** `brand`
-- **Communicates with:** `api` via tRPC
+- **Framework:** Vite + React (SPA)
+- **Responsibilities:** Unified trip hub across all agencies, profile vault and consent controls, self-planning tools, Workbench tools, inquiries and engagement tracking, saved trips
+- **Auth:** Clerk (`traveler`)
+- **Design theme:** `brand`, with **per-trip agency branding scoped inside the Atlora shell** rather than replacing it
+
+### `apps/mobile` — Traveler Mobile App
+- **Framework:** Expo (React Native), NativeWind for styling
+- **Responsibilities:** Trip hub, offline itinerary access, documents, messaging, flight alerts, maps. Workbench is review-only in v1.
+- **Auth:** Clerk (`traveler`)
+- **Deferred** in build order, but the traveler-facing experience is the target use case and the architecture is established now to avoid retrofitting.
 
 ### `apps/api` — Core API Server
-- **Runtime:** Node.js
-- **Framework:** Hono
-- **API Layer:** tRPC (type-safe RPC over HTTP)
-- **Responsibilities:** All business logic, data access, auth validation, file uploads
-- **Communicates with:** Postgres (via Drizzle), AI service (internal HTTP), S3-compatible storage
+- **Runtime:** Node.js · **Framework:** Hono · **API layer:** tRPC
+- **Responsibilities:** All business logic, data access, auth validation, consent resolution, entitlement resolution, file uploads, supplier query orchestration and caching
+- **Communicates with:** Postgres (Prisma), AI service (internal HTTP), Cloudflare R2, external supplier APIs
 
 ### `apps/ai-service` — AI Microservice
-- **Runtime:** Python 3.12
-- **Framework:** FastAPI
-- **Responsibilities:** Semantic search, travel assistant chat, itinerary generation
-- **Communicates with:** Postgres (read-only via asyncpg/SQLAlchemy), Anthropic API
-- **Exposed endpoints:**
-  - `POST /chat` — travel assistant
-  - `POST /search/semantic` — vector search over content
-  - `POST /itinerary/generate` — suggested itinerary
+- **Runtime:** Python 3.12 · **Framework:** FastAPI
+- **Responsibilities:** Semantic search over the shared catalog, advisor matching reasoning, itinerary generation and refinement, AI-assisted Workbench tools
+- **Communicates with:** Postgres (read-only), Anthropic API
+- **Endpoints:** `POST /chat`, `POST /search/semantic`, `POST /itinerary/generate`, `POST /match/advisors`
 
 > The AI service is **read-only** against the database. All writes go through the core API.
 
 ---
 
-## Routing (Single Host)
+## External Supplier Integrations
 
-All services appear under one domain via a reverse proxy (Vercel rewrites in dev/staging, Nginx or Cloudflare in production).
+Introduced by **Epic J (Workbench)**. This is a dependency class the platform did not previously have, and it behaves differently from every other integration in the system.
 
-```
-https://atlora.com/              → apps/web        (Next.js)
-https://atlora.com/portal/*      → apps/portal     (Vite SPA)
-https://atlora.com/admin/*       → apps/admin      (Vite SPA)
-https://atlora.com/api/*         → apps/api        (tRPC / Hono)
-https://atlora.com/ai/*          → apps/ai-service (FastAPI)
-```
+| Concern | Implication |
+|---|---|
+| Per-call cost | Results must be cached; naive pass-through is financially unbounded |
+| Rate limits | Requires request coalescing and backoff at the API layer |
+| Latency | Supplier calls are slow; tool UIs must stream or poll, never block |
+| Volatility | Fares and rates expire; cache TTL is short and per-supplier |
+| Contract risk | Terms can change or terminate; no supplier may be load-bearing for a core flow |
 
-Single domain = no cross-origin issues, auth cookies work across all apps.
+**`SupplierQuery`** is the caching and normalization layer. Every external call goes through it: normalized request hash → cached response with per-supplier TTL → normalized result shape. Tools never call suppliers directly.
+
+**Candidate suppliers (undecided):** air — Duffel, Amadeus Self-Service, Kiwi. Activities — Viator, GetYourGuide. Hotel content — undetermined.
+
+**Tool output contract.** Every Workbench tool emits a candidate `ItineraryItem`, pinnable to an `Itinerary`. Tools are not search pages; they are itinerary input devices.
+
+---
+
+## Booking Boundary
+
+Atlora does **not** take payment for flights, rooms, or activities and does **not** hold inventory. This is an architectural decision with real consequences: the system carries no reservation state machine, no cancellation or refund workflow, no inventory reconciliation, and no fulfillment liability.
+
+Rationale is in `BRAND.md` — Atlora is positioned against OTAs, and a platform that takes booking payment is an OTA with a CRM attached. Payments infrastructure exists for **agency↔traveler** transactions (trip deposits, installments, advisor fees), not for supplier bookings.
+
+**Affiliate revenue is permitted; commission-influenced ordering is not.** No payout, commission-rate, or partner-priority field may exist in any ranking or default-selection code path — in Workbench or in discovery. Enforced structurally at the schema level, the same way discovery placement is.
 
 ---
 
 ## Data Layer
 
 ### Primary Database
-- **Postgres** (hosted on Railway or Supabase)
-- Single database, shared across all services
-- Multi-tenancy via `agency_id` column + Postgres Row-Level Security (RLS)
+- **Postgres** (Railway or Supabase)
+- Single database shared across all services
+- Agency isolation via `agency_id` + Postgres Row-Level Security
+- Traveler-owned tables carry `traveler_id` and are RLS-scoped independently of agency policies
+- Platform-owned catalog tables carry no tenancy column and are write-guarded at the procedure layer
 
 ### ORM
-- **Drizzle** (TypeScript API)
-- **asyncpg / SQLAlchemy** (AI service, Python)
+- **Prisma** (TypeScript) · **asyncpg / SQLAlchemy** (AI service)
 
 ### Vector Store
-- **pgvector** extension on the same Postgres instance
-- Stores embeddings for destinations, trips, blog posts
-- Used by the AI service for semantic search
+- **pgvector** on the same Postgres instance, HNSW indexes
+- Embeddings over destinations, trips, advisor profiles and advisor-authored content
+- Powers semantic search and advisor matching
+
+> Advisor-authored content functions as a demonstrated-expertise signal feeding the vector index and is surfaced contextually alongside destination pages — not as a chronological blog feed.
 
 ### File Storage
-- **Cloudflare R2** or **AWS S3**
-- Trip images, destination photos, traveler documents
+- **Cloudflare R2** — trip and destination media, traveler documents
+- Traveler documents are consent-gated at the API layer; signed URLs are issued only after consent resolution
 
 ### Search
-- **Phase 1–3:** Postgres full-text search (`tsvector`)
-- **Phase 4+:** Upgrade to Typesense if needed
+- Postgres full-text (`tsvector`) for lexical search; pgvector for semantic. Typesense only if lexical search becomes a bottleneck.
 
 ---
 
 ## Authentication & Authorization
 
-- **Provider:** Clerk
-- Supports multi-tenant organizations (maps to agencies)
-- Roles: `agency_admin`, `agency_staff`, `traveler`, `platform_admin` (Phase 4)
-- JWT validated in the `api` server on every request
-- `agency_id` extracted from JWT and applied to all DB queries
+- **Provider:** Clerk, organization-per-agency
+- **Roles:** `agency_admin`, `agency_staff`, `traveler`, `platform_admin` (deferred)
+- JWT validated in `api` on every request; `agency_id` or `traveler_id` extracted and applied to all queries
+- A single human may hold both a traveler identity and an agency staff identity; these are distinct subjects and must not be merged
 
 ---
 
-## Multi-Tenancy Strategy
+## Routing
 
-- All tenant data lives in the **same Postgres database**
-- Every tenant-scoped table has an `agency_id` foreign key
-- Postgres RLS policies enforce data isolation at the DB level
-- Agency branding/config stored in an `agencies` table
-- Per-agency theming handled via design tokens in `packages/ui`
-- Public site resolves agency by subdomain or custom domain (Phase 4)
+Primary domain: `atloratravel.com` (`atlora.com` parked / potentially acquirable).
+
+```
+https://atloratravel.com/           → apps/web        (Next.js)
+https://atloratravel.com/portal/*   → apps/portal     (Vite SPA)
+https://atloratravel.com/admin/*    → apps/admin      (Vite SPA)
+https://atloratravel.com/workbench/*→ portal or admin (context-dependent)
+https://atloratravel.com/api/*      → apps/api        (tRPC / Hono)
+https://atloratravel.com/ai/*       → apps/ai-service (FastAPI)
+```
+
+Single domain means no cross-origin issues and auth cookies work across all surfaces.
+
+**Agency custom domains** are handled via **Cloudflare for SaaS** for automated SSL issuance. Cloudflare manages nameservers regardless of registrar. Per-agency public microsites are deprioritized — platform discovery is where travelers are intended to land — but the domain architecture supports them.
+
+---
+
+## Design System (`packages/ui`)
+
+A standalone package developed and tested in isolation from consuming apps. No server, no routing, no data fetching.
+
+**Contains:** design tokens (colors, spacing, typography, shadows, radii as CSS variables + Tailwind config), primitive components, composite components, two token themes, Storybook.
+
+**Two themes:**
+- `brand` — traveler-facing surfaces (public site, portal, mobile). Warm and approachable; per `BRAND.md`, the palette signals neither premium nor economy.
+- `admin` — agency dashboard. Neutral and data-dense.
+
+Per-trip agency branding scopes *inside* the Atlora shell rather than replacing it — this is a theming architecture concern, not a component.
+
+**The largest net-new component work** for the marketplace model: advisor profile surfaces, profile vault and consent controls, and the itinerary builder canvas (the single biggest component in the system).
+
+Storybook runs inside `packages/ui` as a dev/documentation tool and is never deployed to production.
 
 ---
 
@@ -205,64 +227,72 @@ Single domain = no cross-origin issues, auth cookies work across all apps.
 
 | Layer | Technology |
 |---|---|
-| Public site | Next.js 14 (App Router) |
+| Public site | Next.js (App Router) |
 | Admin portal | Vite + React |
 | Traveler portal | Vite + React |
+| Mobile | Expo + React Native + NativeWind |
 | Core API | Hono + tRPC + Node.js |
 | AI service | FastAPI + Python |
 | Database | PostgreSQL |
-| ORM (TS) | Drizzle |
+| ORM (TS) | Prisma |
 | ORM (Python) | SQLAlchemy + asyncpg |
-| Vector search | pgvector |
-| Auth | Clerk |
+| Vector search | pgvector (HNSW) |
+| Auth | Clerk (org-per-agency) |
 | File storage | Cloudflare R2 |
+| DNS / custom domains | Cloudflare, Cloudflare for SaaS |
 | Monorepo | Turborepo |
 | Design system | Custom (`packages/ui`) |
-| Component dev/testing | Storybook |
-| Styling | Tailwind CSS |
-| Shared types/validation | Zod |
+| Component dev | Storybook |
+| Styling | Tailwind CSS / NativeWind |
+| Shared types | Zod |
 | AI provider | Anthropic Claude API |
+| Deployment | Vercel, Railway |
 
 ---
 
 ## Phase Alignment
 
-### Phase 1 — Foundation
-- `apps/web`, `apps/api`, `packages/db`, `packages/ui` (core primitives)
-- Auth, Countries, Regions, Destinations, Trips
+Mirrors `FEATURES.md`. Traveler identity is pulled forward because the model is incoherent without it.
 
-### Phase 2 — Content Management
-- `apps/admin` (CMS portion)
-- Hotels, Attractions, Blog, Travel Guides
-- Expand `packages/ui` with admin-themed components
+### Phase 1 — Foundation + Identity
+`packages/db` (`TravelerProfile`/`Client`/`Engagement` split, polymorphic `Itinerary`), `packages/trpc` (three-way procedure scoping), `apps/web`, `apps/api`, `packages/ui` core primitives. Catalog, trips, agency onboarding, traveler auth.
 
-### Phase 3 — CRM & Traveler Features
-- `apps/portal`, full `apps/admin` CRM
-- Traveler accounts, bookings, inquiries
+### Phase 2 — Discovery
+Agency and advisor profiles, advisor directory, inquiry and engagement routing, agency CRM lead handling, profile vault with consent tiers. Expands `apps/admin`.
 
-### Phase 4 — Advanced
-- `apps/ai-service`
-- Payments (Stripe), multi-tenancy (RLS + Clerk orgs), reporting
-- Platform super-admin layer
+### Phase 3 — Traveler Experience
+`apps/portal`, `apps/mobile`, unified trip hub, document delivery, messaging, offline itineraries, free-tier self-planning. **Workbench shell + tool registry + `ItineraryItem` pinning; Layover Planner and Activity Finder** (no supplier dependency).
+
+### Phase 4 — Monetization & Intelligence
+`apps/ai-service`, entitlements and billing across both subject types, traveler paid tier, guided match, semantic search. **`SupplierQuery` caching layer; Flight Search and Stay Finder; affiliate handling.** Agency↔traveler payments processing. Platform super-admin.
 
 ---
 
 ## Key Design Decisions
 
-**Why a standalone design system package?**
-The design system lives in `packages/ui` and is consumed by apps as a dependency, not copy-pasted between them. This means components are built once, tested in Storybook in isolation, and adopted by any app without duplication. It also cleanly separates visual concerns from application logic — an app should never need to know how a Button is built, only how to use it.
+**Why three ownership levels instead of one tenancy column?**
+A traveler working with three agencies cannot be three disconnected records holding three copies of their passport. Making traveler data agency-scoped is the one modeling error that cannot be corrected later without migrating every traveler record in the system. The three-way split is the architecture; everything else is downstream of it.
 
-**Why two design themes?**
-The public site and traveler portal use the Atlora brand palette (teal, pink, gold) — luxury and emotive. The admin portal needs a neutral, functional aesthetic suited to data-dense CRM work. Both themes live as token sets in `packages/ui`, so the same `Button` component renders correctly in either context without any conditional logic in the component itself.
+**Why consent tiers rather than all-or-nothing sharing?**
+Travelers will not hand passport data to an agency they have only inquired with, and field-level grants are unusable as UX. Tiers keyed to `Engagement.status` give meaningful control at a granularity people can actually reason about. This is the most novel component of the system and has no competitor equivalent.
 
-**Why tRPC over REST or GraphQL?**
-All frontends are TypeScript. tRPC gives end-to-end type safety without a codegen step — changing a server function signature immediately surfaces type errors in every client that calls it. For a solo/small team, this eliminates an entire class of API contract bugs.
+**Why no in-platform booking?**
+See Booking Boundary. It keeps Atlora structurally distinct from OTAs and keeps an entire category of infrastructure — reservation state, cancellations, refunds, fulfillment liability — out of the system.
+
+**Why cache all supplier queries?**
+Per-call cost and rate limits make naive pass-through financially unbounded. `SupplierQuery` also normalizes result shapes, so swapping an air supplier is a driver change rather than a rewrite of every tool that touches flights.
 
 **Why a separate AI service?**
-Python's AI ecosystem (LangChain, sentence-transformers, pgvector clients) is meaningfully better than Node's. The AI service also has a different scaling profile — LLM calls are slow and expensive and benefit from independent queuing/caching. Keeping it separate means AI changes never touch the core API.
+Python's AI ecosystem is meaningfully better than Node's, and LLM calls have a different scaling profile — slow, expensive, benefiting from independent queueing and caching. Keeping it separate means AI changes never touch the core API.
 
 **Why a single database?**
-Simpler operations, simpler multi-tenancy (RLS rather than per-tenant schemas), and pgvector lives alongside relational data with no sync needed. Splitting databases is an optimization for a much later stage.
+Simpler operations, simpler tenancy via RLS rather than per-tenant schemas, and pgvector lives alongside relational data with no sync layer. Splitting is a much later optimization.
+
+**Why tRPC?**
+All frontends are TypeScript. End-to-end type safety without codegen; changing a server signature immediately surfaces errors in every client. For a small team this eliminates an entire class of contract bugs.
 
 **Why not a Next.js monolith?**
-The three surfaces (public site, admin CRM, traveler portal) have different rendering needs, auth models, and dependency profiles. Next.js is the right tool for the SEO-heavy public site but fights against you when building a complex SPA-style admin dashboard.
+The surfaces have different rendering needs, auth models, and dependency profiles. Next.js is right for the SEO-heavy public discovery site and fights back when building a data-dense SPA dashboard.
+
+**Why a standalone design system package?**
+Components are built once, tested in isolation, and adopted by any surface without duplication. It also makes per-trip agency theming a token-level change rather than surgery across four apps.
