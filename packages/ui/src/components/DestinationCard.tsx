@@ -1,6 +1,7 @@
 import * as React from 'react'
 import type { Destination } from '@atlora/types'
 import { cn } from '../utils/cn'
+import { Card } from './Card'
 
 const DESTINATION_TYPE_LABELS: Record<Destination['type'], string> = {
   city: 'City',
@@ -37,13 +38,11 @@ export const DestinationCard = React.forwardRef<HTMLDivElement, DestinationCardP
     const typeLabel = DESTINATION_TYPE_LABELS[destination.type]
 
     return (
-      <div
+      <Card
         ref={ref}
-        className={cn(
-          'group flex flex-col overflow-hidden rounded-lg border border-sand-300 bg-white',
-          'shadow-sm transition-shadow duration-base ease-brand-out hover:shadow-md',
-          className
-        )}
+        padding="none"
+        hoverable
+        className={cn('group flex flex-col overflow-hidden', className)}
         {...props}
       >
         <div className="relative aspect-[4/3] overflow-hidden bg-sand-150">
@@ -92,7 +91,7 @@ export const DestinationCard = React.forwardRef<HTMLDivElement, DestinationCardP
             {destination.bestTimeToVisit && ` · Best: ${destination.bestTimeToVisit}`}
           </p>
         </div>
-      </div>
+      </Card>
     )
   }
 )

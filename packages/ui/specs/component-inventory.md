@@ -105,8 +105,8 @@ interface SwitchProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>
 **Variants:** `size: sm | md`.
 **States:** off, on, hover, focus-visible, disabled (× off/on), transitioning (thumb slide — covered by `transition-all`, not a discrete state).
 
-### Badge — 🚧 P0
-Status pills — reused everywhere (`Status`, `PublishStatus`, `EngagementStatus`, `BookingStatus`...). Two dimensions → CVA.
+### Badge — ✅ Done
+`src/components/Badge.tsx`. Status pills — reused everywhere (`Status`, `PublishStatus`, `EngagementStatus`, `BookingStatus`...). Two dimensions → CVA.
 ```ts
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'solid' | 'subtle' | 'outline'   // default 'subtle'
@@ -117,7 +117,8 @@ interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 **Variants:** `variant` × `colorScheme` × `size` — 3 × 7 × 2 = 42 combinations; use `compoundVariants` only where `variant`+`colorScheme` need a non-formulaic override (e.g. `success`/`danger` may want fixed colors regardless of theme), otherwise derive `subtle`/`outline`/`solid` from the same colorScheme token programmatically.
 **States:** static display only — no hover/focus/disabled (not interactive). If `Tag` composes `Badge` with `onRemove`, the states live on `Tag`, not here.
 
-### Avatar — 🚧 P1
+### Avatar — ✅ Done
+`src/components/Avatar.tsx`.
 ```ts
 interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
   src?: string | null
@@ -129,8 +130,8 @@ interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
 **Variants:** `size: xs | sm | md | lg`.
 **States:** image loaded, image failed to load (falls back to `fallback` initials), no `src` provided (initials or generic icon), loading (optional skeleton pulse while `src` resolves).
 
-### Tag / Chip — 🚧 P1
-Dismissible label — used for `TripStyle`, `ClientTag`, `Specialty` filters.
+### Tag / Chip — ✅ Done
+`src/components/Tag.tsx`. Dismissible label — used for `TripStyle`, `ClientTag`, `Specialty` filters.
 ```ts
 interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
   onRemove?: () => void       // renders a dismiss (x) button when present
@@ -140,7 +141,8 @@ interface TagProps extends React.HTMLAttributes<HTMLSpanElement> {
 **Variants:** `colorScheme: brand | neutral` — one dimension, `cn()` lookup, not CVA.
 **States:** default, hover, removable (dismiss icon shown when `onRemove` present) with its own hover/focus-visible, disabled.
 
-### Tooltip — 🚧 P1
+### Tooltip — ✅ Done
+`src/components/Tooltip.tsx`.
 ```ts
 interface TooltipProps {
   content: React.ReactNode
@@ -152,8 +154,8 @@ interface TooltipProps {
 **Variants:** `side: top | right | bottom | left` (placement, not a visual variant — same styling, different position + arrow orientation).
 **States:** hidden, entering (after `delayMs`), visible, exiting.
 
-### Card — 🚧 P0
-Generic surface — `DestinationCard` etc. compose on top of this instead of redefining `rounded-lg border bg-white shadow-sm` each time.
+### Card — ✅ Done
+`src/components/Card.tsx`. Generic surface — `DestinationCard` etc. compose on top of this instead of redefining `rounded-lg border bg-white shadow-sm` each time.
 ```ts
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   padding?: 'none' | 'sm' | 'md' | 'lg'   // default 'md'
@@ -163,7 +165,8 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 **Variants:** `padding: none | sm | md | lg` — single dimension, `cn()`. `hoverable` is a boolean toggle, not a CVA dimension on its own.
 **States:** default, hover (only if `hoverable`), focus-visible (only if the card itself is made interactive/clickable by a caller — don't bake `tabIndex` in here).
 
-### Divider — 🚧 P2
+### Divider — ✅ Done
+`src/components/Divider.tsx`.
 ```ts
 interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
   orientation?: 'horizontal' | 'vertical'   // default 'horizontal'
@@ -172,8 +175,8 @@ interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
 **Variants:** `orientation: horizontal | vertical`.
 **States:** none — purely decorative, never interactive.
 
-### Spinner — 🚧 P0
-Extracted from `Button`'s private `Spinner` so `Table`, `Modal`, page-level loading states can reuse it.
+### Spinner — ✅ Done
+`src/components/Spinner.tsx`. Extracted from `Button`'s private `Spinner` (`Button` now imports it) so `Table`, `Modal`, page-level loading states can reuse it.
 ```ts
 interface SpinnerProps extends React.SVGAttributes<SVGSVGElement> {
   size?: 'sm' | 'md' | 'lg'
@@ -182,7 +185,8 @@ interface SpinnerProps extends React.SVGAttributes<SVGSVGElement> {
 **Variants:** `size: sm | md | lg`.
 **States:** none beyond the animation itself (always spinning while mounted).
 
-### Skeleton — 🚧 P1
+### Skeleton — ✅ Done
+`src/components/Skeleton.tsx`.
 ```ts
 interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'text' | 'circle' | 'rect'   // default 'rect'
@@ -384,8 +388,8 @@ interface ToastOptions {
 **Variants:** `variant: default | success | error` — single dimension, `cn()` lookup keyed off `variant`.
 **States:** entering, visible, exiting (auto-dismiss after `durationMs`, or manual dismiss via close icon — give every toast a close affordance, not just a timer).
 
-### EmptyState — 🚧 P0
-Every list view needs this for the zero-results case (no trips yet, no clients yet, no search matches).
+### EmptyState — ✅ Done
+`src/components/EmptyState.tsx`. Every list view needs this for the zero-results case (no trips yet, no clients yet, no search matches). `DataTable` uses it as the default `emptyState` fallback.
 ```ts
 interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactNode
@@ -499,8 +503,8 @@ interface MultiSelectProps {
 
 ## 5. Data Display
 
-### DataTable — 🚧 P0
-The backbone of the admin app — `Client`, `Trip`, `Destination`, `Inquiry`, `Booking` list views all use this.
+### DataTable — ✅ Done
+`src/components/DataTable.tsx`. The backbone of the admin app — `Client`, `Trip`, `Destination`, `Inquiry`, `Booking` list views all use this. Purely controlled (no internal state) — `selectedKeys`/`onSelectionChange` and `sortKey`/`sortDirection`/`onSortChange` are all caller-owned, same pattern as `Pagination`.
 ```ts
 interface DataTableColumn<T> {
   key: string
@@ -573,7 +577,7 @@ interface RatingProps {
 Typed against `@atlora/types` where the Zod schema already exists (`packages/types/src/geography.ts`, `media.ts`). Where it doesn't exist yet, the prop shape below is provisional — align it with the real schema once it lands.
 
 ### DestinationCard — ✅ Done
-`src/components/DestinationCard.tsx`. `{ destination: Destination }` from `@atlora/types`.
+`src/components/DestinationCard.tsx`. `{ destination: Destination }` from `@atlora/types`. Now composes `Card` (`padding="none"` + `hoverable`, with `overflow-hidden` and the `group` class layered on via `className`) instead of re-declaring the surface — per the §1 note that §6 cards should build on `Card`. Picked up `Card`'s default `rounded-md`/`border-sand-200` treatment in the process (was `rounded-lg`/`border-sand-300`).
 **Variants:** none as explicit props — visual branch is driven entirely by data: `destination.status === 'DRAFT'` renders the "Coming Soon" eyebrow badge; `destination.country?.flagSvg` present/absent changes the eyebrow content; `hero` media present/absent switches image vs. `PlaceholderIcon`.
 **States:** hover (image `scale-105` + card `shadow-md`), focus-visible (if wrapped in a link by the caller — the card itself has no root-level interactivity).
 
@@ -712,8 +716,8 @@ interface TestimonialCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 ## 7. Status & Trip-Hub Components
 
-### StatusBadge — 🚧 P0
-Thin `Badge` preset mapping domain status enums (`PublishStatus`, `EngagementStatus`, booking/payment status) to a `colorScheme` + label, so callers never hand-pick colors per status.
+### StatusBadge — ✅ Done
+`src/components/StatusBadge.tsx`. Thin `Badge` preset mapping domain status enums (`PublishStatus`, `EngagementStatus`, booking/payment status) to a `colorScheme` + label, so callers never hand-pick colors per status.
 ```ts
 interface StatusBadgeProps {
   status: string          // see the enum sets below
@@ -801,14 +805,11 @@ interface InquiryCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 ## Not started at all yet, worth building first
 
-The full form-input set is now done: **Input**, **Select**, **Textarea**, **Checkbox**, **RadioGroup**, **Switch**, **FormField**, **SearchInput**, **MultiSelect** — every primitive needed to build a CRUD form exists. **Combobox** and **DateRangePicker** are still outstanding from §4 — both need a `Popover` primitive first (anchored floating positioning), which doesn't exist yet. **FileUpload**/**ImageUpload** is also outstanding but self-contained (no `Popover` dependency).
+The full form-input set is now done: **Input**, **Select**, **Textarea**, **Checkbox**, **RadioGroup**, **Switch**, **FormField**, **SearchInput**, **MultiSelect** — every primitive needed to build a CRUD form exists. All of §1 Primitives is now done too: **Badge**, **Avatar**, **Tag/Chip**, **Tooltip**, **Card**, **Divider**, **Spinner**, **Skeleton**. `DestinationCard` now composes `Card` instead of re-declaring the surface. **StatusBadge**, **EmptyState**, and **DataTable** are done — the three highest-leverage components for the admin list-view screens. **Combobox** and **DateRangePicker** are still outstanding from §4 — both need a `Popover` primitive first (anchored floating positioning), which doesn't exist yet. **FileUpload**/**ImageUpload** is also outstanding but self-contained (no `Popover` dependency).
 
 If you're picking a handful to build manually next, this is the highest-leverage order — each one unblocks several screens at once and none of them depend on a `packages/types` schema that doesn't exist yet:
 
-1. **Card** — everything in §6 should compose on top of this instead of re-declaring the surface.
-2. **Badge** → **StatusBadge** — every list view and detail page shows a status; nail the status→colorScheme lookup table once (see §7) so every later component just consumes it.
-3. **Spinner** (extract from `Button`) — needed by `DataTable`, `Dialog`, page loading states.
-4. **EmptyState** — every list view needs a zero-state.
-5. **DataTable** — the single highest-leverage component for the admin app.
-6. **Dialog** / **AlertDialog** — needed as soon as you build a delete/archive action.
-7. **Popover** — once you need it (for `Combobox`/`DateRangePicker`, or a filter panel), decide then whether to hand-roll positioning or add `@floating-ui/react`.
+1. **Dialog** / **AlertDialog** — needed as soon as you build a delete/archive action; `DataTable` row actions will want this next.
+2. **Popover** — once you need it (for `Combobox`/`DateRangePicker`, or a filter panel), decide then whether to hand-roll positioning or add `@floating-ui/react`. Reuse the `w-max` fix from `Tooltip` (`src/components/Tooltip.tsx`) — an absolutely-positioned panel inside a trigger-sized `relative` wrapper needs it or the panel collapses to a narrow column.
+3. **Toast** — needs a `ToastProvider` + `useToast()` hook, not just a visual component; worth pairing with `Dialog`/`AlertDialog` since both are P0 overlays.
+4. **SidebarNav** / **Tabs** / **Pagination** — the remaining §2 P0s that round out the admin app shell.
