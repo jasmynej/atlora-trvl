@@ -16,16 +16,19 @@ The architecture is shaped by one constraint above all others: **data lives at t
 atlora/
 ├── apps/
 │   ├── web/              # Next.js — public site, discovery, catalog
-│   ├── admin/            # Vite + React — agency admin portal
+│   ├── admin/            # Vite + React — agency admin portal + platform admin
+│   │                      #   two entry points: index.html (agency) and
+│   │                      #   platform.html (platform admin), separate bundles
 │   ├── portal/           # Vite + React — traveler portal
 │   ├── mobile/           # Expo — traveler mobile app
-│   ├── api/              # Node.js + Hono — core tRPC API
+│   ├── api/              # Node.js + Hono — core tRPC API, procedure guards live here
 │   └── ai-service/       # Python + FastAPI — AI microservice
 │
 ├── packages/
 │   ├── ui/               # Design system — components, tokens, Storybook
-│   ├── db/               # Prisma schema + client
-│   ├── trpc/             # tRPC router definitions + procedure guards
+│   ├── db/               # Drizzle schema + client
+│   ├── trpc/             # AppRouter type + client utilities only — no
+│   │                      #   business logic or procedure guards (see CLAUDE.md)
 │   └── types/            # Shared Zod schemas + TypeScript types
 │
 ├── turbo.json
@@ -40,11 +43,15 @@ This is the core architectural constraint. Three ownership levels, three enforce
 
 | Level | Key | Examples | Guard |
 |---|---|---|---|
-| **Platform** | none | `Destination`, `Region`, `DestinationType`, platform config | `platformProcedure` |
+| **Platform** | none | `Destination`, `Region`, `DestinationType`, `PlatformUser`, `AuditLog`, platform config | `platformProcedure` |
 | **Agency** | `agency_id` | `Trip`, `Client`, `Booking`, `Communication`, `AgencyProfile`, `AdvisorProfile` | `agencyProcedure` |
 | **Traveler** | `traveler_id` | `TravelerProfile`, `TravelerDocument`, `PartyMember`, traveler-owned `Itinerary`, saved trips | `travelerProcedure` |
 
+`PlatformUser` and `AuditLog` carry no tenancy column, same as the catalog tables — write-guarded at the procedure layer only, no RLS policy. `AuditLog` is append-only: no update or delete procedure exists for it.
+
 **Cross-boundary reads never happen by direct FK access.** An agency reading traveler-granted profile fields resolves through the `Engagement` record and its consent tier. There is no query path from `Client` to `TravelerProfile` sensitive fields that bypasses consent resolution.
+
+**Key design decision — platform admin is a second Vite entry point, not a route or a separate app.** Clerk is org-per-agency, and `agencyProcedure` derives `agency_id` from the org claim. A platform admin session has no organization at all. If agency and platform admin shared one client bootstrap, that bootstrap would have to treat "authenticated, no org" as a valid state, and every agency-only route would then be one forgotten guard away from being reachable by an org-less session. A second entry point (`apps/admin/platform.html`, its own `ClerkProvider`, its own route tree) lets the agency bootstrap assert `no org → reject` unconditionally at the root, and keeps platform-admin code out of the bundle agency staff download. This is defense in depth — the actual boundary is `platformProcedure` / `agencyProcedure` in `apps/api/src/trpc.ts`, re-checked on every request regardless of which entry point sent it.
 
 ### Notable model splits
 
@@ -53,12 +60,14 @@ This is the core architectural constraint. Three ownership levels, three enforce
 
 ---
 
-## Procedure Scoping (`packages/trpc`)
+## Procedure Scoping (`apps/api/src/trpc.ts`)
 
-Three-way scoping is a security boundary and must exist before any traveler surface is built.
+Three-way scoping is a security boundary and must exist before any traveler surface is built. `packages/trpc` exports only the `AppRouter` *type* and tRPC client utilities for frontends to consume — no business logic or procedure guards live there, per `CLAUDE.md`. The guards themselves live next to the context that resolves them, in `apps/api`.
 
 ```ts
-platformProcedure  // platform admin role — destination catalog, platform config
+platformProcedure  // no org claim + active PlatformUser row — destination catalog, platform config
+platformEditorProcedure // platformProcedure + role check — catalog-only, no agency/billing access
+platformAdminProcedure  // platformProcedure + role check — agency provisioning, billing
 agencyProcedure    // agency_id from JWT — trips, clients, CRM, agency profile
 travelerProcedure  // traveler_id from JWT — profile vault, saved trips, self-planned itineraries, trip hub
 ```
@@ -83,14 +92,21 @@ hasEntitlement(subject, feature)  // subject: Agency | TravelerProfile
 
 > SEO matters here more than anywhere else in the system. Destination and advisor profile pages are the top of the traveler funnel, which is why this app is the one that needs server rendering.
 
-### `apps/admin` — Agency Admin Portal
-- **Framework:** Vite + React (SPA)
+### `apps/admin` — Agency Admin Portal + Platform Admin
+Two Vite entry points in one project, built as two separate bundles — see the key design decision above.
+
+**Agency admin** (`index.html`)
 - **Responsibilities:** CRM, trip and itinerary management, agency and advisor profile editing, inbound lead handling, consent-scoped traveler profile reads, Workbench tools, reporting
 - **Who uses it:** Agency staff and agency admins
-- **Auth:** Clerk (`agency_admin`, `agency_staff`)
+- **Auth:** Clerk (`agency_admin`, `agency_staff`). Rejects any session with no organization claim.
 - **Design theme:** `admin`
 
-> A future `platform_admin` role grants access to a super-admin section for catalog management, billing, agency provisioning, and impersonation. Deferred.
+**Platform admin** (`platform.html`)
+- **Responsibilities:** Shared destination catalog, agency provisioning, plans and entitlements, audit trail. No tenancy — no org at all.
+- **Who uses it:** Atlora staff, via a `PlatformUser` row (`platform_admin` or `platform_editor` role)
+- **Auth:** Clerk, org-less session only. Rejects any session that *does* have an organization claim (wrong surface — an agency session), and any session with no matching active `PlatformUser` row.
+- **Design theme:** `admin`
+- No longer deferred — in Phase 1 as of the platform admin scaffold.
 
 ### `apps/portal` — Traveler Portal
 - **Framework:** Vite + React (SPA)
@@ -107,7 +123,7 @@ hasEntitlement(subject, feature)  // subject: Agency | TravelerProfile
 ### `apps/api` — Core API Server
 - **Runtime:** Node.js · **Framework:** Hono · **API layer:** tRPC
 - **Responsibilities:** All business logic, data access, auth validation, consent resolution, entitlement resolution, file uploads, supplier query orchestration and caching
-- **Communicates with:** Postgres (Prisma), AI service (internal HTTP), Cloudflare R2, external supplier APIs
+- **Communicates with:** Postgres (Drizzle), AI service (internal HTTP), Cloudflare R2, external supplier APIs
 
 ### `apps/ai-service` — AI Microservice
 - **Runtime:** Python 3.12 · **Framework:** FastAPI
@@ -159,7 +175,7 @@ Rationale is in `BRAND.md` — Atlora is positioned against OTAs, and a platform
 - Platform-owned catalog tables carry no tenancy column and are write-guarded at the procedure layer
 
 ### ORM
-- **Prisma** (TypeScript) · **asyncpg / SQLAlchemy** (AI service)
+- **Drizzle** (TypeScript) · **asyncpg / SQLAlchemy** (AI service)
 
 ### Vector Store
 - **pgvector** on the same Postgres instance, HNSW indexes
@@ -180,9 +196,11 @@ Rationale is in `BRAND.md` — Atlora is positioned against OTAs, and a platform
 ## Authentication & Authorization
 
 - **Provider:** Clerk, organization-per-agency
-- **Roles:** `agency_admin`, `agency_staff`, `traveler`, `platform_admin` (deferred)
+- **Roles:** `agency_admin`, `agency_staff`, `traveler`, `platform_admin`, `platform_editor`
 - JWT validated in `api` on every request; `agency_id` or `traveler_id` extracted and applied to all queries
 - A single human may hold both a traveler identity and an agency staff identity; these are distinct subjects and must not be merged
+- **The no-org invariant.** A platform-admin session has no organization at all — not a special org, the absence of one. `platformProcedure` rejects any session that *does* carry an org claim (that's an agency session on the wrong surface), then looks up a `PlatformUser` row by `clerk_user_id` and requires `status = 'active'`. `agencyProcedure` is the mirror image: it rejects any session with *no* org claim, explicitly, rather than falling through to a null `agency_id` lookup. Being authenticated is never sufficient on either side — the org claim's presence or absence is what selects which guard can pass.
+- `PlatformUser` exists because `AuditLog.actor_id` needs a stable internal FK target; a Clerk user ID is an external identifier and shouldn't be the primary key of the audit trail.
 
 ---
 
@@ -193,7 +211,8 @@ Primary domain: `atloratravel.com` (`atlora.com` parked / potentially acquirable
 ```
 https://atloratravel.com/           → apps/web        (Next.js)
 https://atloratravel.com/portal/*   → apps/portal     (Vite SPA)
-https://atloratravel.com/admin/*    → apps/admin      (Vite SPA)
+https://atloratravel.com/admin/*    → apps/admin      (Vite SPA — agency entry, index.html)
+https://atloratravel.com/platform/* → apps/admin      (Vite SPA — platform entry, platform.html)
 https://atloratravel.com/workbench/*→ portal or admin (context-dependent)
 https://atloratravel.com/api/*      → apps/api        (tRPC / Hono)
 https://atloratravel.com/ai/*       → apps/ai-service (FastAPI)
@@ -234,7 +253,7 @@ Storybook runs inside `packages/ui` as a dev/documentation tool and is never dep
 | Core API | Hono + tRPC + Node.js |
 | AI service | FastAPI + Python |
 | Database | PostgreSQL |
-| ORM (TS) | Prisma |
+| ORM (TS) | Drizzle |
 | ORM (Python) | SQLAlchemy + asyncpg |
 | Vector search | pgvector (HNSW) |
 | Auth | Clerk (org-per-agency) |
@@ -255,7 +274,7 @@ Storybook runs inside `packages/ui` as a dev/documentation tool and is never dep
 Mirrors `FEATURES.md`. Traveler identity is pulled forward because the model is incoherent without it.
 
 ### Phase 1 — Foundation + Identity
-`packages/db` (`TravelerProfile`/`Client`/`Engagement` split, polymorphic `Itinerary`), `packages/trpc` (three-way procedure scoping), `apps/web`, `apps/api`, `packages/ui` core primitives. Catalog, trips, agency onboarding, traveler auth.
+`packages/db` (`TravelerProfile`/`Client`/`Engagement` split, polymorphic `Itinerary`), three-way procedure scoping (`agencyProcedure` / `platformProcedure` / `travelerProcedure` in `apps/api`), `apps/web`, `apps/api`, `packages/ui` core primitives. Catalog, trips, agency onboarding, traveler auth. **Platform admin** — no longer deferred: `apps/admin`'s platform entry point, `PlatformUser`/`AuditLog`, destination catalog management, then agency provisioning and billing oversight as it builds out.
 
 ### Phase 2 — Discovery
 Agency and advisor profiles, advisor directory, inquiry and engagement routing, agency CRM lead handling, profile vault with consent tiers. Expands `apps/admin`.
@@ -264,7 +283,7 @@ Agency and advisor profiles, advisor directory, inquiry and engagement routing, 
 `apps/portal`, `apps/mobile`, unified trip hub, document delivery, messaging, offline itineraries, free-tier self-planning. **Workbench shell + tool registry + `ItineraryItem` pinning; Layover Planner and Activity Finder** (no supplier dependency).
 
 ### Phase 4 — Monetization & Intelligence
-`apps/ai-service`, entitlements and billing across both subject types, traveler paid tier, guided match, semantic search. **`SupplierQuery` caching layer; Flight Search and Stay Finder; affiliate handling.** Agency↔traveler payments processing. Platform super-admin.
+`apps/ai-service`, entitlements and billing across both subject types, traveler paid tier, guided match, semantic search. **`SupplierQuery` caching layer; Flight Search and Stay Finder; affiliate handling.** Agency↔traveler payments processing.
 
 ---
 

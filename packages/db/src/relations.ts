@@ -75,4 +75,13 @@ export const relations = defineRelations(schema, (r) => ({
       to: r.media.id,
     }),
   },
+  platformUsers: {
+    auditLogs: r.many.auditLogs(),
+  },
+  auditLogs: {
+    actor: r.one.platformUsers({
+      from: r.auditLogs.actorId,
+      to: r.platformUsers.id,
+    }),
+  },
 }));

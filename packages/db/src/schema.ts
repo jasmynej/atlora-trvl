@@ -3,6 +3,7 @@ import {
   doublePrecision,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   primaryKey,
@@ -49,6 +50,62 @@ export const mediaEntityTypeEnum = pgEnum("MediaEntityType", [
   "poi",
 ]);
 export const mediaRoleEnum = pgEnum("MediaRole", ["hero", "gallery"]);
+
+// ── Platform admin ──────────────────────────────────────────────────────────
+// No tenancy column on anything below this line. Platform-level data is
+// write-guarded at the procedure layer (platformProcedure), never by a
+// row-scoping key.
+export const platformUserRoleEnum = pgEnum("PlatformUserRole", [
+  "platform_admin",
+  "platform_editor",
+]);
+export const platformUserStatusEnum = pgEnum("PlatformUserStatus", [
+  "active",
+  "suspended",
+]);
+
+export const platformUsers = pgTable("platform_users", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  clerkUserId: text("clerk_user_id").notNull().unique(),
+  email: text("email").notNull().unique(),
+  name: text("name").notNull(),
+  role: platformUserRoleEnum("role").notNull(),
+  status: platformUserStatusEnum("status").notNull().default("active"),
+  createdAt: timestamp("created_at", { precision: 3, mode: "date" })
+    .notNull()
+    .defaultNow(),
+  lastActiveAt: timestamp("last_active_at", { precision: 3, mode: "date" }),
+});
+
+// Append-only. No update or delete procedure should ever be written against
+// this table — if a row is wrong, a correcting row is written, not an edit.
+export const auditLogs = pgTable(
+  "audit_logs",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => createId()),
+    actorId: text("actor_id")
+      .notNull()
+      .references(() => platformUsers.id),
+    action: text("action").notNull(),
+    subjectType: text("subject_type").notNull(),
+    subjectId: text("subject_id").notNull(),
+    before: jsonb("before"),
+    after: jsonb("after"),
+    ip: text("ip"),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at", { precision: 3, mode: "date" })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("audit_logs_subject_index").on(t.subjectType, t.subjectId, t.createdAt),
+    index("audit_logs_actor_index").on(t.actorId, t.createdAt),
+  ]
+);
 
 export const siteConfig = pgTable("SiteConfig", {
   id: text("id")

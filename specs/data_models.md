@@ -165,7 +165,8 @@ Accepting an `InquiryResponse` creates the `Engagement` and promotes it to `ACTI
 | `UsageRecord` | X | subjectType, subjectId, featureKey, quantity, tokensIn, tokensOut, costCents, occurredAt | **Log from the first AI call, before enforcing any limit.** |
 | `Media` | X | ownerType, ownerId, storageKey, mimeType, width, height, altText, credit | Polymorphic asset table. |
 | `Embedding` | X | entityType, entityId, vector, model, contentHash, updatedAt | pgvector. Single table — see Decision 9. |
-| `AuditLog` | X | actorType, actorId, agencyId (nullable), action, entityType, entityId, metadata, createdAt | Catalog edits, consent changes, impersonation, plan changes. |
+| `AuditLog` | X | actorId (FK → `PlatformUser`), action, subjectType, subjectId, before (jsonb, nullable), after (jsonb, nullable), ip, userAgent, createdAt | **Built, platform admin Milestone 1.** Append-only — no update/delete procedure. `actorId` is a hard FK, not a polymorphic `actorType`/`actorId` pair — platform admin is currently the only mutation surface that writes to it, so there's nothing else for `actorId` to point at yet. Revisit the polymorphic shape (and add `before`/`after` in place of `metadata`, already reflected here) if a second actor type starts writing audit rows. |
+| `PlatformUser` | X | clerkUserId (unique), email (unique), name, role (`platform_admin` \| `platform_editor`), status (`active` \| `suspended`), createdAt, lastActiveAt | **Built, platform admin Milestone 1.** Internal FK target for `AuditLog.actorId` — a Clerk user ID is an external identifier and shouldn't be the audit trail's primary key. No self-serve creation flow yet; rows are provisioned manually. |
 
 `hasEntitlement(subject, feature)` reads `Subscription` → `Plan` → `PlanEntitlement`, then checks `UsageRecord` against `limitValue` for metered features. One resolver, called from the tRPC middleware layer.
 
@@ -175,9 +176,9 @@ Accepting an `InquiryResponse` creates the `Engagement` and promotes it to `ACTI
 
 ### 1. Polymorphic ownership (`Itinerary`, `Media`, `Subscription`)
 
-Prisma has no native polymorphism, so you're picking a workaround.
+Drizzle has no native polymorphism, so you're picking a workaround.
 
-- **Option A — nullable FK pair + check constraint.** `ownerTravelerProfileId` and `ownerAgencyId`, both nullable, with a raw-SQL `CHECK (num_nonnulls(...) = 1)`. Real FKs, real cascades, real Prisma relations. Costs a migration escape hatch and two nullable columns.
+- **Option A — nullable FK pair + check constraint.** `ownerTravelerProfileId` and `ownerAgencyId`, both nullable, with a raw-SQL `CHECK (num_nonnulls(...) = 1)`. Real FKs, real cascades, real Drizzle relations (`defineRelations`). Costs a migration escape hatch and two nullable columns.
 - **Option B — `ownerType` + `ownerId` string.** Clean and extensible. No referential integrity, no cascade, no `include`. You will hand-write every join.
 - **Option C — two tables** (`TravelerItinerary`, `AgencyItinerary`). Full integrity, but forking becomes a cross-table copy and every query that spans both needs a union.
 
@@ -213,7 +214,7 @@ Prisma has no native polymorphism, so you're picking a workaround.
 
 ### 6. `TripStyle` — enum vs table
 
-- **Option A — Prisma enum.** Fastest, type-safe, but every new style is a migration and you can't attach descriptions, icons, or sort order.
+- **Option A — `pgEnum`.** Fastest, type-safe, but every new style is a migration and you can't attach descriptions, icons, or sort order.
 - **Option B — lookup table.** Editable by platform staff, carries editorial metadata, joinable from `Specialty` and `Trip`.
 
 **Recommend B.** Epics B and C both filter on it and it's editorial vocabulary, which is exactly the shape of the `Destination`/`Region` decision you already made.
@@ -263,7 +264,7 @@ The models that must exist before anything else, because retrofitting them means
 **Traveler:** `TravelerProfile`, `TravelerPreferences`, `SavedItem`
 **Relationship:** `Client`, `Engagement`, `ConsentGrant`
 **Trips:** `Trip`, `TripDestination`, `TripStyleLink`, `Itinerary`, `ItineraryDay`, `ItineraryItem`
-**Cross-cutting:** `AuditLog`, `Plan`, `Subscription`, `UsageRecord`
+**Cross-cutting:** `AuditLog`, `PlatformUser`, `Plan`, `Subscription`, `UsageRecord`
 
 That's 24 models. `Poi`, `Article`, `PartyMember`, `TravelerDocument`, and the whole discovery and inquiry set can arrive later without a painful migration, because none of them changes the scope of an existing record.
 

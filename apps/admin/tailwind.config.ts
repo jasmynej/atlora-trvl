@@ -3,6 +3,7 @@ import type { Config } from 'tailwindcss'
 export default {
   content: [
     './index.html',
+    './platform.html',
     './src/**/*.{ts,tsx}',
     '../../packages/ui/src/**/*.{ts,tsx}',
   ],

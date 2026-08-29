@@ -90,6 +90,8 @@ A traveler on the Amalfi Coast destination page sees trips *and* the advisors wh
 
 **Surfaces:** public site (browse), admin (platform catalog management)
 
+**Platform admin scope (Milestone 2 of the platform admin build-out):** paginated/searchable/filterable list view; hierarchy view with lazy-loaded children and cycle-rejecting reparenting; full editor including R2 media upload and a visible last-edited-by/at from `AuditLog`; editorial `Region` CRUD and destination assignment; draft/published state, with drafts excluded from public-site queries; an embedding-refresh trigger on edit (stubbed until the embedding pipeline exists — see Phase 0 report). No ranking, placement, or commission field anywhere in this surface — structural, not a build choice.
+
 ---
 
 ### Epic B — Agency & Advisor Public Profiles *(new)*
@@ -228,6 +230,8 @@ Plans now exist on **two subject types** with different billing cycles and diffe
 
 **Models:** `Plan`, `Subscription`, `Entitlement`, `UsageRecord`
 
+**Platform admin scope (Milestone 4 of the platform admin build-out):** `Plan` CRUD; `Subscription` list and detail across both subject types; per-subject entitlement override, required reason, audited; `UsageRecord` spend view grouped by subject with a total. Read-heavy — the override is the only mutation. No enforcement logic lives here; that's the resolver's job.
+
 ---
 
 ### Epic J — Workbench *(new — shared surface, both sides)*
@@ -331,7 +335,7 @@ The reframing pulls traveler identity forward. The model is incoherent without i
 
 > **Why Workbench splits across two phases.** The supplier-API tools carry per-call cost, rate limits, contract negotiation, and a caching layer none of the other epics need. Splitting lets the differentiated tool (Layover Planner) ship and demo in Phase 3 without signing a supplier contract.
 
-**Deferred:** per-agency public microsites — these matter far less if platform discovery is where travelers land. Trip request broadcast. Platform super-admin.
+**Deferred:** per-agency public microsites — these matter far less if platform discovery is where travelers land. Trip request broadcast.
 
 ---
 
@@ -350,3 +354,5 @@ The reframing pulls traveler identity forward. The model is incoherent without i
 6. **Affiliate disclosure copy and placement.** Policy is settled (disclose at the point of the link, never let payout influence a sort). Wording and surface treatment are not written.
 
 7. **Advisor vs. traveler Workbench parity.** Whether advisors get bulk or side-by-side comparison modes that DIY travelers don't, or whether the tools stay strictly identical across both sides. Identical is simpler and reinforces the "same tooling, both sides" claim; differentiated is a plausible agency-tier upsell.
+
+8. **Are public agency and advisor profiles moderated before going live?** Unmoderated is faster and treats agencies as adults; moderated protects the credibility of the discovery layer, which is the product. Changes the `AgencyProfile` schema either way (a `review_status` field, an approve/reject action, a moderation queue). Explicitly unresolved — the platform admin agency-provisioning surface (Milestone 3) shows current publish state read-only and adds no moderation action pending this decision.

@@ -6,6 +6,7 @@ import { destinationsRouter } from "./routers/destinations";
 import { poiRouter } from "./routers/poi";
 import { mediaRouter } from "./routers/media";
 import { siteConfigRouter } from "./routers/siteConfig";
+import { platformUsersRouter } from "./routers/platformUsers";
 
 export const appRouter = router({
   countries: countriesRouter,
@@ -14,7 +15,8 @@ export const appRouter = router({
   destinations: destinationsRouter,
   poi: poiRouter,
   media: mediaRouter,
-  siteConfig: siteConfigRouter
+  siteConfig: siteConfigRouter,
+  platformUsers: platformUsersRouter,
 })
 
 export type AppRouter = typeof appRouter
