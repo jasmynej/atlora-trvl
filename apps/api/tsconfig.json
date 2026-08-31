@@ -3,7 +3,15 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
-    "noEmit": false
+    "noEmit": false,
+    // package.json points "types" at ./src/index.ts directly (same as
+    // every other internal package here), so nothing ever consumes the
+    // .d.ts this would emit. Disabled because tRPC's procedure-builder
+    // generics, combined with Drizzle's inferred row types, produce
+    // declaration-emit errors (TS2742) that a real consumer would never
+    // hit — see the design note above platformProcedure in src/trpc.ts.
+    "declaration": false,
+    "declarationMap": false
   },
   "include": ["src"]
 }
