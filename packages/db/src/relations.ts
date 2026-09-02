@@ -75,4 +75,30 @@ export const relations = defineRelations(schema, (r) => ({
       to: r.media.id,
     }),
   },
+  platformUsers: {
+    sessions: r.many.sessions({
+      from: r.platformUsers.id,
+      to: r.sessions.subjectId,
+      where: { subjectType: "platform" },
+    }),
+    auditLogs: r.many.auditLogs({
+      from: r.platformUsers.id,
+      to: r.auditLogs.actorId,
+    }),
+  },
+  sessions: {
+    // Only meaningful when subjectType === "platform" — subjectId is
+    // polymorphic, so this relation is scoped with `where` the same way
+    // media.attachments is scoped by entityType elsewhere in this file.
+    platformUser: r.one.platformUsers({
+      from: r.sessions.subjectId,
+      to: r.platformUsers.id,
+    }),
+  },
+  auditLogs: {
+    actor: r.one.platformUsers({
+      from: r.auditLogs.actorId,
+      to: r.platformUsers.id,
+    }),
+  },
 }));

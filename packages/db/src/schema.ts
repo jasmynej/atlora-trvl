@@ -3,6 +3,7 @@ import {
   doublePrecision,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   primaryKey,
@@ -229,6 +230,109 @@ export const mediaAttachments = pgTable(
       t.entityId,
       t.role
     ),
+  ]
+);
+
+// --- Auth (Platform admin handoff, Milestone 1) ---
+//
+// Session mechanism is shared across all three subject types (platform,
+// agency, traveler) even though only platform accounts exist so far.
+// `sessions.subjectId` is deliberately not a real FK: it points at one of
+// three different tables depending on `subjectType`, and a real FK can only
+// reference one table. Do not add per-subject nullable FK columns instead —
+// that reintroduces "infer subject from which column is populated", which is
+// exactly what the explicit `subjectType` discriminant exists to prevent.
+export const subjectTypeEnum = pgEnum("SubjectType", [
+  "platform",
+  "agency",
+  "traveler",
+]);
+export const platformRoleEnum = pgEnum("PlatformRole", [
+  "platform_admin",
+  "platform_editor",
+]);
+export const userStatusEnum = pgEnum("UserStatus", ["active", "suspended"]);
+
+export type SubjectType = (typeof subjectTypeEnum.enumValues)[number];
+export type PlatformRole = (typeof platformRoleEnum.enumValues)[number];
+export type UserStatus = (typeof userStatusEnum.enumValues)[number];
+
+// The only account-creation path for this table is the seed/CLI command in
+// src/seed.ts. No procedure may insert into this table.
+export const platformUsers = pgTable("platform_users", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  // Stored lowercased on write (app-layer, not citext) so lookups are
+  // case-insensitive without a custom column type.
+  email: text("email").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  name: text("name").notNull(),
+  // platform_editor is catalog-only: no agency or billing access.
+  role: platformRoleEnum("role").notNull(),
+  status: userStatusEnum("status").notNull().default("active"),
+  createdAt: timestamp("created_at", { precision: 3, mode: "date" })
+    .notNull()
+    .defaultNow(),
+  lastLoginAt: timestamp("last_login_at", { precision: 3, mode: "date" }),
+  failedLoginCount: integer("failed_login_count").notNull().default(0),
+  lockedUntil: timestamp("locked_until", { precision: 3, mode: "date" }),
+});
+
+export const sessions = pgTable(
+  "sessions",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => createId()),
+    subjectType: subjectTypeEnum("subject_type").notNull(),
+    subjectId: text("subject_id").notNull(),
+    // Only the hash is stored — the raw token exists only in the cookie and
+    // in memory for the duration of the request that issued it.
+    tokenHash: text("token_hash").notNull().unique(),
+    createdAt: timestamp("created_at", { precision: 3, mode: "date" })
+      .notNull()
+      .defaultNow(),
+    lastUsedAt: timestamp("last_used_at", { precision: 3, mode: "date" })
+      .notNull()
+      .defaultNow(),
+    expiresAt: timestamp("expires_at", { precision: 3, mode: "date" }).notNull(),
+    revokedAt: timestamp("revoked_at", { precision: 3, mode: "date" }),
+    ip: text("ip"),
+    userAgent: text("user_agent"),
+  },
+  (t) => [
+    index("sessions_subject_index").on(t.subjectType, t.subjectId, t.revokedAt),
+  ]
+);
+
+// Append-only: no update/delete procedure should ever be written against
+// this table. Written exclusively by the audit middleware in apps/api, in
+// the same transaction as the mutation it is logging.
+export const auditLogs = pgTable(
+  "audit_logs",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => createId()),
+    actorId: text("actor_id")
+      .notNull()
+      .references(() => platformUsers.id),
+    // e.g. "destinations.update" — the tRPC procedure path.
+    action: text("action").notNull(),
+    subjectType: subjectTypeEnum("subject_type").notNull(),
+    subjectId: text("subject_id").notNull(),
+    before: jsonb("before"),
+    after: jsonb("after"),
+    ip: text("ip"),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at", { precision: 3, mode: "date" })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("audit_logs_subject_index").on(t.subjectType, t.subjectId, t.createdAt),
+    index("audit_logs_actor_index").on(t.actorId, t.createdAt),
   ]
 );
 
