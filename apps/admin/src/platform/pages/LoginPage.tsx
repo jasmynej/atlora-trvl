@@ -70,7 +70,7 @@ export function LoginPage() {
             </p>
           )}
 
-          <Button type="submit" colorScheme="neutral" loading={submitting} className="mt-2">
+          <Button type="submit" loading={submitting} className="mt-2">
             Sign in
           </Button>
         </form>

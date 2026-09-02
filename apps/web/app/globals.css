@@ -1,3 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* packages/ui's globals.css carries its own @tailwind directives plus the
+   :root token definitions (--color-brand, the sand scale, etc.) that every
+   @atlora/ui component's Tailwind classes resolve against — without this
+   import, classes like bg-brand or border-sand-300 have no variable to
+   read and render as nothing. Storybook wires this the same way, in
+   packages/ui/.storybook/preview.ts. */
+@import '../../../packages/ui/src/styles/globals.css';

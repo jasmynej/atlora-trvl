@@ -2,6 +2,7 @@ import * as React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button } from '@atlora/ui'
 import { usePlatformAuth } from '../lib/auth'
+import atloraLogoMark from '../../assets/atlora-logo-mark.png'
 
 // @atlora/ui doesn't export its internal `cn` helper — this is the one
 // callsite here that needs a conditional class, so a plain join is enough
@@ -23,9 +24,10 @@ export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen bg-sand-100">
       <aside className="flex w-56 shrink-0 flex-col gap-1 border-r border-sand-200 bg-white p-4">
-        <p className="type-caption mb-4 px-2 font-semibold uppercase tracking-wide text-sand-500">
-          Atlora Platform
-        </p>
+        <div className="mb-4 flex items-center gap-2 px-2">
+          <img src={atloraLogoMark} alt="" className="h-7 w-7 shrink-0" />
+          <p className="type-caption font-semibold uppercase tracking-wide text-brand-fg">Atlora Platform</p>
+        </div>
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.to}
@@ -33,7 +35,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             className={({ isActive }) =>
               joinClassNames(
                 'rounded px-3 py-2 text-sm font-medium transition-colors',
-                isActive ? 'bg-sand-150 text-charcoal' : 'text-sand-600 hover:bg-sand-150 hover:text-charcoal'
+                isActive ? 'bg-brand-subtle text-brand-fg' : 'text-sand-600 hover:bg-sand-150 hover:text-charcoal'
               )
             }
           >
@@ -51,7 +53,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 {user.name} · {user.role === 'platform_admin' ? 'Admin' : 'Editor'}
               </span>
             )}
-            <Button variant="ghost" colorScheme="neutral" size="sm" onClick={() => void logout()}>
+            <Button variant="ghost" size="sm" onClick={() => void logout()}>
               Sign out
             </Button>
           </div>

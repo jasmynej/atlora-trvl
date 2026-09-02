@@ -6,7 +6,11 @@ import { PlatformAuthProvider, usePlatformAuth } from './lib/auth'
 import { trpc } from './lib/trpc'
 import { LoginPage } from './pages/LoginPage'
 import { Shell } from './components/Shell'
-import { CatalogPage } from './pages/CatalogPage'
+import { CatalogLayout } from './pages/catalog/CatalogLayout'
+import { DestinationsPage } from './pages/catalog/DestinationsPage'
+import { RegionsPage } from './pages/catalog/RegionsPage'
+import { CountriesPage } from './pages/catalog/CountriesPage'
+import { PoiPage } from './pages/catalog/PoiPage'
 import { AgenciesPage } from './pages/AgenciesPage'
 import { BillingPage } from './pages/BillingPage'
 import { AuditLogPage } from './pages/AuditLogPage'
@@ -36,7 +40,13 @@ function AuthedRoutes() {
             <Shell>
               <Routes>
                 <Route path="/" element={<Navigate to="/catalog" replace />} />
-                <Route path="/catalog" element={<CatalogPage />} />
+                <Route path="/catalog" element={<CatalogLayout />}>
+                  <Route index element={<Navigate to="destinations" replace />} />
+                  <Route path="destinations" element={<DestinationsPage />} />
+                  <Route path="regions" element={<RegionsPage />} />
+                  <Route path="countries" element={<CountriesPage />} />
+                  <Route path="poi" element={<PoiPage />} />
+                </Route>
                 <Route path="/agencies" element={<AgenciesPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/audit-log" element={<AuditLogPage />} />
