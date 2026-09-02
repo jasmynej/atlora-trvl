@@ -36,7 +36,7 @@ The original model had `Traveler` agency-scoped (`agency_id` FK), like `Trip`. T
 
 | Model | Scope | Owner | Contains |
 |---|---|---|---|
-| `TravelerProfile` | Platform-level (no `agency_id`) | The traveler | Clerk identity, personal details, documents, preferences, saved trips, trip history |
+| `TravelerProfile` | Platform-level (no `agency_id`) | The traveler | Platform identity (credentials + session), personal details, documents, preferences, saved trips, trip history |
 | `Client` | Agency-scoped | The agency | Pipeline stage, advisor notes, internal tags, communications, commission data |
 | `Engagement` | Join | Both, scoped | Consent tier, status, assigned advisor, linked trips |
 
@@ -61,13 +61,13 @@ An `Itinerary` can be **forked** with an ownership change. This makes three impo
 
 ### 3. Three-way procedure scoping
 
-`platformProcedure` vs. agency-scoped is no longer sufficient. Add **traveler-scoped procedures**, keyed on `traveler_id` from the JWT rather than `agency_id`. This is a security boundary, not a convenience — get it into `packages/trpc` before any traveler surfaces are built.
+`platformProcedure` vs. agency-scoped is no longer sufficient. Add **traveler-scoped procedures**, keyed on `traveler_id` from the session rather than `agency_id`. This is a security boundary, not a convenience — get it into `packages/trpc` before any traveler surfaces are built.
 
 | Procedure | Enforcement key | Guards |
 |---|---|---|
 | `platformProcedure` | Platform admin role | Destination catalog, platform config |
-| `agencyProcedure` | `agency_id` from JWT | Trips, clients, CRM, agency profile |
-| `travelerProcedure` | `traveler_id` from JWT | Profile vault, saved trips, self-planned itineraries, trip hub |
+| `agencyProcedure` | `agency_id` from session | Trips, clients, CRM, agency profile |
+| `travelerProcedure` | `traveler_id` from session | Profile vault, saved trips, self-planned itineraries, trip hub |
 
 Cross-boundary reads (an agency reading traveler-granted profile fields) resolve through `Engagement` consent tier, never by direct FK access.
 
