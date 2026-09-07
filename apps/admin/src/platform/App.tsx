@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { httpBatchLink } from '@trpc/client'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { PlatformAuthProvider, usePlatformAuth } from './lib/auth'
-import { trpc } from './lib/trpc'
+import { platformTrpc } from './lib/trpc'
 import { LoginPage } from './pages/LoginPage'
 import { Shell } from './components/Shell'
 import { CatalogLayout } from './pages/catalog/CatalogLayout'
@@ -62,7 +62,7 @@ function AuthedRoutes() {
 export default function App() {
   const [queryClient] = React.useState(() => new QueryClient())
   const [trpcClient] = React.useState(() =>
-    trpc.createClient({
+    platformTrpc.createClient({
       links: [
         httpBatchLink({
           url: 'http://localhost:3001/trpc',
@@ -78,7 +78,7 @@ export default function App() {
   )
 
   return (
-    <trpc.Provider client={trpcClient} queryClient={queryClient}>
+    <platformTrpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         <PlatformAuthProvider>
           <BrowserRouter>
@@ -86,6 +86,6 @@ export default function App() {
           </BrowserRouter>
         </PlatformAuthProvider>
       </QueryClientProvider>
-    </trpc.Provider>
+    </platformTrpc.Provider>
   )
 }

@@ -22,7 +22,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
   const { user, logout } = usePlatformAuth()
 
   return (
-    <div className="flex min-h-screen bg-sand-100">
+    <div className="flex h-screen overflow-hidden bg-sand-100">
       <aside className="flex w-56 shrink-0 flex-col gap-1 border-r border-sand-200 bg-white p-4">
         <div className="mb-4 flex items-center gap-2 px-2">
           <img src={atloraLogoMark} alt="" className="h-7 w-7 shrink-0" />
@@ -44,8 +44,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
         ))}
       </aside>
 
-      <div className="flex flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-sand-200 bg-white px-6 py-3">
+      <div className="flex flex-1 flex-col overflow-hidden">
+        <header className="flex shrink-0 items-center justify-between border-b border-sand-200 bg-white px-6 py-3">
           <div />
           <div className="flex items-center gap-3">
             {user && (
@@ -59,7 +59,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
 
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
       </div>
     </div>
   )

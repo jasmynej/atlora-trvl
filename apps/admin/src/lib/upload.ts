@@ -1,7 +1,7 @@
-import { trpc } from './trpc'
+import { agencyTrpc } from './trpc'
 
 export function useUpload() {
-  const getUploadUrl = trpc.storage.getUploadUrl.useMutation()
+  const getUploadUrl = agencyTrpc.storage.getUploadUrl.useMutation()
 
   async function upload(file: File, key: string): Promise<string> {
     const { uploadUrl, publicUrl } = await getUploadUrl.mutateAsync({

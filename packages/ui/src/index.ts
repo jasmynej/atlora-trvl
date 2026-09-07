@@ -66,3 +66,9 @@ export type { DataTableProps, DataTableColumn } from './components/DataTable'
 
 export { ThemeProvider, themeColorsToVars } from './components/ThemeProvider'
 export type { ThemeProviderProps, PresetTheme, AgencyThemeColors } from './components/ThemeProvider'
+
+export { Overlay } from './components/Overlay'
+export type { OverlayProps } from './components/Overlay'
+
+export { MediaUpload } from './components/MediaUpload'
+export type { MediaUploadProps, MediaUploadValue } from './components/MediaUpload'
