@@ -22,7 +22,7 @@ if (!process.env.RESTCOUNTRIES_TOKEN) {
 }
 
 const res = await fetch(
-  "https://api.restcountries.com/countries/v5?response_fields=names.common,codes.alpha_3,flag.url_svg,capitals,region,subregion,borders,coordinates.lat,coordinates.long&limit=100&offset=200",
+  "https://api.restcountries.com/countries/v5?response_fields=names.common,codes.alpha_3,flag.url_svg,capitals,region,subregion,borders,coordinates.lat,coordinates.long&limit=300&offset=0",
   { headers: { Authorization: `Bearer ${process.env.RESTCOUNTRIES_TOKEN}` } }
 );
 
