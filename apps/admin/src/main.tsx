@@ -11,7 +11,11 @@ function Root() {
   const [trpcClient] = useState(() =>
     agencyTrpc.createClient({
       links: [
-        httpBatchLink({ url: 'http://localhost:3001/trpc' }),
+        // Relative, not an absolute host:port — single-origin routing
+        // through the proxy means this resolves correctly whether served
+        // from the host dev server or the built static container, and
+        // stays environment-agnostic (no VITE_* env var needed).
+        httpBatchLink({ url: '/api/trpc' }),
       ],
     })
   )

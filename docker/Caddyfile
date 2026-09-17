@@ -1,0 +1,58 @@
+atlora.localhost {
+	tls internal
+
+	# Every /x/* matcher below requires the trailing slash — Caddy (like
+	# most reverse proxies) treats "/admin" and "/admin/*" as genuinely
+	# different paths, and the bare form matches none of them, falling
+	# through all the way to the web catch-all's own 404. Redirecting the
+	# bare form to its trailing-slash equivalent up front means every
+	# downstream matcher (here and inside apps/admin's own Caddyfile,
+	# which has the identical prefix-matching shape) only ever has to
+	# handle one form.
+	@bareAdmin path /admin
+	redir @bareAdmin /admin/ 308
+	@barePortal path /portal
+	redir @barePortal /portal/ 308
+	@bareApi path /api
+	redir @bareApi /api/ 308
+	@bareAi path /ai
+	redir @bareAi /ai/ 308
+
+	# Milestone 5: containerized (apps/admin/Dockerfile builds static
+	# assets, served by its own internal Caddy). That container owns all
+	# the routing smarts for its two entries (main shell vs. the
+	# platform-admin sub-entry, SPA fallback for deep links) — see
+	# apps/admin/Caddyfile — so this is a plain pass-through. `handle`
+	# (not `handle_path`) keeps the /admin prefix intact: the built assets
+	# reference /admin/... (vite.config.ts's base: '/admin/'), and the
+	# admin container's own Caddy strips the prefix itself.
+	handle /admin/* {
+		reverse_proxy admin:80
+	}
+
+	# apps/portal does not exist on disk yet (confirmed in Phase 0).
+	# Routed now so the topology matches the routing table in
+	# specs/ARCHITECTURE.md; returns 502 until the app is scaffolded and
+	# its dev server bound to port 3004.
+	handle_path /portal/* {
+		reverse_proxy host.docker.internal:3004
+	}
+
+	# Milestone 3: containerized, reached by compose service name over the
+	# internal network — no longer the host dev server.
+	handle_path /api/* {
+		reverse_proxy api:3001
+	}
+
+	# apps/ai-service does not exist on disk yet (confirmed in Phase 0;
+	# see Milestone 7 — conditional). Returns 502 until it's scaffolded.
+	handle_path /ai/* {
+		reverse_proxy host.docker.internal:8000
+	}
+
+	# Milestone 6: containerized (apps/web/Dockerfile, Next.js standalone
+	# output). Catch-all — must stay last.
+	handle {
+		reverse_proxy web:3000
+	}
+}

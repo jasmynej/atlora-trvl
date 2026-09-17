@@ -1,0 +1,32 @@
+:80 {
+	root * /srv
+
+	# Platform-admin surface: a second Vite entry point, built to its own
+	# platform.html — not a separate app. Must precede the generic block
+	# below or it's shadowed by index.html's fallback. try_files covers a
+	# clean URL with no .html (/admin/platform) and any future
+	# client-side route under this prefix the same way.
+	handle_path /admin/platform* {
+		try_files {path} /platform.html
+		file_server
+	}
+
+	# SPA fallback for everything else under /admin/*: a real built file
+	# (an asset, or an explicit .html) is served as-is; anything else
+	# (a fresh deep link like /admin/catalog/destinations) falls back to
+	# index.html so the client-side router can take over. Without this,
+	# refreshing a deep link 404s — this static file server has no
+	# router of its own to consult.
+	handle_path /admin/* {
+		try_files {path} /index.html
+		file_server
+	}
+
+	# Unreachable via the outer proxy (docker/Caddyfile only ever forwards
+	# /admin/* here) — exists so this container behaves sanely on its own
+	# rather than relying on Caddy's default blank-200-for-no-route-
+	# matched behavior when poked directly (e.g. `docker compose exec`).
+	handle {
+		respond 404
+	}
+}
