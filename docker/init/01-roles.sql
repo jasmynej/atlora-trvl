@@ -15,8 +15,10 @@
 --   atlora_app    — runtime connection for apps/api. Ordinary role: no
 --                   superuser, no BYPASSRLS, and NOT a table owner — so
 --                   once RLS policies exist, they actually apply to it.
---   atlora_ai_ro  — runtime connection for apps/ai-service. SELECT only,
---                   so "AI service is read-only against the database"
+--   atlora_ai_ro  — runtime connection for the atlora-ai suite (MCP
+--                   server, chatbot, etc.) — a separate, portable
+--                   codebase, not an app in this repo. SELECT only, so
+--                   "AI is read-only against the database"
 --                   (specs/ARCHITECTURE.md) is structurally true rather
 --                   than just a convention nobody's enforcing.
 --

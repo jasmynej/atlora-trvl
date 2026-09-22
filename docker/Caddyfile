@@ -15,8 +15,6 @@ atlora.localhost {
 	redir @barePortal /portal/ 308
 	@bareApi path /api
 	redir @bareApi /api/ 308
-	@bareAi path /ai
-	redir @bareAi /ai/ 308
 
 	# Milestone 5: containerized (apps/admin/Dockerfile builds static
 	# assets, served by its own internal Caddy). That container owns all
@@ -44,11 +42,10 @@ atlora.localhost {
 		reverse_proxy api:3001
 	}
 
-	# apps/ai-service does not exist on disk yet (confirmed in Phase 0;
-	# see Milestone 7 — conditional). Returns 502 until it's scaffolded.
-	handle_path /ai/* {
-		reverse_proxy host.docker.internal:8000
-	}
+	# No /ai/* route: the AI suite (MCP server, chatbot, etc.) is a
+	# separate, portable codebase, not an app in this monorepo — see
+	# docker/README.md's "AI suite" note. If it's ever fronted by this
+	# proxy, that's a route to add then, not a stub to carry now.
 
 	# Milestone 6: containerized (apps/web/Dockerfile, Next.js standalone
 	# output). Catch-all — must stay last.

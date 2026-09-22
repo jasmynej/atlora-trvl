@@ -16,7 +16,7 @@ the plan.
 | 4 — Storage module + MinIO wiring | ✅ Done — see [Storage module](#storage-module-milestone-4) |
 | 5 — `apps/admin` container | ✅ Done — see [apps/admin container](#appsadmin-container-milestone-5). `apps/portal` half **not done** — doesn't exist on disk (Phase 0), nothing to containerize |
 | 6 — `apps/web` container | ✅ Done — see [apps/web container](#appsweb-container-milestone-6) |
-| 7 — `apps/ai-service` container | N/A — app doesn't exist on disk |
+| 7 — AI service container | **Out of scope for this repo** — atlora-ai is a separate, portable suite (MCP server, chatbot, etc.), not an app that lives here. See the [AI suite](#ai-suite) note. |
 
 **Currently containerized:** `db`, `storage` (MinIO), `proxy` (Caddy),
 `api`, `admin`, `web`, and `migrate` (one-shot). **Nothing app-level still
@@ -221,13 +221,13 @@ data) instead of bouncing back to the login form.
 
 ```bash
 curl -sk -o /dev/null -w "%{http_code}\n" https://atlora.localhost/portal/
-curl -sk -o /dev/null -w "%{http_code}\n" https://atlora.localhost/ai/
 ```
 
-Expect `502` for both — that's correct, not a bug. `apps/portal` and
-`apps/ai-service` don't exist on disk yet (confirmed in the Phase 0 audit).
-This stops being the expected result once either app is scaffolded and wired
-into the Caddyfile.
+Expect `502` — that's correct, not a bug. `apps/portal` doesn't exist on
+disk yet (confirmed in the Phase 0 audit). This stops being the expected
+result once it's scaffolded and wired into the Caddyfile. There's no
+equivalent `/ai/*` check — that route doesn't exist at all (see the
+[AI suite](#ai-suite) note), not just not-yet-wired.
 
 ### 7. MinIO
 
@@ -367,7 +367,7 @@ container starts against an empty volume:
 |---|---|---|---|
 | `atlora_owner` | `atlora_owner` | `packages/db/.env` — migrations only | Owns the schema/tables; the only role that can `CREATE`/`ALTER`/`DROP` |
 | `atlora_app` | `atlora_app` | `apps/api/.env` — the running API | `SELECT`/`INSERT`/`UPDATE`/`DELETE` on tables, `USAGE` on sequences. No DDL, not a table owner. |
-| `atlora_ai_ro` | `atlora_ai_ro` | (future `apps/ai-service`) | `SELECT` only |
+| `atlora_ai_ro` | `atlora_ai_ro` | the atlora-ai suite (separate repo, see [AI suite](#ai-suite)) | `SELECT` only |
 
 `ALTER DEFAULT PRIVILEGES` means every table a *future* migration creates
 (as `atlora_owner`) is automatically readable/writable by `atlora_app`
@@ -392,6 +392,25 @@ If you need to reach the container as its bootstrapping superuser (e.g. to
 inspect roles or grants), use `postgres` / `postgres` — that's the
 `POSTGRES_USER`/`POSTGRES_PASSWORD` in `docker/compose.yaml`, distinct from
 all three roles above and never used by any app.
+
+### AI suite
+
+There is no `apps/ai-service` in this repo, and there won't be — atlora-ai
+(MCP server, chatbot, and whatever else comes up) is a separate, portable
+codebase, not another app in this monorepo. Two things stayed anyway,
+deliberately:
+
+- **`atlora_ai_ro`** (see the roles table above) — a read-only Postgres
+  role, kept because atlora-ai still needs read access to this same
+  database; it's just provisioned as a plain set of credentials handed to
+  an external service, the same way you'd hand out DB access to any other
+  outside consumer, rather than as part of this repo's own app surface.
+- **Nothing else.** There's no `/ai/*` Caddy route (removed — it was
+  pointing at a `host.docker.internal:8000` that was never going to exist
+  here) and no `ai-service` entry in `docker/compose.yaml`. If atlora-ai
+  ever needs to sit behind this proxy or in this compose file, that's a
+  real integration decision to make then, not a stub worth carrying now on
+  the chance it's needed.
 
 ### apps/api container (Milestone 3)
 
@@ -670,14 +689,16 @@ then:
 docker compose -f docker/compose.yaml up -d
 ```
 
-**`https://atlora.localhost/admin` (or `/api`, `/portal`, `/ai`) 404s, but
-the trailing-slash form works fine.** Caddy's `/admin/*`-style matchers
+**`https://atlora.localhost/admin` (or `/api`, `/portal`) 404s, but the
+trailing-slash form works fine.** Caddy's `/admin/*`-style matchers
 require the trailing slash — the bare path matches none of them and falls
 through to the `web` catch-all, which then correctly 404s since Next.js
 has no route for it (the giveaway: the 404 page's `<title>` says "Atlora
 Travel", not whatever the app you meant to reach would show). Fixed with
-explicit `redir ... 308` rules at the top of `docker/Caddyfile` for all
-four bare paths — if this regresses, one of those got removed.
+explicit `redir ... 308` rules at the top of `docker/Caddyfile` for these
+bare paths — if this regresses, one of those got removed. There's no
+`/ai` equivalent — see the [AI suite](#ai-suite) note for why that route
+doesn't exist at all.
 
 **Edited `docker/Caddyfile` but the change doesn't seem to apply.**
 `docker compose exec proxy caddy reload` can fail with `open
