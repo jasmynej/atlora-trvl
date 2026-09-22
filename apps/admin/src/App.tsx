@@ -18,7 +18,7 @@ export default function App() {
             // different bundle on the same origin, so this is a real page
             // navigation, not a client-side route.
             onClick={() => {
-              window.location.href = '/platform.html'
+              window.location.href = '/admin/platform.html'
             }}
           >
             Platform Admin Login

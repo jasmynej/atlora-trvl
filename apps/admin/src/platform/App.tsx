@@ -64,15 +64,12 @@ export default function App() {
   const [trpcClient] = React.useState(() =>
     platformTrpc.createClient({
       links: [
-        httpBatchLink({
-          url: 'http://localhost:3001/trpc',
-          // Platform auth is cookie-based (§3) — the browser only attaches
-          // the session cookie to a cross-origin request (admin on :3002,
-          // api on :3001) if the fetch explicitly opts in.
-          fetch(url, options) {
-            return fetch(url, { ...options, credentials: 'include' })
-          },
-        }),
+        // Relative, not an absolute host:port — single-origin routing
+        // through the proxy means this is always same-origin with the
+        // page that loaded it, so the browser attaches the session cookie
+        // automatically (fetch's default 'same-origin' credentials mode)
+        // with no explicit `credentials: 'include'` override needed.
+        httpBatchLink({ url: '/api/trpc' }),
       ],
     })
   )

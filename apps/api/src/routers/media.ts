@@ -6,10 +6,9 @@ import {
   SetHeroMediaInputSchema,
   UpdateMediaSchema,
 } from '@atlora/types'
-import { DeleteObjectCommand } from '@aws-sdk/client-s3'
 import { eq } from 'drizzle-orm'
 import { z } from 'zod'
-import { r2, R2_BUCKET } from '../lib/r2'
+import { storage } from '../lib/storage'
 import { replaceHeroSafe } from '../lib/mediaAttachments'
 import { publicProcedure, router } from '../trpc'
 
@@ -42,7 +41,7 @@ export const mediaRouter = router({
     })
 
     if (deleted) {
-      await r2.send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: deleted.key }))
+      await storage.deleteObject(deleted.key)
     }
 
     return deleted

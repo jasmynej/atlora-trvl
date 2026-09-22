@@ -1,30 +1,27 @@
-import { DeleteObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 import { GetUploadUrlSchema } from '@atlora/types'
 import { z } from 'zod'
-import { r2, R2_BUCKET, R2_PUBLIC_URL } from '../lib/r2'
+import { storage } from '../lib/storage'
 import { publicProcedure, router } from '../trpc'
+
+const UPLOAD_URL_EXPIRY_SECONDS = 300
 
 export const storageRouter = router({
   getUploadUrl: publicProcedure
     .input(GetUploadUrlSchema)
     .mutation(async ({ input }) => {
-      const command = new PutObjectCommand({
-        Bucket: R2_BUCKET,
-        Key: input.key,
-        ContentType: input.contentType,
-      })
-      const uploadUrl = await getSignedUrl(r2, command, { expiresIn: 300 })
+      const uploadUrl = await storage.getSignedUploadUrl(
+        input.key,
+        input.contentType,
+        UPLOAD_URL_EXPIRY_SECONDS
+      )
       return {
         uploadUrl,
-        publicUrl: `${R2_PUBLIC_URL}/${input.key}`,
+        publicUrl: storage.getPublicUrl(input.key),
         key: input.key,
       }
     }),
 
   deleteObject: publicProcedure
     .input(z.object({ key: z.string().min(1) }))
-    .mutation(({ input }) =>
-      r2.send(new DeleteObjectCommand({ Bucket: R2_BUCKET, Key: input.key }))
-    ),
+    .mutation(({ input }) => storage.deleteObject(input.key)),
 })

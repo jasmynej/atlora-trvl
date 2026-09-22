@@ -1,0 +1,16 @@
+{
+  // Used only by the Docker build (Dockerfile), not by `pnpm dev` (tsx
+  // ignores "module"/"moduleResolution" entirely). tsconfig.json's
+  // "module": "ESNext" / "moduleResolution": "bundler" are dev-tool-
+  // friendly settings; running the *compiled* output with plain `node`
+  // needs a module format Node actually understands without extension
+  // rewriting every relative import — CommonJS, via classic Node
+  // resolution, does that with zero source changes.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node10"
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts", "src/test/**"]
+}

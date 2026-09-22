@@ -1,0 +1,15 @@
+{
+  // Used only by the apps/api Docker build (docker/scripts/patch-workspace-
+  // exports.js). This package's normal tsconfig.json is dev/typecheck-only
+  // ("noEmit": true) and stays that way — Vite/tsx read that one directly.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "moduleResolution": "node10",
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true
+  },
+  "include": ["src"]
+}
