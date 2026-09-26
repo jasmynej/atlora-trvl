@@ -2,6 +2,7 @@ import * as React from 'react'
 import { platformTrpc } from '../../lib/trpc'
 import { usePlatformMediaUpload } from '../../lib/upload'
 import { slugify } from '../../lib/slug'
+import { MediaLibraryPicker } from '../../components/MediaLibraryPicker'
 import {
   DataTable,
   type DataTableColumn,
@@ -112,6 +113,7 @@ export function PoiPage() {
     const [form, setForm] = React.useState<PoiFormState | null>(null)
     const [slugTouched, setSlugTouched] = React.useState(false)
     const [confirmDeleteOpen, setConfirmDeleteOpen] = React.useState(false)
+    const [pickerOpen, setPickerOpen] = React.useState(false)
 
     const COLUMNS: DataTableColumn<PoiRow>[] = [
         {key: 'name', header: 'Name', sortable: true},
@@ -257,7 +259,12 @@ export function PoiPage() {
                 {form && (
                     <div className="flex flex-col gap-4">
                         <FormField label="Hero image" htmlFor="poi-media">
-                            <MediaUpload value={form.media} onChange={(value) => updateForm('media', value)} onUpload={upload} />
+                            <MediaUpload
+                                value={form.media}
+                                onChange={(value) => updateForm('media', value)}
+                                onUpload={upload}
+                                onBrowseLibrary={() => setPickerOpen(true)}
+                            />
                         </FormField>
                         <FormField label="Name" htmlFor="poi-name">
                             <Input
@@ -347,6 +354,13 @@ export function PoiPage() {
             >
                 <p className="type-body-sm text-sand-700">This action cannot be undone.</p>
             </Overlay>
+
+            <MediaLibraryPicker
+                open={pickerOpen}
+                onClose={() => setPickerOpen(false)}
+                onSelect={(media) => updateForm('media', media)}
+                selectedId={form?.media?.mediaId}
+            />
         </div>
     )
 }

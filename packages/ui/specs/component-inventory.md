@@ -466,20 +466,23 @@ interface DateRangePickerProps {
 **Variants:** none.
 **States:** no selection, partial selection (`from` set, `to` pending — the "picking end date" hover-preview state), complete range, date-cell states (in-range, range-start, range-end, today, disabled/`< minDate`, hover, focus-visible).
 
-### FileUpload / ImageUpload — 🚧 P1
-Feeds `Media` records (R2-backed). Hero image + gallery uploads for `Destination`/`Region`/`Poi`/`Trip`.
+### MediaUpload — ✅ Done
+`src/components/MediaUpload.tsx`. The realized `FileUpload`/`ImageUpload` spec — a single-image dropzone (no `multiple`/`progress`, feeds `Media` records via an `onUpload` callback the app supplies) plus an optional `onBrowseLibrary` affordance that lets a consumer offer "choose from library" alongside "upload new" without this component knowing anything about the library itself (that lives in `apps/admin`, which owns the tRPC query).
 ```ts
-interface FileUploadProps {
-  accept?: string             // e.g. 'image/*'
-  multiple?: boolean
-  maxSizeMb?: number
-  onFilesSelected: (files: File[]) => void
-  uploading?: boolean
-  progress?: number           // 0–100
+interface MediaUploadProps {
+  value: MediaUploadValue | null
+  onChange: (value: MediaUploadValue | null) => void
+  onUpload: (file: File) => Promise<MediaUploadValue>
+  onBrowseLibrary?: () => void
+  accept?: string
+  disabled?: boolean
 }
 ```
 **Variants:** none.
-**States:** idle, drag-over (dropzone highlight), `uploading` (progress bar bound to `progress`), error (file too large / wrong type — surface via `FormField`'s `error`, don't duplicate error styling here), success.
+**States:** empty (dropzone, drag-over highlight, optional "Choose from library" link), `uploading` (spinner), filled (preview + Replace/Remove/From library), error (surfaced inline, not via `FormField`).
+
+### MediaTile / MediaGrid — ✅ Done
+`src/components/MediaTile.tsx`, `src/components/MediaGrid.tsx`. Presentational building blocks for a media library browser: `MediaGrid` lays out `MediaTile`s (thumbnail + filename/alt caption + selected-state ring) from a plain `items` array, with `loading`/empty states via `Skeleton`/`EmptyState`. No data fetching — the admin app's `MediaLibraryBrowser` owns the `media.list` query and search state, then renders these. Used both for the full Media Library page and the picker modal opened from `MediaUpload`'s `onBrowseLibrary`.
 
 ### MultiSelect — ✅ Done
 `src/components/MultiSelect.tsx`. Tag-style multi-pick — `TripStyle` selection, `SpecialtyTags`, `regionIds` on a Destination. Built without a `Combobox`/`Popover` dependency: selected values render as removable inline chips, and a plain native `<select>` at the end of the row is the "add another" affordance — trades a slightly less polished add-UX for zero new floating-positioning infra. Revisit once `Popover` exists.
@@ -805,7 +808,7 @@ interface InquiryCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 ## Not started at all yet, worth building first
 
-The full form-input set is now done: **Input**, **Select**, **Textarea**, **Checkbox**, **RadioGroup**, **Switch**, **FormField**, **SearchInput**, **MultiSelect** — every primitive needed to build a CRUD form exists. All of §1 Primitives is now done too: **Badge**, **Avatar**, **Tag/Chip**, **Tooltip**, **Card**, **Divider**, **Spinner**, **Skeleton**. `DestinationCard` now composes `Card` instead of re-declaring the surface. **StatusBadge**, **EmptyState**, and **DataTable** are done — the three highest-leverage components for the admin list-view screens. **Combobox** and **DateRangePicker** are still outstanding from §4 — both need a `Popover` primitive first (anchored floating positioning), which doesn't exist yet. **FileUpload**/**ImageUpload** is also outstanding but self-contained (no `Popover` dependency).
+The full form-input set is now done: **Input**, **Select**, **Textarea**, **Checkbox**, **RadioGroup**, **Switch**, **FormField**, **SearchInput**, **MultiSelect** — every primitive needed to build a CRUD form exists. All of §1 Primitives is now done too: **Badge**, **Avatar**, **Tag/Chip**, **Tooltip**, **Card**, **Divider**, **Spinner**, **Skeleton**. `DestinationCard` now composes `Card` instead of re-declaring the surface. **StatusBadge**, **EmptyState**, and **DataTable** are done — the three highest-leverage components for the admin list-view screens. **Combobox** and **DateRangePicker** are still outstanding from §4 — both need a `Popover` primitive first (anchored floating positioning), which doesn't exist yet. **MediaUpload**, **MediaTile**, and **MediaGrid** are done, covering the former FileUpload/ImageUpload spec plus a browsable media library.
 
 If you're picking a handful to build manually next, this is the highest-leverage order — each one unblocks several screens at once and none of them depend on a `packages/types` schema that doesn't exist yet:
 

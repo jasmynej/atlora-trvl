@@ -24,6 +24,7 @@ export function usePlatformMediaUpload(keyPrefix: string) {
     const created = await createMedia.mutateAsync({
       key,
       url: publicUrl,
+      filename: file.name,
       altText: null,
       width: null,
       height: null,

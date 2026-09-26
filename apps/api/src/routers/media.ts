@@ -3,6 +3,7 @@ import {
   CreateMediaAttachmentSchema,
   CreateMediaSchema,
   DetachMediaInputSchema,
+  MediaListInputSchema,
   SetHeroMediaInputSchema,
   UpdateMediaSchema,
 } from '@atlora/types'
@@ -13,8 +14,14 @@ import { replaceHeroSafe } from '../lib/mediaAttachments'
 import { publicProcedure, router } from '../trpc'
 
 export const mediaRouter = router({
-  list: publicProcedure.query(() => {
-    return db.query.media.findMany()
+  list: publicProcedure.input(MediaListInputSchema.optional()).query(({ input }) => {
+    const search = input?.search
+    return db.query.media.findMany({
+      where: search
+        ? { OR: [{ filename: { ilike: `%${search}%` } }, { altText: { ilike: `%${search}%` } }] }
+        : undefined,
+      orderBy: { createdAt: 'desc' },
+    })
   }),
 
   getById: publicProcedure.input(z.object({ id: z.string() })).query(({ input }) => {

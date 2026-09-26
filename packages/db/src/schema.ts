@@ -191,6 +191,7 @@ export const media = pgTable("media", {
     .$defaultFn(() => createId()),
   key: text("key").notNull().unique(),
   url: text("url").notNull(),
+  filename: text("filename"),
   altText: text("alt_text"),
   width: integer("width"),
   height: integer("height"),

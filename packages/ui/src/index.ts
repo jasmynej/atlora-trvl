@@ -72,3 +72,9 @@ export type { OverlayProps } from './components/Overlay'
 
 export { MediaUpload } from './components/MediaUpload'
 export type { MediaUploadProps, MediaUploadValue } from './components/MediaUpload'
+
+export { MediaTile } from './components/MediaTile'
+export type { MediaTileProps, MediaTileItem } from './components/MediaTile'
+
+export { MediaGrid } from './components/MediaGrid'
+export type { MediaGridProps } from './components/MediaGrid'

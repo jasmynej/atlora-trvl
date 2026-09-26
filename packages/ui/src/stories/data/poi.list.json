@@ -22,6 +22,7 @@
         "media": {
           "id": "pno7ngdv2jpg968ec1c7zplx",
           "key": "poi-serengeti-naabi-hill-gate-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Common_Agama_at_Naabi_Hill_Gate%2C_Serengeti%2C_Tanzania.jpg/1920px-Common_Agama_at_Naabi_Hill_Gate%2C_Serengeti%2C_Tanzania.jpg",
           "altText": "Naabi Hill Gate, Serengeti National Park",
           "width": 1600,
@@ -55,6 +56,7 @@
         "media": {
           "id": "cmoj56bbwev683xvcoxxgqjk",
           "key": "poi-bangkok-suvarnabhumi-airport-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Green-faced_Yaksha_statue_at_Suvarnabhumi_Airport_in_Bangkok.jpg/1920px-Green-faced_Yaksha_statue_at_Suvarnabhumi_Airport_in_Bangkok.jpg",
           "altText": "A guardian statue at Suvarnabhumi Airport, Bangkok",
           "width": 1600,
@@ -88,6 +90,7 @@
         "media": {
           "id": "qjybp1eol3j0qmejtroef6ct",
           "key": "poi-bangkok-chatuchak-market-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Chatuchak_weekend_market_outdoor_stalls_2.JPG/1920px-Chatuchak_weekend_market_outdoor_stalls_2.JPG",
           "altText": "Outdoor stalls at Chatuchak Weekend Market",
           "width": 1600,
@@ -121,6 +124,7 @@
         "media": {
           "id": "ct9lsptemvuzbpp0pfw0r03i",
           "key": "poi-santorini-oia-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Village_Oia%2C_Santorini%2C_Gr%C3%A8ce%2C_2017.jpg",
           "altText": "The village of Oia, Santorini",
           "width": 1600,
@@ -154,6 +158,7 @@
         "media": {
           "id": "w2p0jl2upyx5c5uqgdrtr9em",
           "key": "poi-santorini-airport-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Kamari_and_airport.jpg",
           "altText": "Santorini (Thira) National Airport",
           "width": 1600,
@@ -187,6 +192,7 @@
         "media": {
           "id": "fp6cvhrt0l8kcrd7yprx3vi7",
           "key": "poi-bali-uluwatu-temple-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg/1920px-Luhur_Uluwatu_Temple%2C_Bali%2C_20220826_0953_1016.jpg",
           "altText": "Uluwatu Temple perched on the cliffs of Bali",
           "width": 1600,
@@ -233,6 +239,7 @@
         "media": {
           "id": "acxgghqh78g0npt2cwb6n9pf",
           "key": "poi-bali-four-seasons-sayan-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bali_Urwald_SvG.jpg",
           "altText": "Jungle canopy near the Ayung River, Ubud",
           "width": 1600,
@@ -266,6 +273,7 @@
         "media": {
           "id": "ye2iakd5qittaj5czyho6y3z",
           "key": "poi-bali-ngurah-rai-airport-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg/1920px-Denpasar_Bali_Indonesia_Denpasar-International-Airport-01.jpg",
           "altText": "Ngurah Rai International Airport, Bali",
           "width": 1600,
@@ -299,6 +307,7 @@
         "media": {
           "id": "zgybg1nesnpyaeaw0zv8lxz0",
           "key": "poi-bangkok-grand-palace-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%A8%E0%B8%A3%E0%B8%B5%E0%B8%A3%E0%B8%B1%E0%B8%95%E0%B8%99%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%94%E0%B8%B2%E0%B8%A3%E0%B8%B2%E0%B8%A1_%E0%B8%A7%E0%B8%B1%E0%B8%94%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B9%81%E0%B8%81%E0%B9%89%E0%B8%A7_%E0%B8%81%E0%B8%A3%E0%B8%B8%E0%B8%87%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A1%E0%B8%AB%E0%B8%B2%E0%B8%99%E0%B8%84%E0%B8%A3_-_Wat_Phra_Kaew%2C_Temple_of_Emerald_Buddha%2C_Bangkok%2C_Thailand.jpg/1920px-thumbnail.jpg",
           "altText": "Wat Phra Kaew, Temple of the Emerald Buddha, at the Grand Palace",
           "width": 1600,
@@ -345,6 +354,7 @@
         "media": {
           "id": "ge3hjuknu5sjdwbbbehql2dl",
           "key": "poi-barbados-bridgetown-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/AIDAperla_in_Bridgetown%2C_Barbados_-_February_2020.jpg/1920px-AIDAperla_in_Bridgetown%2C_Barbados_-_February_2020.jpg",
           "altText": "A cruise ship docked in Bridgetown, Barbados",
           "width": 1600,
@@ -378,6 +388,7 @@
         "media": {
           "id": "lqdrvdpdq7hf8teemc3zj2ss",
           "key": "poi-barbados-grantley-adams-airport-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Sir_Grantley_Adams_Int_Airport%2C_Barbados-05.jpg",
           "altText": "Grantley Adams International Airport, Barbados",
           "width": 1600,
@@ -411,6 +422,7 @@
         "media": {
           "id": "uhvsa7hr6g9mlkkcczdi69zi",
           "key": "poi-barbados-sandy-lane-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Sandy_Lane.jpg/1920px-Sandy_Lane.jpg",
           "altText": "Sandy Lane resort, Barbados",
           "width": 1600,
@@ -444,6 +456,7 @@
         "media": {
           "id": "cqzfmrx42dj0bmynkg7u2wb4",
           "key": "poi-barbados-oistins-fish-fry-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Oistins_shoreline_Barbados.jpg/1920px-Oistins_shoreline_Barbados.jpg",
           "altText": "The Oistins shoreline, Barbados",
           "width": 1600,
@@ -477,6 +490,7 @@
         "media": {
           "id": "s619sowhgr6o7a5zgwvel62w",
           "key": "poi-serengeti-seronera-airstrip-hero",
+          "filename": null,
           "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Seronera_Airstrip.jpg/1920px-Seronera_Airstrip.jpg",
           "altText": "Seronera Airstrip, Serengeti National Park",
           "width": 1600,

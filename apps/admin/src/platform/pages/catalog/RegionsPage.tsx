@@ -2,6 +2,7 @@ import * as React from 'react'
 import { platformTrpc } from '../../lib/trpc'
 import { usePlatformMediaUpload } from '../../lib/upload'
 import { slugify } from '../../lib/slug'
+import { MediaLibraryPicker } from '../../components/MediaLibraryPicker'
 import {
   DataTable,
   type DataTableColumn,
@@ -79,6 +80,7 @@ export function RegionsPage() {
     const [form, setForm] = React.useState<RegionFormState | null>(null)
     const [slugTouched, setSlugTouched] = React.useState(false)
     const [confirmDeleteOpen, setConfirmDeleteOpen] = React.useState(false)
+    const [pickerOpen, setPickerOpen] = React.useState(false)
 
     const createMutation = platformTrpc.regions.create.useMutation({
         onSuccess: () => {
@@ -205,7 +207,12 @@ export function RegionsPage() {
                 {form && (
                     <div className="flex flex-col gap-4">
                         <FormField label="Hero image" htmlFor="region-media">
-                            <MediaUpload value={form.media} onChange={(value) => updateForm('media', value)} onUpload={upload} />
+                            <MediaUpload
+                                value={form.media}
+                                onChange={(value) => updateForm('media', value)}
+                                onUpload={upload}
+                                onBrowseLibrary={() => setPickerOpen(true)}
+                            />
                         </FormField>
                         <FormField label="Name" htmlFor="region-name">
                             <Input
@@ -271,6 +278,13 @@ export function RegionsPage() {
             >
                 <p className="type-body-sm text-sand-700">This action cannot be undone.</p>
             </Overlay>
+
+            <MediaLibraryPicker
+                open={pickerOpen}
+                onClose={() => setPickerOpen(false)}
+                onSelect={(media) => updateForm('media', media)}
+                selectedId={form?.media?.mediaId}
+            />
         </div>
     )
 }
