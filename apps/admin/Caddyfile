@@ -1,6 +1,19 @@
 :80 {
 	root * /srv
 
+	# The raw built filename, hit directly (bookmark, typed URL, or just
+	# curiosity), used to render identically to the clean path below —
+	# until BrowserRouter got a `basename` of "/admin/platform" (see
+	# apps/admin/src/platform/App.tsx). React Router's basename match is
+	# segment-aware: it requires the next character after the basename to
+	# be "/" or end-of-string, so "/admin/platform.html" (next char ".")
+	# doesn't match and every route fails silently — a blank #root, no
+	# console warning (that check is dev-only and this is a prod build).
+	# Redirecting to the clean URL keeps there being exactly one canonical
+	# address the router ever has to match.
+	@rawPlatformHtml path /admin/platform.html
+	redir @rawPlatformHtml /admin/platform 308
+
 	# Platform-admin surface: a second Vite entry point, built to its own
 	# platform.html — not a separate app. Must precede the generic block
 	# below or it's shadowed by index.html's fallback. try_files covers a
