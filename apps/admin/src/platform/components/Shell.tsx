@@ -13,6 +13,7 @@ function joinClassNames(...classes: Array<string | false | undefined>): string {
 
 const NAV_ITEMS = [
   { to: '/catalog', label: 'Catalog' },
+  { to: '/media', label: 'Media' },
   { to: '/agencies', label: 'Agencies' },
   { to: '/billing', label: 'Billing' },
   { to: '/audit-log', label: 'Audit Log' },

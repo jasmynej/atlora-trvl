@@ -11,6 +11,7 @@ import { DestinationsPage } from './pages/catalog/DestinationsPage'
 import { RegionsPage } from './pages/catalog/RegionsPage'
 import { CountriesPage } from './pages/catalog/CountriesPage'
 import { PoiPage } from './pages/catalog/PoiPage'
+import { MediaLibraryPage } from './pages/MediaLibraryPage'
 import { AgenciesPage } from './pages/AgenciesPage'
 import { BillingPage } from './pages/BillingPage'
 import { AuditLogPage } from './pages/AuditLogPage'
@@ -47,6 +48,7 @@ function AuthedRoutes() {
                   <Route path="countries" element={<CountriesPage />} />
                   <Route path="poi" element={<PoiPage />} />
                 </Route>
+                <Route path="/media" element={<MediaLibraryPage />} />
                 <Route path="/agencies" element={<AgenciesPage />} />
                 <Route path="/billing" element={<BillingPage />} />
                 <Route path="/audit-log" element={<AuditLogPage />} />
@@ -78,7 +80,7 @@ export default function App() {
     <platformTrpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
         <PlatformAuthProvider>
-          <BrowserRouter>
+          <BrowserRouter basename="/admin/platform">
             <AuthedRoutes />
           </BrowserRouter>
         </PlatformAuthProvider>

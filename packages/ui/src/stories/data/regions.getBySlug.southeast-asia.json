@@ -110,6 +110,7 @@
       "media": {
         "id": "docjpiwc9h2nr0cpdn0cxqvo",
         "key": "region-southeast-asia-hero",
+        "filename": null,
         "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Halong_Bay_in_Vietnam.jpg",
         "altText": "Limestone karsts rising from the water in Ha Long Bay, Vietnam",
         "width": 1920,
@@ -129,6 +130,7 @@
       "media": {
         "id": "gcqkek0la7f91gsr8k52gd85",
         "key": "region-southeast-asia-gallery-1",
+        "filename": null,
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Railay_Beach_5.jpg/1920px-Railay_Beach_5.jpg",
         "altText": "Railay Beach, Thailand",
         "width": 1600,
@@ -148,6 +150,7 @@
       "media": {
         "id": "stcefqp9qr55fdoh1rlt9h57",
         "key": "region-southeast-asia-gallery-2",
+        "filename": null,
         "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Vietnam%2C_Phong_Dien%2C_Mekong_Delta%2C_River.jpg/1920px-Vietnam%2C_Phong_Dien%2C_Mekong_Delta%2C_River.jpg",
         "altText": "The Mekong Delta near Phong Dien, Vietnam",
         "width": 1600,

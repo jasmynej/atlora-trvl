@@ -7,6 +7,7 @@ export const MediaSchema = z.object({
   id: z.string(),
   key: z.string(),
   url: z.string().url(),
+  filename: z.string().nullable(),
   altText: z.string().nullable(),
   width: z.number().int().nullable(),
   height: z.number().int().nullable(),
@@ -16,6 +17,10 @@ export const MediaSchema = z.object({
 
 export const CreateMediaSchema = MediaSchema.omit({ id: true, createdAt: true })
 export const UpdateMediaSchema = CreateMediaSchema.partial().extend({ id: z.string() })
+
+export const MediaListInputSchema = z.object({
+  search: z.string().trim().min(1).optional(),
+})
 
 export const MediaAttachmentSchema = z.object({
   id: z.string(),
@@ -66,3 +71,4 @@ export type UpdateMediaAttachment = z.infer<typeof UpdateMediaAttachmentSchema>
 export type AttachMediaInput = z.infer<typeof AttachMediaInputSchema>
 export type SetHeroMediaInput = z.infer<typeof SetHeroMediaInputSchema>
 export type DetachMediaInput = z.infer<typeof DetachMediaInputSchema>
+export type MediaListInput = z.infer<typeof MediaListInputSchema>

@@ -13,6 +13,7 @@ export interface MediaUploadProps {
   value: MediaUploadValue | null
   onChange: (value: MediaUploadValue | null) => void
   onUpload: (file: File) => Promise<MediaUploadValue>
+  onBrowseLibrary?: () => void
   accept?: string
   disabled?: boolean
   className?: string
@@ -34,7 +35,7 @@ function UploadIcon() {
 }
 
 export const MediaUpload = React.forwardRef<HTMLDivElement, MediaUploadProps>(
-  ({ value, onChange, onUpload, accept = 'image/*', disabled, className }, ref) => {
+  ({ value, onChange, onUpload, onBrowseLibrary, accept = 'image/*', disabled, className }, ref) => {
     const inputRef = React.useRef<HTMLInputElement>(null)
     const [uploading, setUploading] = React.useState(false)
     const [error, setError] = React.useState<string | null>(null)
@@ -59,6 +60,17 @@ export const MediaUpload = React.forwardRef<HTMLDivElement, MediaUploadProps>(
           <div className="relative w-full overflow-hidden rounded-md border border-sand-200">
             <img src={value.url} alt={value.altText ?? ''} className="h-40 w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 flex justify-end gap-2 bg-charcoal/50 p-2">
+              {onBrowseLibrary && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="secondary"
+                  onClick={onBrowseLibrary}
+                  disabled={disabled || uploading}
+                >
+                  From library
+                </Button>
+              )}
               <Button
                 type="button"
                 size="sm"
@@ -112,6 +124,17 @@ export const MediaUpload = React.forwardRef<HTMLDivElement, MediaUploadProps>(
                 <span className="type-caption">Click or drag an image to upload</span>
               </>
             )}
+          </button>
+        )}
+
+        {onBrowseLibrary && !value && (
+          <button
+            type="button"
+            onClick={onBrowseLibrary}
+            disabled={disabled || uploading}
+            className="type-caption self-start text-brand-fg underline-offset-2 hover:underline disabled:pointer-events-none disabled:opacity-60"
+          >
+            Choose from library
           </button>
         )}
 
